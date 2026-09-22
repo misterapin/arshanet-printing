@@ -573,11 +573,12 @@ async function deleteCurrentProduct() {
 
 // Slider Otomatis
 let currentSlideIndex = 0;
-const slides = document.querySelectorAll('.slide');
 let slideInterval;
 
 function showSlide(index) {
-    if (!slides.length) return;
+    const slides = document.querySelectorAll('.slide');
+    if (!slides || slides.length === 0) return;
+    
     if (index >= slides.length) currentSlideIndex = 0;
     else if (index < 0) currentSlideIndex = slides.length - 1;
     else currentSlideIndex = index;
@@ -588,10 +589,13 @@ function showSlide(index) {
 }
 
 function startSlideTimer() {
-    slideInterval = setInterval(() => { showSlide(currentSlideIndex + 1); }, 4000);
+    clearInterval(slideInterval);
+    slideInterval = setInterval(() => {
+        showSlide(currentSlideIndex + 1);
+    }, 4000); // Berganti setiap 4 detik
 }
 
-// Jalankan saat halaman dimuat
+// Pastikan dipanggil saat halaman selesai dimuat di window.onload
 window.onload = function() {
     loadDataFromSupabase();
     showSlide(0);
