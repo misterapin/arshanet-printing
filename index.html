@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArshaNet Printing - Solusi Cetak Kebutuhan Anda</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0056b3',
+                            darkblue: '#003d82',
+                            orange: '#ff7a00',
+                            yellow: '#ffc107',
+                            light: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Supabase JS Client CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- HEADER / NAVBAR PROFESIONAL -->
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-xs">
+        
+        <!-- Top Bar Kecil untuk Info & Status Admin -->
+        <div class="bg-slate-900 text-slate-300 text-[11px] py-1.5 px-4 sm:px-6 lg:px-8">
+            <div class="max-w-7xl mx-auto flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <span><i class="fa-solid fa-phone text-brand-orange mr-1"></i> <span id="topbar-phone">0812-3456-7890</span></span>
+                    <span class="hidden sm:inline text-slate-600">|</span>
+                    <span class="hidden sm:inline"><i class="fa-solid fa-envelope text-brand-orange mr-1"></i> <span id="topbar-email">info@arshanetprinting.com</span></span>
+                </div>
+                <div class="flex items-center space-x-3">
+                    <button onclick="openLoginModal()" class="hover:text-white transition flex items-center space-x-1 font-medium focus:outline-none">
+                        <i class="fa-solid fa-shield-halved text-brand-orange text-xs"></i>
+                        <span id="admin-topbar-text">Portal Admin Toko</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Navbar -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo & Brand -->
+                <div class="flex items-center space-x-12">
+                    <a href="#" class="flex items-center space-x-3 group">
+                        <div id="brand-logo-container" class="w-12 h-12 bg-gradient-to-tr from-brand-darkblue to-brand-blue rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-md group-hover:scale-105 transition-transform duration-200 overflow-hidden">
+                            <span id="brand-logo-text">A</span>
+                            <img id="brand-logo-img" src="" alt="Logo" class="w-full h-full object-cover hidden">
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-2xl font-black text-slate-900 tracking-tight leading-none">ArshaNet</span>
+                            <span class="text-[10px] font-bold text-brand-orange uppercase tracking-widest mt-1">Professional Printing</span>
+                        </div>
+                    </a>
+
+                    <!-- Navigasi Desktop -->
+                    <nav class="hidden lg:flex items-center space-x-1 text-sm font-medium text-slate-600">
+                        <a href="#" class="px-3.5 py-2 text-brand-blue font-semibold rounded-lg hover:bg-slate-50 transition">Beranda</a>
+                        <a href="#kategori" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Kategori</a>
+                        <a href="#kategori" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Produk</a>
+                        <a href="#cara-pesan" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Cara Pesan</a>
+                        <a href="#tentang" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Tentang Kami</a>
+                        <a href="#kontak" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Kontak</a>
+                    </nav>
+                </div>
+
+                <!-- Aksi Kanan -->
+                <div class="flex items-center space-x-3">
+                    <button id="btn-admin-setting" onclick="openSettingModal()" class="hidden text-xs bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold px-4 py-2.5 rounded-xl transition border border-slate-300 flex items-center space-x-2">
+                        <i class="fa-solid fa-gear text-brand-blue"></i>
+                        <span>Setting Admin</span>
+                    </button>
+
+                    <button onclick="toggleCart()" class="relative bg-slate-50 hover:bg-blue-50 text-slate-700 hover:text-brand-blue px-4 py-2.5 rounded-xl border border-slate-200 transition-all duration-200 focus:outline-none flex items-center space-x-2.5">
+                        <i class="fa-solid fa-cart-shopping text-base"></i>
+                        <span class="text-xs font-bold">Keranjang</span>
+                        <span id="cart-badge" class="bg-brand-orange text-white text-[10px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-sm">0</span>
+                    </button>
+
+                    <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 bg-slate-50 hover:bg-slate-100 text-slate-700 rounded-xl border border-slate-200 transition focus:outline-none">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 px-6 py-4 space-y-2 shadow-xl">
+            <a href="#" class="block py-2.5 text-xs font-bold text-brand-blue border-b border-slate-50">Beranda</a>
+            <a href="#kategori" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue border-b border-slate-50">Kategori</a>
+            <a href="#kategori" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue border-b border-slate-50">Produk</a>
+            <a href="#tentang" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue border-b border-slate-50">Tentang Kami</a>
+            <a href="#kontak" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue">Kontak</a>
+        </div>
+    </header>
+
+    <!-- HERO SECTION & SLIDER BANNER -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+            
+            <div class="lg:col-span-5 bg-gradient-to-br from-brand-blue to-brand-darkblue rounded-2xl p-6 sm:p-8 text-white flex flex-col justify-between shadow-lg relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+                <div>
+                    <span class="inline-block bg-white/20 text-xs font-semibold px-3 py-1 rounded-full mb-3 uppercase tracking-wider">Percetakan Online</span>
+                    <h1 class="text-2xl sm:text-3xl font-extrabold leading-tight mb-3">
+                        Cetak Apa Saja <br><span class="text-brand-yellow">Mudah & Cepat</span>
+                    </h1>
+                    <p class="text-blue-100 text-xs sm:text-sm leading-relaxed mb-4">
+                        Banner • Spanduk • Stiker • Kartu Nama • Undangan • Brosur • Buku • Kaos • Kemasan • dan lainnya
+                    </p>
+                </div>
+                <div>
+                    <a href="#kategori" class="inline-flex items-center space-x-2 bg-brand-orange hover:bg-orange-600 text-white font-bold px-5 py-2.5 rounded-xl shadow-md text-xs sm:text-sm transition transform hover:-translate-y-0.5">
+                        <span>Mulai Pesan Sekarang</span>
+                        <i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="lg:col-span-7 relative rounded-2xl overflow-hidden shadow-lg bg-gray-900 group h-64 sm:h-80 lg:h-full min-h-[300px]">
+                <div id="slider-container" class="relative w-full h-full">
+                    <div class="slide absolute inset-0 transition-opacity duration-700 opacity-100 flex items-center">
+                        <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1200&q=80" alt="Banner Spanduk" class="absolute inset-0 w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent flex flex-col justify-center p-6 sm:p-10 text-white">
+                            <span class="bg-brand-orange text-[10px] font-bold px-2.5 py-0.5 rounded w-max mb-2">BANNER & SPANDUK</span>
+                            <h2 class="text-xl sm:text-2xl font-extrabold mb-1">Cetak Spanduk & Banner Kilat</h2>
+                            <p class="text-xs sm:text-sm text-gray-200 mb-3 max-w-sm">Hasil tajam, tahan cuaca panas & hujan.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- KATEGORI PRODUK SECTION -->
+    <section id="kategori" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl sm:text-2xl font-bold text-gray-900 flex items-center space-x-2">
+                <span class="w-2 h-6 bg-brand-blue rounded-full"></span>
+                <span>Kategori Produk</span>
+            </h2>
+            <button id="btn-add-category" onclick="openAddCategoryModal()" class="hidden text-xs bg-brand-blue hover:bg-blue-700 text-white font-bold px-3.5 py-2 rounded-xl transition shadow-sm flex items-center space-x-1.5">
+                <i class="fa-solid fa-plus text-[10px]"></i>
+                <span>Tambah Kategori</span>
+            </button>
+        </div>
+
+        <div id="category-grid" class="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-8 gap-4"></div>
+    </section>
+
+    <!-- PRODUK KAMI -->
+    <section class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="flex items-center justify-between mb-6">
+            <h2 class="text-xl sm:text-2xl font-bold text-gray-900 flex items-center space-x-2">
+                <span class="w-2 h-6 bg-brand-orange rounded-full"></span>
+                <span>Daftar Produk</span>
+            </h2>
+            <div class="flex items-center space-x-3">
+                <span id="active-filter-badge" class="text-xs bg-blue-50 text-brand-blue px-3.5 py-1.5 rounded-xl font-semibold border border-blue-100">Menampilkan: Semua Produk</span>
+                <button id="btn-add-product" onclick="openAddProductModal()" class="hidden text-xs bg-brand-orange hover:bg-orange-600 text-white font-bold px-3.5 py-2 rounded-xl transition shadow-sm flex items-center space-x-1.5">
+                    <i class="fa-solid fa-plus text-[10px]"></i>
+                    <span>Tambah Produk</span>
+                </button>
+            </div>
+        </div>
+
+        <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"></div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer id="kontak" class="bg-gray-900 text-gray-300 pt-12 pb-6 border-t border-gray-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-10 h-10 bg-brand-blue rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md">A</div>
+                        <div>
+                            <span class="text-2xl font-black text-white tracking-tight">ArshaNet</span>
+                            <span class="text-xs block font-semibold text-brand-orange uppercase tracking-wider">Printing</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">Solusi cetak kebutuhan Anda dengan kualitas terbaik dan harga terjangkau.</p>
+                </div>
+                <div>
+                    <h3 class="text-white font-bold text-sm mb-4 uppercase tracking-wider border-b border-gray-800 pb-2">Hubungi Kami</h3>
+                    <ul class="space-y-3 text-xs text-gray-400">
+                        <li><i class="fa-solid fa-phone text-brand-orange mr-2"></i> <span id="footer-phone">0812-3456-7890</span></li>
+                        <li><i class="fa-solid fa-envelope text-brand-orange mr-2"></i> <span id="footer-email">info@arshanetprinting.com</span></li>
+                        <li><i class="fa-solid fa-location-dot text-brand-orange mr-2"></i> <span id="footer-address">Jl. Melati No. 123, Indonesia</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-gray-800 pt-6 text-xs text-gray-500 text-center">
+                <p>&copy; 2026 ArshaNet Printing. Semua hak cipta dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WHATSAPP FLOATING BUTTON (Dinamis) -->
+    <a id="floating-wa-btn" href="https://wa.me/6281234567890" target="_blank" class="fixed bottom-6 right-6 z-40 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-3xl transition transform hover:scale-110 focus:outline-none" title="Chat via WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- CART MODAL -->
+    <div id="cart-modal" class="fixed inset-0 z-50 bg-black/50 hidden flex justify-end">
+        <div class="bg-white w-full max-w-md h-full shadow-2xl flex flex-col justify-between p-6">
+            <div>
+                <div class="flex items-center justify-between pb-4 border-b">
+                    <h3 class="font-bold text-lg text-gray-900 flex items-center space-x-2">
+                        <i class="fa-solid fa-cart-shopping text-brand-blue"></i>
+                        <span>Keranjang Belanja</span>
+                    </h3>
+                    <button onclick="toggleCart()" class="text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+                </div>
+                <div id="cart-items" class="py-4 space-y-3 overflow-y-auto max-h-[60vh]">
+                    <p class="text-xs text-gray-400 text-center py-8">Keranjang belanja masih kosong.</p>
+                </div>
+            </div>
+            <div class="border-t pt-4">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-sm font-semibold text-gray-600">Total:</span>
+                    <span id="cart-total" class="text-lg font-extrabold text-brand-orange">Rp 0</span>
+                </div>
+                <button onclick="checkoutWhatsApp()" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 rounded-xl shadow-md transition flex items-center justify-center space-x-2">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Checkout via WhatsApp</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL LOGIN ADMIN -->
+    <div id="login-modal" class="fixed inset-0 z-50 bg-black/50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-sm rounded-2xl shadow-2xl p-6 relative">
+            <button onclick="closeLoginModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div class="text-center mb-6">
+                <div class="w-12 h-12 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center mx-auto mb-2 text-xl font-bold"><i class="fa-solid fa-lock"></i></div>
+                <h3 class="font-bold text-lg text-gray-900">Login Admin</h3>
+            </div>
+            <form onsubmit="handleLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Username</label>
+                    <input type="text" id="admin-user" required class="w-full text-xs px-4 py-2.5 rounded-xl border border-gray-200">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-gray-700 mb-1">Password</label>
+                    <input type="password" id="admin-pass" required class="w-full text-xs px-4 py-2.5 rounded-xl border border-gray-200">
+                </div>
+                <button type="submit" class="w-full bg-brand-blue hover:bg-blue-700 text-white text-xs font-bold py-3 rounded-xl transition shadow-md">Masuk</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL SETTING ADMIN (DENGAN MENU UBAH ALAMAT & WHATSAPP) -->
+    <div id="setting-modal" class="fixed inset-0 z-50 bg-black/50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl p-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeSettingModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+            <h3 class="font-extrabold text-lg text-gray-900 mb-6 flex items-center space-x-2 border-b pb-3">
+                <i class="fa-solid fa-gear text-brand-blue"></i>
+                <span>Pengaturan Sistem & Toko</span>
+            </h3>
+
+            <div class="space-y-6 text-xs">
+                <!-- Ubah Alamat & No WhatsApp Toko -->
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                    <h4 class="font-bold text-gray-800 mb-2 flex items-center space-x-1.5"><i class="fa-solid fa-address-book text-brand-blue"></i><span>Ubah Alamat & No. WhatsApp Toko</span></h4>
+                    <form onsubmit="handleUpdateContact(event)" class="space-y-2">
+                        <div>
+                            <label class="block text-[10px] font-semibold text-gray-600 mb-1">Nomor WhatsApp (Format: 628xxxx)</label>
+                            <input type="text" id="setting-whatsapp" required class="w-full px-3 py-2 rounded-xl border bg-white border-gray-200">
+                        </div>
+                        <div>
+                            <label class="block text-[10px] font-semibold text-gray-600 mb-1">Alamat Lengkap Toko</label>
+                            <textarea id="setting-address" rows="2" required class="w-full px-3 py-2 rounded-xl border bg-white border-gray-200"></textarea>
+                        </div>
+                        <button type="submit" class="bg-brand-blue hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-xl transition shadow-xs">Simpan Kontak Toko</button>
+                    </form>
+                </div>
+
+                <!-- Ganti Logo -->
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                    <h4 class="font-bold text-gray-800 mb-2 flex items-center space-x-1.5"><i class="fa-solid fa-image text-brand-blue"></i><span>Ganti Logo Toko</span></h4>
+                    <form onsubmit="handleUpdateLogo(event)" class="space-y-2">
+                        <input type="file" id="setting-logo-file" accept="image/*" required class="w-full px-3 py-2 rounded-xl border bg-white border-gray-200 text-xs">
+                        <button type="submit" class="bg-brand-blue hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-xl transition shadow-xs">Simpan Logo Baru</button>
+                    </form>
+                </div>
+
+                <!-- Ganti Password -->
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                    <h4 class="font-bold text-gray-800 mb-2 flex items-center space-x-1.5"><i class="fa-solid fa-key text-brand-blue"></i><span>Ganti Password Admin</span></h4>
+                    <form onsubmit="handleUpdatePassword(event)" class="space-y-2">
+                        <input type="password" id="setting-new-pass" placeholder="Password Baru" required class="w-full px-3 py-2 rounded-xl border bg-white border-gray-200">
+                        <button type="submit" class="bg-brand-blue hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-xl transition shadow-xs">Perbarui Password</button>
+                    </form>
+                </div>
+
+                <!-- Riwayat Transaksi -->
+                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                    <div class="flex items-center justify-between mb-3">
+                        <h4 class="font-bold text-gray-800 flex items-center space-x-1.5"><i class="fa-solid fa-clock-rotate-left text-brand-orange"></i><span>Riwayat Transaksi Berkala</span></h4>
+                        <button onclick="clearTransactionHistory()" class="text-[10px] bg-red-100 hover:bg-red-200 text-red-600 font-bold px-2.5 py-1 rounded-lg transition">Hapus</button>
+                    </div>
+                    <div id="transaction-history-list" class="space-y-2 max-h-48 overflow-y-auto">
+                        <p class="text-gray-400 text-center py-4">Belum ada transaksi tercatat.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODAL TAMBAH KATEGORI -->
+    <div id="add-category-modal" class="fixed inset-0 z-50 bg-black/50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-sm rounded-2xl shadow-2xl p-6 relative">
+            <button onclick="closeAddCategoryModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <h3 class="font-bold text-base text-gray-900 mb-4">Tambah Kategori Baru</h3>
+            <form onsubmit="handleAddCategory(event)" class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-semibold mb-1">Nama Kategori</label>
+                    <input type="text" id="cat-name" required class="w-full px-3 py-2 rounded-xl border border-gray-200">
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1">Link URL Ikon</label>
+                    <input type="url" id="cat-icon-url" required class="w-full px-3 py-2 rounded-xl border border-gray-200">
+                </div>
+                <button type="submit" class="w-full bg-brand-blue text-white font-bold py-2.5 rounded-xl">Simpan Kategori</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL TAMBAH PRODUK -->
+    <div id="add-product-modal" class="fixed inset-0 z-50 bg-black/50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl p-6 relative max-h-[90vh] overflow-y-auto">
+            <button onclick="closeAddProductModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <h3 class="font-bold text-base text-gray-900 mb-4">Tambah Produk Baru</h3>
+            <form onsubmit="handleAddProduct(event)" class="space-y-3 text-xs">
+                <div>
+                    <label class="block font-semibold mb-1">Nama Produk</label>
+                    <input type="text" id="new-name" required class="w-full px-3 py-2 rounded-xl border border-gray-200">
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1">Kategori</label>
+                    <select id="new-category" class="w-full px-3 py-2 rounded-xl border border-gray-200"></select>
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1">Harga (Rp)</label>
+                    <input type="number" id="new-price" required class="w-full px-3 py-2 rounded-xl border border-gray-200">
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1">Satuan</label>
+                    <input type="text" id="new-unit" required class="w-full px-3 py-2 rounded-xl border border-gray-200">
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1">Foto Produk</label>
+                    <input type="file" id="new-image-file" accept="image/*" required class="w-full px-3 py-2 rounded-xl border border-gray-200 text-xs">
+                </div>
+                <button type="submit" class="w-full bg-brand-orange text-white font-bold py-2.5 rounded-xl">Simpan Produk</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- MODAL EDIT PRODUK -->
+    <div id="edit-product-modal" class="fixed inset-0 z-50 bg-black/50 hidden flex items-center justify-center p-4">
+        <div class="bg-white w-full max-w-md rounded-2xl shadow-2xl p-6 relative">
+            <button onclick="closeEditModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <h3 class="font-bold text-base text-gray-900 mb-4">Edit Produk</h3>
+            <form onsubmit="handleEditProduct(event)" class="space-y-3 text-xs">
+                <input type="hidden" id="edit-id">
+                <div>
+                    <label class="block font-semibold mb-1">Nama Produk</label>
+                    <input type="text" id="edit-name" required class="w-full px-3 py-2 rounded-xl border border-gray-200">
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1">Harga (Rp)</label>
+                    <input type="number" id="edit-price" required class="w-full px-3 py-2 rounded-xl border border-gray-200">
+                </div>
+                <div>
+                    <label class="block font-semibold mb-1">Satuan</label>
+                    <input type="text" id="edit-unit" required class="w-full px-3 py-2 rounded-xl border border-gray-200">
+                </div>
+                <div class="flex space-x-2 mt-4">
+                    <button type="button" onclick="deleteCurrentProduct()" class="w-1/3 bg-red-500 text-white font-bold py-2.5 rounded-xl">Hapus</button>
+                    <button type="submit" class="w-2/3 bg-brand-blue text-white font-bold py-2.5 rounded-xl">Simpan</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
