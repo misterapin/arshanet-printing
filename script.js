@@ -374,27 +374,6 @@ function closeSettingModal() {
     if (settingModal) settingModal.classList.add('hidden');
 }
 
-// Update Kontak (Alamat & WhatsApp) ke Supabase
-async function handleUpdateContact(e) {
-    e.preventDefault();
-    const newPhone = document.getElementById('setting-whatsapp').value.trim();
-    const newAddress = document.getElementById('setting-address').value.trim();
-
-    // Cek apakah tabel store_settings sudah ada isinya atau belum
-    const { data: existing } = await db.from('store_settings').select('*');
-    
-    if (existing && existing.length > 0) {
-        await db.from('store_settings').update({ phone: newPhone, address: newAddress }).eq('id', existing[0].id);
-    } else {
-        await db.from('store_settings').insert([{ phone: newPhone, address: newAddress, email: storeContact.email }]);
-    }
-
-    storeContact.phone = newPhone;
-    storeContact.address = newAddress;
-    renderStoreContact();
-    alert('Nomor WhatsApp dan Alamat toko berhasil diperbarui!');
-}
-
 async function uploadToSupabaseStorage(file) {
     const fileName = `${Date.now()}_${file.name}`;
     const { data, error } = await db.storage.from('arshanet-files').upload(fileName, file);
@@ -404,20 +383,6 @@ async function uploadToSupabaseStorage(file) {
     }
     const { data: publicURL } = db.storage.from('arshanet-files').getPublicUrl(fileName);
     return publicURL.publicUrl;
-}
-
-async function handleUpdateLogo(e) {
-    e.preventDefault();
-    const fileInput = document.getElementById('setting-logo-file');
-    if (fileInput.files && fileInput.files[0]) {
-        const publicUrl = await uploadToSupabaseStorage(fileInput.files[0]);
-        if (publicUrl) {
-            customLogo = publicUrl;
-            localStorage.setItem('arshanet_logo', customLogo);
-            renderLogo();
-            alert('Logo toko berhasil diperbarui!');
-        }
-    }
 }
 
 async function handleUpdatePassword(e) {
@@ -458,6 +423,36 @@ async function clearTransactionHistory() {
     }
 }
 
+// Tambah Akun Admin Baru ke Database Supabase
+async function handleAddAdminUser(e) {
+    e.preventDefault();
+    const user = document.getElementById('new-admin-user').value.trim();
+    const pass = document.getElementById('new-admin-pass').value.trim();
+
+    const { error } = await db.from('admins').insert([{ user_name: user, pass: pass }]);
+    if (!error) {
+        e.target.reset();
+        alert('Akun admin baru berhasil ditambahkan!');
+    } else {
+        alert('Gagal menambah admin. Pastikan username belum terdaftar.');
+    }
+}
+
+// Ganti Password Admin
+async function handleUpdatePassword(e) {
+    e.preventDefault();
+    const newPass = document.getElementById('setting-new-pass').value.trim();
+    if (newPass) {
+        const { error } = await db.from('admins').update({ pass: newPass }).eq('user_name', 'admin');
+        if (!error) {
+            document.getElementById('setting-new-pass').value = '';
+            alert('Password admin utama berhasil diperbarui!');
+        } else {
+            alert('Gagal memperbarui password.');
+        }
+    }
+}
+
 // Tambah Kategori
 function openAddCategoryModal() {
     const modal = document.getElementById('add-category-modal');
@@ -483,7 +478,71 @@ async function handleAddCategory(e) {
         alert('Kategori baru berhasil ditambahkan!');
     }
 }
+let currentEditCategoryIndex = null;
 
+// Membuka Modal Edit Kategori
+function openEditCategoryModal(index) {
+    currentEditCategoryIndex = index;
+    const cat = categories[index];
+    if (cat) {
+        document.getElementById('edit-cat-index').value = index;
+        document.getElementById('edit-cat-name').value = cat.name;
+        document.getElementById('edit-cat-icon').value = cat.icon;
+        
+        const modal = document.getElementById('edit-category-modal');
+        if (modal) modal.classList.remove('hidden');
+    }
+}
+
+// Menutup Modal Edit Kategori
+function closeEditCategoryModal() {
+    const modal = document.getElementById('edit-category-modal');
+    if (modal) modal.classList.add('hidden');
+}
+
+// Menyimpan Perubahan Kategori ke Supabase
+async function handleEditCategory(e) {
+    e.preventDefault();
+    const newName = document.getElementById('edit-cat-name').value.trim();
+    const newIcon = document.getElementById('edit-cat-icon').value.trim();
+    const catToUpdate = categories[currentEditCategoryIndex];
+
+    if (catToUpdate && catToUpdate.id) {
+        const { error } = await db.from('categories')
+            .update({ name: newName, icon: newIcon })
+            .eq('id', catToUpdate.id);
+
+        if (!error) {
+            categories[currentEditCategoryIndex].name = newName;
+            categories[currentEditCategoryIndex].icon = newIcon;
+            closeEditCategoryModal();
+            renderCategories();
+            renderCategoryDropdown();
+            alert('Kategori berhasil diperbarui!');
+        } else {
+            alert('Gagal memperbarui kategori.');
+        }
+    }
+}
+
+// Menghapus Kategori
+async function deleteCurrentCategory() {
+    if (confirm('Hapus kategori ini?')) {
+        const catToDelete = categories[currentEditCategoryIndex];
+        if (catToDelete && catToDelete.id) {
+            const { error } = await db.from('categories').delete().eq('id', catToDelete.id);
+            if (!error) {
+                categories.splice(currentEditCategoryIndex, 1);
+                closeEditCategoryModal();
+                renderCategories();
+                renderCategoryDropdown();
+                alert('Kategori berhasil dihapus.');
+            } else {
+                alert('Gagal menghapus kategori.');
+            }
+        }
+    }
+}
 // Tambah Produk
 function openAddProductModal() {
     if (categories.length === 0) {
