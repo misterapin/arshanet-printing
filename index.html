@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArshaNet Printing - Solusi Cetak Kebutuhan Anda</title>
+    <title>ArshaNet Printing - Solusi Percetakan Kita</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -37,22 +37,6 @@
     <!-- HEADER / NAVBAR PROFESIONAL -->
     <header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-xs">
         
-        <!-- Top Bar Kecil untuk Info & Status Admin -->
-        <div class="bg-slate-900 text-slate-300 text-[11px] py-1.5 px-4 sm:px-6 lg:px-8">
-            <div class="max-w-7xl mx-auto flex justify-between items-center">
-                <div class="flex items-center space-x-4">
-                    <span><i class="fa-solid fa-phone text-brand-orange mr-1"></i> <span id="topbar-phone">0812-3456-7890</span></span>
-                    <span class="hidden sm:inline text-slate-600">|</span>
-                </div>
-                <div class="flex items-center space-x-3">
-                    <button onclick="openLoginModal()" class="hover:text-white transition flex items-center space-x-1 font-medium focus:outline-none">
-                        <i class="fa-solid fa-shield-halved text-brand-orange text-xs"></i>
-                        <span id="admin-topbar-text">Portal Admin Toko</span>
-                    </button>
-                </div>
-            </div>
-        </div>
-
         <!-- Main Navbar -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
@@ -60,13 +44,12 @@
                 <!-- Logo & Brand -->
                 <div class="flex items-center space-x-12">
                     <a href="#" class="flex items-center space-x-3 group">
-                        <div id="brand-logo-container" class="w-12 h-12 bg-gradient-to-tr from-brand-darkblue to-brand-blue rounded-xl flex items-center justify-center text-white font-black text-2xl shadow-md group-hover:scale-105 transition-transform duration-200 overflow-hidden">
-                            <span id="brand-logo-text">A</span>
-                            <img id="brand-logo-img" src="" alt="Logo" class="w-full h-full object-cover hidden">
-                        </div>
+                        <div class="w-12 h-12 bg-gradient-to-tr from-brand-darkblue to-brand-blue rounded-full flex items-center justify-center text-white font-black text-2xl shadow-md group-hover:scale-105 transition-transform duration-200 overflow-hidden">
+                            <img src="images/logo.webp" alt="Logo ArshaNet Printing" class="w-full h-full object-cover">
+                        </div>                        
                         <div class="flex flex-col">
-                            <span class="text-2xl font-black text-slate-900 tracking-tight leading-none">ArshaNet</span>
-                            <span class="text-[10px] font-bold text-brand-orange uppercase tracking-widest mt-1">Professional Printing</span>
+                            <span class="text-2xl font-black text-slate-900 tracking-tight leading-none">ArshaNet Printing</span>
+                            <span class="text-[10px] font-bold text-brand-orange uppercase tracking-widest mt-1">Solusi Percetakan Kita</span>
                         </div>
                     </a>
 
@@ -206,38 +189,46 @@
         <div id="product-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-4"></div>
     </section>
 
-    <!-- FOOTER -->
+<!-- FOOTER -->
     <footer id="kontak" class="bg-gray-900 text-gray-300 pt-12 pb-6 border-t border-gray-800 mt-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                
+                <!-- Kolom 1: Profil Toko (Tanpa Tombol Login) -->
                 <div>
-                    <div class="flex items-center space-x-2 mb-4">
-                        <div class="w-10 h-10 bg-brand-blue rounded-lg flex items-center justify-center text-white font-bold text-xl shadow-md">A</div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md overflow-hidden">
+                            <img src="images/logo.webp" alt="Logo ArshaNet Printing" class="w-full h-full object-cover">
+                        </div>
                         <div>
-                            <span class="text-2xl font-black text-white tracking-tight">ArshaNet</span>
-                            <span class="text-xs block font-semibold text-brand-orange uppercase tracking-wider">Printing</span>
+                            <span class="text-2xl font-black text-white tracking-tight">ArshaNet Printing</span>
+                            <span class="text-xs block font-semibold text-brand-orange uppercase tracking-wider">Solusi Percetakan Kita</span>
                         </div>
                     </div>
                     <p class="text-xs text-gray-400 leading-relaxed mb-4">Solusi cetak kebutuhan Anda dengan kualitas terbaik dan harga terjangkau.</p>
                 </div>
+
+                <!-- Kolom 2: Hubungi Kami -->
                 <div>
                     <h3 class="text-white font-bold text-sm mb-4 uppercase tracking-wider border-b border-gray-800 pb-2">Hubungi Kami</h3>
                     <ul class="space-y-3 text-xs text-gray-400">
                         <li><i class="fa-solid fa-phone text-brand-orange mr-2"></i> <span id="footer-phone">0812-3456-7890</span></li>
+                        <li><i class="fa-solid fa-envelope text-brand-orange mr-2"></i> <span id="footer-email">info@arshanetprinting.com</span></li>
                         <li><i class="fa-solid fa-location-dot text-brand-orange mr-2"></i> <span id="footer-address">Jl. Melati No. 123, Indonesia</span></li>
                     </ul>
                 </div>
+
             </div>
-            <div class="border-t border-gray-800 pt-6 text-xs text-gray-500 text-center">
+
+            <!-- Baris Copyright di Bawah dengan Tautan Admin yang Tidak Mencolok -->
+            <div class="border-t border-gray-800 pt-6 text-xs text-gray-500 flex flex-col sm:flex-row justify-between items-center">
                 <p>&copy; 2026 ArshaNet Printing. Semua hak cipta dilindungi.</p>
+                <button onclick="openLoginModal()" class="text-[10px] text-gray-600 hover:text-gray-400 transition mt-2 sm:mt-0 focus:outline-none">
+                    <span id="admin-footer-text">Admin Portal</span>
+                </button>
             </div>
         </div>
     </footer>
-
-    <!-- WHATSAPP FLOATING BUTTON (Dinamis) -->
-    <a id="floating-wa-btn" href="https://wa.me/6285201214267" target="_blank" class="fixed bottom-6 right-6 z-40 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-3xl transition transform hover:scale-110 focus:outline-none" title="Chat via WhatsApp">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
 
     <!-- CART MODAL -->
     <div id="cart-modal" class="fixed inset-0 z-50 bg-black/50 hidden flex justify-end">
@@ -289,63 +280,48 @@
         </div>
     </div>
 
-    <!-- MODAL SETTING ADMIN (DENGAN MENU UBAH ALAMAT & WHATSAPP) -->
-    <div id="setting-modal" class="fixed inset-0 z-50 bg-black/50 hidden flex items-center justify-center p-4">
-        <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl p-6 relative max-h-[90vh] overflow-y-auto">
-            <button onclick="closeSettingModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
-            <h3 class="font-extrabold text-lg text-gray-900 mb-6 flex items-center space-x-2 border-b pb-3">
-                <i class="fa-solid fa-gear text-brand-blue"></i>
-                <span>Pengaturan Sistem & Toko</span>
-            </h3>
+<!-- MODAL HALAMAN SETTING ADMIN -->
+<div id="setting-modal" class="fixed inset-0 z-50 bg-black/50 hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-2xl rounded-2xl shadow-2xl p-6 relative max-h-[90vh] overflow-y-auto">
+        <button onclick="closeSettingModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-xl"></i></button>
+        <h3 class="font-extrabold text-lg text-gray-900 mb-6 flex items-center space-x-2 border-b pb-3">
+            <i class="fa-solid fa-gear text-brand-blue"></i>
+            <span>Pengaturan Sistem & Admin Toko</span>
+        </h3>
 
-            <div class="space-y-6 text-xs">
-                <!-- Ubah Alamat & No WhatsApp Toko -->
-                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                    <h4 class="font-bold text-gray-800 mb-2 flex items-center space-x-1.5"><i class="fa-solid fa-address-book text-brand-blue"></i><span>Ubah Alamat & No. WhatsApp Toko</span></h4>
-                    <form onsubmit="handleUpdateContact(event)" class="space-y-2">
-                        <div>
-                            <label class="block text-[10px] font-semibold text-gray-600 mb-1">Nomor WhatsApp (Format: 628xxxx)</label>
-                            <input type="text" id="setting-whatsapp" required class="w-full px-3 py-2 rounded-xl border bg-white border-gray-200">
-                        </div>
-                        <div>
-                            <label class="block text-[10px] font-semibold text-gray-600 mb-1">Alamat Lengkap Toko</label>
-                            <textarea id="setting-address" rows="2" required class="w-full px-3 py-2 rounded-xl border bg-white border-gray-200"></textarea>
-                        </div>
-                        <button type="submit" class="bg-brand-blue hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-xl transition shadow-xs">Simpan Kontak Toko</button>
-                    </form>
+        <div class="space-y-6 text-xs">
+            <!-- 1. Tambah Akun Admin Baru -->
+            <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                <h4 class="font-bold text-gray-800 mb-2 flex items-center space-x-1.5"><i class="fa-solid fa-user-plus text-brand-blue"></i><span>Tambah Akun Admin Baru</span></h4>
+                <form onsubmit="handleAddAdminUser(event)" class="space-y-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <input type="text" id="new-admin-user" placeholder="Username Admin Baru" required class="w-full px-3 py-2 rounded-xl border bg-white border-gray-200">
+                    <input type="password" id="new-admin-pass" placeholder="Password Admin Baru" required class="w-full px-3 py-2 rounded-xl border bg-white border-gray-200">
+                    <button type="submit" class="sm:col-span-2 bg-brand-blue hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-xl transition shadow-xs">Tambah Admin</button>
+                </form>
+            </div>
+
+            <!-- 2. Ganti Password Admin -->
+            <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                <h4 class="font-bold text-gray-800 mb-2 flex items-center space-x-1.5"><i class="fa-solid fa-key text-brand-blue"></i><span>Ganti Password Admin</span></h4>
+                <form onsubmit="handleUpdatePassword(event)" class="space-y-2">
+                    <input type="password" id="setting-new-pass" placeholder="Password Admin Baru" required class="w-full px-3 py-2 rounded-xl border bg-white border-gray-200">
+                    <button type="submit" class="bg-brand-blue hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-xl transition shadow-xs">Perbarui Password</button>
+                </form>
+            </div>
+
+            <!-- 3. Riwayat Transaksi Berkala -->
+            <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
+                <div class="flex items-center justify-between mb-3">
+                    <h4 class="font-bold text-gray-800 flex items-center space-x-1.5"><i class="fa-solid fa-clock-rotate-left text-brand-orange"></i><span>Riwayat Transaksi Berkala</span></h4>
+                    <button onclick="clearTransactionHistory()" class="text-[10px] bg-red-100 hover:bg-red-200 text-red-600 font-bold px-2.5 py-1 rounded-lg transition">Hapus</button>
                 </div>
-
-                <!-- Ganti Logo -->
-                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                    <h4 class="font-bold text-gray-800 mb-2 flex items-center space-x-1.5"><i class="fa-solid fa-image text-brand-blue"></i><span>Ganti Logo Toko</span></h4>
-                    <form onsubmit="handleUpdateLogo(event)" class="space-y-2">
-                        <input type="file" id="setting-logo-file" accept="image/*" required class="w-full px-3 py-2 rounded-xl border bg-white border-gray-200 text-xs">
-                        <button type="submit" class="bg-brand-blue hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-xl transition shadow-xs">Simpan Logo Baru</button>
-                    </form>
-                </div>
-
-                <!-- Ganti Password -->
-                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                    <h4 class="font-bold text-gray-800 mb-2 flex items-center space-x-1.5"><i class="fa-solid fa-key text-brand-blue"></i><span>Ganti Password Admin</span></h4>
-                    <form onsubmit="handleUpdatePassword(event)" class="space-y-2">
-                        <input type="password" id="setting-new-pass" placeholder="Password Baru" required class="w-full px-3 py-2 rounded-xl border bg-white border-gray-200">
-                        <button type="submit" class="bg-brand-blue hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-xl transition shadow-xs">Perbarui Password</button>
-                    </form>
-                </div>
-
-                <!-- Riwayat Transaksi -->
-                <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
-                    <div class="flex items-center justify-between mb-3">
-                        <h4 class="font-bold text-gray-800 flex items-center space-x-1.5"><i class="fa-solid fa-clock-rotate-left text-brand-orange"></i><span>Riwayat Transaksi Berkala</span></h4>
-                        <button onclick="clearTransactionHistory()" class="text-[10px] bg-red-100 hover:bg-red-200 text-red-600 font-bold px-2.5 py-1 rounded-lg transition">Hapus</button>
-                    </div>
-                    <div id="transaction-history-list" class="space-y-2 max-h-48 overflow-y-auto">
-                        <p class="text-gray-400 text-center py-4">Belum ada transaksi tercatat.</p>
-                    </div>
+                <div id="transaction-history-list" class="space-y-2 max-h-48 overflow-y-auto">
+                    <p class="text-gray-400 text-center py-4">Belum ada transaksi tercatat.</p>
                 </div>
             </div>
         </div>
     </div>
+</div>
 
     <!-- MODAL TAMBAH KATEGORI -->
     <div id="add-category-modal" class="fixed inset-0 z-50 bg-black/50 hidden flex items-center justify-center p-4">
@@ -365,6 +341,29 @@
             </form>
         </div>
     </div>
+
+    <!-- MODAL EDIT KATEGORI -->
+<div id="edit-category-modal" class="fixed inset-0 z-50 bg-black/50 hidden flex items-center justify-center p-4">
+    <div class="bg-white w-full max-w-sm rounded-2xl shadow-2xl p-6 relative">
+        <button onclick="closeEditCategoryModal()" class="absolute top-4 right-4 text-gray-400 hover:text-gray-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+        <h3 class="font-bold text-base text-gray-900 mb-4">Edit Kategori</h3>
+        <form onsubmit="handleEditCategory(event)" class="space-y-3 text-xs">
+            <input type="hidden" id="edit-cat-index">
+            <div>
+                <label class="block font-semibold mb-1">Nama Kategori</label>
+                <input type="text" id="edit-cat-name" required class="w-full px-3 py-2 rounded-xl border border-gray-200">
+            </div>
+            <div>
+                <label class="block font-semibold mb-1">Link URL Ikon</label>
+                <input type="url" id="edit-cat-icon" required class="w-full px-3 py-2 rounded-xl border border-gray-200">
+            </div>
+            <div class="flex space-x-2 mt-4">
+                <button type="button" onclick="deleteCurrentCategory()" class="w-1/3 bg-red-500 hover:bg-red-600 text-white font-bold py-2.5 rounded-xl transition">Hapus</button>
+                <button type="submit" class="w-2/3 bg-brand-blue hover:bg-blue-700 text-white font-bold py-2.5 rounded-xl transition">Simpan</button>
+            </div>
+        </form>
+    </div>
+</div>
 
     <!-- MODAL TAMBAH PRODUK -->
     <div id="add-product-modal" class="fixed inset-0 z-50 bg-black/50 hidden flex items-center justify-center p-4">
