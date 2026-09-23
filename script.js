@@ -453,6 +453,22 @@ async function handleUpdatePassword(e) {
     }
 }
 
+// Fungsi untuk menampilkan atau menyembunyikan teks password
+function togglePasswordVisibility(inputId, iconId) {
+    const passwordInput = document.getElementById(inputId);
+    const eyeIcon = document.getElementById(iconId);
+
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        eyeIcon.classList.remove('fa-eye');
+        eyeIcon.classList.add('fa-eye-slash');
+    } else {
+        passwordInput.type = 'password';
+        eyeIcon.classList.remove('fa-eye-slash');
+        eyeIcon.classList.add('fa-eye');
+    }
+}
+
 // Tambah Kategori
 function openAddCategoryModal() {
     const modal = document.getElementById('add-category-modal');
@@ -463,19 +479,29 @@ function closeAddCategoryModal() {
     if (modal) modal.classList.add('hidden');
 }
 
+// Tambah Kategori dengan Upload File Ikon ke Supabase Storage
 async function handleAddCategory(e) {
     e.preventDefault();
     const name = document.getElementById('cat-name').value.trim();
-    const icon = document.getElementById('cat-icon-url').value.trim();
+    const fileInput = document.getElementById('cat-image-file');
 
-    const { data, error } = await db.from('categories').insert([{ name, icon }]).select();
-    if (!error && data) {
-        categories.push(data[0]);
-        closeAddCategoryModal();
-        e.target.reset();
-        renderCategories();
-        renderCategoryDropdown();
-        alert('Kategori baru berhasil ditambahkan!');
+    if (fileInput.files && fileInput.files[0]) {
+        // Menggunakan fungsi upload yang sama seperti produk
+        const iconUrl = await uploadToSupabaseStorage(fileInput.files[0]);
+        
+        if (iconUrl) {
+            const { data, error } = await db.from('categories').insert([{ name, icon: iconUrl }]).select();
+            if (!error && data) {
+                categories.push(data[0]);
+                closeAddCategoryModal();
+                e.target.reset();
+                renderCategories();
+                renderCategoryDropdown();
+                alert('Kategori baru berhasil ditambahkan!');
+            } else {
+                alert('Gagal menyimpan data kategori ke database.');
+            }
+        }
     }
 }
 let currentEditCategoryIndex = null;
