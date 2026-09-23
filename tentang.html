@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArshaNet Printing - Solusi Percetakan Kita</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0056b3',
+                            darkblue: '#003d82',
+                            orange: '#ff7a00',
+                            yellow: '#ffc107',
+                            light: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Supabase JS Client CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Favicon Website -->
+    <link rel="icon" type="image/webp" href="images/logo.webp">
+</head>
+<body class="bg-gray-50 text-gray-800 antialiased">
+
+    <!-- HEADER / NAVBAR PROFESIONAL -->
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-xs">
+        
+        <!-- Main Navbar -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo & Brand -->
+                <div class="flex items-center space-x-12">
+                    <a href="#" class="flex items-center space-x-3 group">
+                        <div class="w-12 h-12 bg-gradient-to-tr from-brand-darkblue to-brand-blue rounded-full flex items-center justify-center text-white font-black text-2xl shadow-md group-hover:scale-105 transition-transform duration-200 overflow-hidden">
+                            <img src="images/logo.webp" alt="Logo ArshaNet Printing" class="w-full h-full object-cover">
+                        </div>                        
+                        <div class="flex flex-col">
+                            <span class="text-2xl font-black text-slate-900 tracking-tight leading-none">ArshaNet Printing</span>
+                            <span class="text-[10px] font-bold text-brand-orange uppercase tracking-widest mt-1">Solusi Percetakan Kita</span>
+                        </div>
+                    </a>
+
+                    <!-- Navigasi Desktop -->
+                    <nav class="hidden lg:flex items-center space-x-1 text-sm font-medium text-slate-600">
+                        <a href="index.html" class="px-3.5 py-2 text-brand-blue font-semibold rounded-lg hover:bg-slate-50 transition">Beranda</a>
+                        <a href="#kategori" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Kategori</a>
+                        <a href="#kategori" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Produk</a>
+                        <a href="#cara-pesan" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Cara Pesan</a>
+                        <a href="#tentang" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Tentang Kami</a>
+                        <a href="#kontak" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Kontak</a>
+                    </nav>
+                </div>
+    </header>
+
+    <!-- HERO SECTION TENTANG KAMI -->
+    <section class="bg-gradient-to-br from-brand-blue to-brand-darkblue text-white py-16 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden">
+        <div class="absolute -right-20 -top-20 w-72 h-72 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="max-w-3xl mx-auto relative z-10">
+            <span class="bg-white/20 text-xs font-semibold px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-block mb-4">Profil Perusahaan</span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Mengenal Lebih Dekat ArshaNet Printing</h1>
+            <p class="text-blue-100 text-sm sm:text-base leading-relaxed">
+                Mitra terpercaya untuk seluruh kebutuhan percetakan digital, cetak banner, merchandise, dan atribut promosi bisnis Anda dengan kualitas terbaik dan ketepatan waktu tinggi.
+            </p>
+        </div>
+    </section>
+
+    <!-- KONTEN UTAMA -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+        
+        <!-- VISI & MISI -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center text-xl font-bold mb-6">
+                        <i class="fa-solid fa-eye"></i>
+                    </div>
+                    <h2 class="text-xl font-extrabold text-gray-900 mb-3">Visi Kami</h2>
+                    <p class="text-gray-600 text-sm leading-relaxed">
+                        Menjadi perusahaan percetakan digital terdepan di Indonesia yang mengutamakan kualitas premium, inovasi teknologi cetak, serta kepuasan pelanggan melalui pelayanan yang cepat dan profesional.
+                    </p>
+                </div>
+            </div>
+
+            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
+                <div>
+                    <div class="w-12 h-12 bg-orange-50 text-brand-orange rounded-xl flex items-center justify-center text-xl font-bold mb-6">
+                        <i class="fa-solid fa-bullseye"></i>
+                    </div>
+                    <h2 class="text-xl font-extrabold text-gray-900 mb-3">Misi Kami</h2>
+                    <ul class="text-gray-600 text-sm space-y-2 leading-relaxed">
+                        <li><i class="fa-solid fa-check text-brand-orange mr-2"></i> Memberikan hasil cetak dengan standar kualitas tinggi dan warna presisi.</li>
+                        <li><i class="fa-solid fa-check text-brand-orange mr-2"></i> Menyediakan layanan pemesanan online yang praktis dan terintegrasi.</li>
+                        <li><i class="fa-solid fa-check text-brand-orange mr-2"></i> Menghadirkan harga yang kompetitif untuk mendukung pelaku UMKM dan perusahaan.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- KEUNGGULAN KAMI -->
+        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 sm:p-12">
+            <div class="text-center max-w-2xl mx-auto mb-12">
+                <h2 class="text-2xl font-extrabold text-gray-900 mb-3">Mengapa Memilih ArshaNet Printing?</h2>
+                <p class="text-gray-500 text-sm">Komitmen kami untuk selalu memberikan yang terbaik bagi setiap pesanan Anda.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+                <div class="text-center p-4">
+                    <div class="w-14 h-14 bg-blue-50 text-brand-blue rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-gray-800 mb-2">Proses Cepat & Tepat Waktu</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">Pengerjaan kilat dengan deadline yang terukur tanpa mengorbankan kualitas hasil akhir.</p>
+                </div>
+
+                <div class="text-center p-4">
+                    <div class="w-14 h-14 bg-orange-50 text-brand-orange rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-gem"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-gray-800 mb-2">Bahan Berkualitas Tinggi</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">Menggunakan material pilihan terbaik, tahan lama, tajam, dan profesional.</p>
+                </div>
+
+                <div class="text-center p-4">
+                    <div class="w-14 h-14 bg-blue-50 text-brand-blue rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
+                        <i class="fa-solid fa-headset"></i>
+                    </div>
+                    <h3 class="font-bold text-base text-gray-800 mb-2">Konsultasi Ramah</h3>
+                    <p class="text-xs text-gray-500 leading-relaxed">Tim support siap membantu konsultasi desain dan spesifikasi cetak melalui WhatsApp.</p>
+                </div>
+            </div>
+        </div>
+
+    </main>
+
+<!-- FOOTER -->
+    <footer id="kontak" class="bg-gray-900 text-gray-300 pt-12 pb-6 border-t border-gray-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                
+                <!-- Kolom 1: Profil Toko (Tanpa Tombol Login) -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md overflow-hidden">
+                            <img src="images/logo.webp" alt="Logo ArshaNet Printing" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <span class="text-2xl font-black text-white tracking-tight">ArshaNet Printing</span>
+                            <span class="text-xs block font-semibold text-brand-orange uppercase tracking-wider">Solusi Percetakan Kita</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">Solusi cetak kebutuhan Anda dengan kualitas terbaik dan harga terjangkau.</p>
+                </div>
+
+                <!-- Kolom 2: Hubungi Kami -->
+                <div>
+                    <h3 class="text-white font-bold text-sm mb-4 uppercase tracking-wider border-b border-gray-800 pb-2">Hubungi Kami</h3>
+                    <ul class="space-y-3 text-xs text-gray-400">
+                        <li><i class="fa-solid fa-phone text-brand-orange mr-2"></i> <span id="footer-phone">0852-0121-4267</span></li>
+                        <li><i class="fa-solid fa-envelope text-brand-orange mr-2"></i> <span id="footer-email">info@arshanetprinting.com</span></li>
+                        <li><i class="fa-solid fa-location-dot text-brand-orange mr-2"></i> <span id="footer-address">Desa Karangjambu RT 03 RW 03 Kec. Balapulang - Kab. Tegal</span></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="border-t border-gray-800 pt-6 text-xs text-gray-500 flex flex-col sm:flex-row justify-between items-center">
+                <p>&copy; 2026 ArshaNet Printing. Semua hak cipta dilindungi.</p>
+                <a href="index.html" class="text-[10px] text-gray-600 hover:text-gray-400 transition mt-2 sm:mt-0">Kembali ke Beranda</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>
