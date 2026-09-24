@@ -58,8 +58,7 @@
                     <!-- Navigasi Desktop -->
                     <nav class="hidden lg:flex items-center space-x-1 text-sm font-medium text-slate-600">
                         <a href="index.html" class="px-3.5 py-2 text-brand-blue font-semibold rounded-lg hover:bg-slate-50 transition">Beranda</a>
-                        <a href="#kategori" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Kategori</a>
-                        <a href="#kategori" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Produk</a>
+                        <a href="index.html#kategori" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Produk</a>
                         <a href="pesan.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Cara Pesan</a>
                         <a href="tentang.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Tentang Kami</a>
                         <a href="kontak.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Kontak</a>
@@ -152,6 +151,76 @@
             </a>
         </div>
 
+            <!-- FORM PEMESANAN UNDANGAN -->
+    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div class="bg-white rounded-2xl shadow-xl border border-gray-100 p-6 sm:p-10">
+            <h2 class="text-xl font-extrabold text-gray-900 mb-6 border-b pb-3 flex items-center space-x-2">
+                <i class="fa-solid fa-envelope-open-text text-brand-orange"></i>
+                <span>Formulir Data Pemesanan Undangan Digital</span>
+            </h2>
+
+            <form onsubmit="checkoutUndanganWhatsApp(event)" class="space-y-6 text-xs">
+                
+                <!-- Pilih Paket -->
+                <div>
+                    <label class="block font-bold text-gray-700 mb-2">Pilih Paket Undangan <span class="text-red-500">*</span></label>
+                    <select id="paket-undangan" required class="w-full px-4 py-3 rounded-xl border border-gray-200 bg-gray-50 font-semibold text-gray-800 focus:bg-white focus:outline-none focus:border-brand-blue">
+                        <option value="Paket Basic (Rp 50.000)">Paket Basic - Rp 50.000 (Masa aktif 1 Bulan, Tema Standar)</option>
+                        <option value="Paket Standard (Rp 100.000)" selected>Paket Standard - Rp 100.000 (Masa aktif 6 Bulan, Musik + RSVP)</option>
+                        <option value="Paket Eksklusif (Rp 200.000)">Paket Eksklusif - Rp 200.000 (Masa aktif Selamanya, Custom Domain + Full Fitur)</option>
+                    </select>
+                </div>
+
+                <!-- Mempelai Pria & Wanita -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-bold text-gray-700 mb-1">Nama Lengkap Mempelai Pria <span class="text-red-500">*</span></label>
+                        <input type="text" id="groom-name" placeholder="Contoh: Ahmad Fauzi, S.Kom" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-700 mb-1">Nama Lengkap Mempelai Wanita <span class="text-red-500">*</span></label>
+                        <input type="text" id="bride-name" placeholder="Contoh: Siti Aisyah, S.Pd" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200">
+                    </div>
+                </div>
+
+                <!-- Waktu & Tempat Acara -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div>
+                        <label class="block font-bold text-gray-700 mb-1">Tanggal Acara <span class="text-red-500">*</span></label>
+                        <input type="date" id="event-date" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-700 mb-1">Jam / Pukul Acara</label>
+                        <input type="text" id="event-time" placeholder="Contoh: 08.00 WIB - Selesai" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-gray-700 mb-1">Lokasi / Alamat Gedung / Tempat Acara <span class="text-red-500">*</span></label>
+                    <textarea id="event-location" rows="3" placeholder="Tuliskan nama gedung atau alamat lengkap lokasi acara..." required class="w-full px-4 py-2.5 rounded-xl border border-gray-200"></textarea>
+                </div>
+
+                <div>
+                    <label class="block font-bold text-gray-700 mb-1">Link Google Maps Lokasi (Opsional)</label>
+                    <input type="url" id="event-map" placeholder="https://goo.gl/maps/..." class="w-full px-4 py-2.5 rounded-xl border border-gray-200">
+                </div>
+
+                <!-- Catatan Pemesan -->
+                <div>
+                    <label class="block font-bold text-gray-700 mb-1">Nama Pemesan / Nomor WhatsApp Anda <span class="text-red-500">*</span></label>
+                    <input type="text" id="pemesan-name" placeholder="Contoh: Kak Budi (0812xxxxxx)" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200">
+                </div>
+
+                <!-- Tombol Submit -->
+                <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3.5 rounded-xl shadow-lg transition flex items-center justify-center space-x-2 text-sm">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Kirim Pesanan Undangan via WhatsApp</span>
+                </button>
+            </form>
+        </div>
+    </main>
+
+
     </main>
 
 <!-- FOOTER -->
@@ -190,6 +259,39 @@
             </div>
         </div>
     </footer>
+
+        <!-- SCRIPT SUBMIT WHATSAPP -->
+    <script>
+        function checkoutUndanganWhatsApp(e) {
+            e.preventDefault();
+
+            const paket = document.getElementById('paket-undangan').value;
+            const groom = document.getElementById('groom-name').value;
+            const bride = document.getElementById('bride-name').value;
+            const date = document.getElementById('event-date').value;
+            const time = document.getElementById('event-time').value;
+            const location = document.getElementById('event-location').value;
+            const map = document.getElementById('event-map').value;
+            const pemesan = document.getElementById('pemesan-name').value;
+
+            let message = `Halo ArshaNet Printing, saya ingin memesan *Undangan Digital*:\n\n`;
+            message += `*Paket:* ${paket}\n`;
+            message += `*Mempelai Pria:* ${groom}\n`;
+            message += `*Mempelai Wanita:* ${bride}\n`;
+            message += `*Tanggal:* ${date}\n`;
+            message += `*Pukul:* ${time}\n`;
+            message += `*Lokasi:* ${location}\n`;
+            if (map) message += `*Link Maps:* ${map}\n`;
+            message += `*Nama Pemesan:* ${pemesan}\n\n`;
+            message += `Mohon info langkah selanjutnya. Terima kasih!`;
+
+            const encodedMessage = encodeURIComponent(message);
+            // Ganti dengan nomor WhatsApp toko Anda
+            const adminPhone = "6285201214267"; 
+            window.open(`https://api.whatsapp.com/send?phone=${adminPhone}&text=${encodedMessage}`, '_blank');
+        }
+    </script>
+
 
 </body>
 </html>

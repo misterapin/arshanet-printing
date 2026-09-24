@@ -58,11 +58,10 @@
                     <!-- Navigasi Desktop -->
                     <nav class="hidden lg:flex items-center space-x-1 text-sm font-medium text-slate-600">
                         <a href="index.html" class="px-3.5 py-2 text-brand-blue font-semibold rounded-lg hover:bg-slate-50 transition">Beranda</a>
-                        <a href="#kategori" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Kategori</a>
                         <a href="#kategori" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Produk</a>
                         <a href="pesan.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Cara Pesan</a>
                         <a href="tentang.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Tentang Kami</a>
-                        <a href="#kontak" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Kontak</a>
+                        <a href="kontak.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Kontak</a>
                     </nav>
                 </div>
 
@@ -92,6 +91,7 @@
             <a href="index.html" class="block py-2.5 text-xs font-bold text-brand-blue border-b border-slate-50">Beranda</a>
             <a href="#kategori" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue border-b border-slate-50">Kategori</a>
             <a href="#kategori" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue border-b border-slate-50">Produk</a>
+            <a href="pesan.html" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue border-b border-slate-50">Cara Pesan</a>
             <a href="tentang.html" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue border-b border-slate-50">Tentang Kami</a>
             <a href="kontak.html" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue">Kontak</a>
         </div>
@@ -302,7 +302,11 @@
                 <h4 class="font-bold text-gray-800 mb-2 flex items-center space-x-1.5"><i class="fa-solid fa-user-plus text-brand-blue"></i><span>Tambah Akun Admin Baru</span></h4>
                 <form onsubmit="handleAddAdminUser(event)" class="space-y-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
                     <input type="text" id="new-admin-user" placeholder="Username Admin Baru" required class="w-full px-3 py-2 rounded-xl border bg-white border-gray-200">
-                    <input type="password" id="new-admin-pass" placeholder="Password Admin Baru" required class="w-full px-3 py-2 rounded-xl border bg-white border-gray-200">
+                    <div class="relative">
+                        <input type="password" id="setting-new-pass" placeholder="Password Admin Baru" required class="w-full px-3 py-2 rounded-xl border bg-white border-gray-200">
+                        <button type="button" onclick="togglePasswordVisibility('setting-new-pass', 'eye-icon-setting')" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none">
+                            <i id="eye-icon-setting" class="fa-solid fa-eye text-xs"></i></button>
+                    </div>
                     <button type="submit" class="sm:col-span-2 bg-brand-blue hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-xl transition shadow-xs">Tambah Admin</button>
                 </form>
             </div>
@@ -310,13 +314,13 @@
             <!-- 2. Ganti Password Admin -->
             <div class="bg-gray-50 p-4 rounded-xl border border-gray-200">
                 <h4 class="font-bold text-gray-800 mb-2 flex items-center space-x-1.5"><i class="fa-solid fa-key text-brand-blue"></i><span>Ganti Password Admin</span></h4>
-                <form onsubmit="handleUpdatePassword(event)" class="space-y-2">
-<div class="relative">
-    <input type="password" id="setting-new-pass" placeholder="Password Admin Baru" required class="w-full px-3 py-2 rounded-xl border bg-white border-gray-200 pr-10">
-    <button type="button" onclick="togglePasswordVisibility('setting-new-pass', 'eye-icon-setting')" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none">
-        <i id="eye-icon-setting" class="fa-solid fa-eye text-xs"></i>
-    </button>
-</div>
+                <form onsubmit="handleUpdatePassword(event)" class="space-y-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    <div class="relative">
+                        <input type="password" id="setting-new-pass" placeholder="Password Admin Baru" required class="w-full px-3 py-2 rounded-xl border bg-white border-gray-200">
+                        <button type="button" onclick="togglePasswordVisibility('setting-new-pass', 'eye-icon-setting')" class="absolute inset-y-0 right-0 pr-3 flex items-center text-gray-400 hover:text-gray-600 focus:outline-none">
+                            <i id="eye-icon-setting" class="fa-solid fa-eye text-xs"></i></button>
+                    </div>
+                    <button type="submit" class="sm:col-span-2 bg-brand-blue hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-xl transition shadow-xs">Ganti Password Admin</button>
                 </form>
             </div>
 
