@@ -9,7 +9,7 @@ let categories = [];
 let products = [];
 let transactions = [];
 let adminUsers = [];
-let storeContact = { phone: '6281234567890', address: 'Jl. Melati No. 123, Indonesia', email: 'info@arshanetprinting.com' };
+let storeContact = { phone: '6285201214267', address: 'Jl. Melati No. 123, Indonesia', email: 'info@arshanetprinting.com' };
 let customLogo = '';
 let cart = [];
 let isAdminLoggedIn = false;
@@ -71,12 +71,13 @@ function renderStoreContact() {
     if (settingAddress) settingAddress.value = storeContact.address;
 }
 
+// Perbaikan Checkout & Simpan Transaksi via WhatsApp
 async function checkoutWhatsApp() {
     if (cart.length === 0) {
         alert('Keranjang belanja masih kosong!');
         return;
     }
-    let message = "Halo ArshaNet Printing, saya ingin memesan produk berikut:\n\n";
+    let message = "Halo ArshaNet Printing, saya ingin memesan produk berikut:\n";
     let total = 0;
     let itemsSummary = [];
     
@@ -86,7 +87,6 @@ async function checkoutWhatsApp() {
         itemsSummary.push(`${item.name} (${item.qty}x)`);
         message += `${i+1}. ${item.name} (${item.qty}x) - Rp ${sub.toLocaleString('id-ID')}\n`;
     });
-    
     message += `\nTotal Pembayaran: *Rp ${total.toLocaleString('id-ID')}*\nTerima kasih.`;
 
     const newTx = {
@@ -95,21 +95,13 @@ async function checkoutWhatsApp() {
         total: total
     };
 
-    try {
-        await db.from('transactions').insert([newTx]);
-        transactions.unshift(newTx);
-    } catch (err) {
-        console.error("Gagal mencatat transaksi:", err);
-    }
+    // Simpan ke database Supabase
+    await db.from('transactions').insert([newTx]);
+    transactions.unshift(newTx);
 
+    // Menggunakan API WhatsApp Resmi yang Aman dari Error 404
     const encodedMessage = encodeURIComponent(message);
-    
-    // LANGSUNG GUNAKAN NOMOR PASTI TANPA MENGAMBIL DARI storeContact.phone
-    const targetPhone = "6285201214267"; 
-    const waUrl = `https://wa.me/${targetPhone}?text=${encodedMessage}`;
-    
-    // Gunakan window.location.href agar langsung mengalihkan halaman secara mulus
-    window.location.href = waUrl;
+    window.open(`https://api.whatsapp.com/send?phone=${storeContact.phone}&text=${encodedMessage}`, '_blank');
 }
 
 // Render Logo Toko
@@ -145,7 +137,7 @@ function renderCategories() {
             ` : ''}
             <div onclick="filterCategory('${cat.name}')" class="w-full flex flex-col items-center">
                 <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center p-3 mb-3 group-hover:scale-105 transition">
-                    <img src="${cat.icon}" alt="${cat.name}" class="w-full h-full object-contain">
+                    <img src="${cat.icon}" alt="${cat.name}" class="w-full h-full object-contain" loading="lazy" decoding="async">
                 </div>
                 <span class="text-xs font-semibold text-gray-700 group-hover:text-brand-blue">${cat.name}</span>
             </div>
@@ -187,7 +179,7 @@ function renderProducts(filter = 'Semua') {
             ` : ''}
             <div>
                 <div class="h-36 overflow-hidden bg-gray-100 relative">
-                    <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover hover:scale-105 transition duration-300">
+                    <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover hover:scale-105 transition duration-300" loading="lazy" decoding="async">
                 </div>
                 <div class="p-3">
                     <span class="text-[10px] text-brand-blue font-semibold uppercase tracking-wider">${p.category}</span>
@@ -266,35 +258,6 @@ function removeFromCart(index) {
 function toggleCart() {
     const cartModal = document.getElementById('cart-modal');
     if (cartModal) cartModal.classList.toggle('hidden');
-}
-
-// Checkout & Simpan Transaksi ke Supabase (Nomor WhatsApp Dinamis)
-async function checkoutWhatsApp() {
-    if (cart.length === 0) {
-        alert('Keranjang belanja masih kosong!');
-        return;
-    }
-    let message = "Halo ArshaNet Printing, saya ingin memesan produk berikut:%0A";
-    let total = 0;
-    let itemsSummary = [];
-    cart.forEach((item, i) => {
-        let sub = item.price * item.qty;
-        total += sub;
-        itemsSummary.push(`${item.name} (${item.qty}x)`);
-        message += `${i+1}. ${item.name} (${item.qty}x) - Rp ${sub.toLocaleString('id-ID')}%0A`;
-    });
-    message += `%0ATotal Pembayaran: *Rp ${total.toLocaleString('id-ID')}*%0ATerima kasih.`;
-
-    const newTx = {
-        date: new Date().toLocaleString('id-ID'),
-        items: itemsSummary.join(', '),
-        total: total
-    };
-
-    await db.from('transactions').insert([newTx]);
-    transactions.unshift(newTx);
-
-    window.open(`https://wa.me/${storeContact.phone}?text=${message}`, '_blank');
 }
 
 function toggleMobileMenu() {
@@ -391,16 +354,6 @@ async function uploadToSupabaseStorage(file) {
     }
     const { data: publicURL } = db.storage.from('arshanet-files').getPublicUrl(fileName);
     return publicURL.publicUrl;
-}
-
-async function handleUpdatePassword(e) {
-    e.preventDefault();
-    const newPass = document.getElementById('setting-new-pass').value.trim();
-    if (newPass) {
-        await db.from('admins').update({ pass: newPass }).eq('user_name', 'admin');
-        document.getElementById('setting-new-pass').value = '';
-        alert('Password admin berhasil diperbarui!');
-    }
 }
 
 function renderTransactionHistory() {

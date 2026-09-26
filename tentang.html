@@ -57,13 +57,37 @@
 
                     <!-- Navigasi Desktop -->
                     <nav class="hidden lg:flex items-center space-x-1 text-sm font-medium text-slate-600">
-                        <a href="index.html" class="px-3.5 py-2 text-brand-blue font-semibold rounded-lg hover:bg-slate-50 transition">Beranda</a>
+                        <a href="index.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Beranda</a>
                         <a href="index.html#kategori" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Produk</a>
                         <a href="pesan.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Cara Pesan</a>
-                        <a href="tentang.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Tentang Kami</a>
+                        <a href="tentang.html" class="px-3.5 py-2 text-brand-blue font-semibold rounded-lg hover:bg-slate-50 transition">Tentang Kami</a>
                         <a href="kontak.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Kontak</a>
                     </nav>
                 </div>
+
+                <!-- Aksi Kanan & Mobile Button -->
+                <div class="flex items-center space-x-3">
+                    <a href="https://api.whatsapp.com/send?phone=6285201214267&text=Halo%20ArshaNet%20Printing,%20saya%20ingin%20konsultasi%20cetak." target="_blank" class="hidden sm:inline-flex items-center space-x-2 bg-green-500 hover:bg-green-600 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-sm">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>Chat WhatsApp</span>
+                    </a>
+
+                    <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 bg-slate-50 hover:bg-slate-100 text-slate-700 rounded-xl border border-slate-200 transition focus:outline-none">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 px-6 py-4 space-y-2 shadow-xl">
+            <a href="index.html" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue border-b border-slate-50">Beranda</a>
+            <a href="index.html#kategori" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue border-b border-slate-50">Produk</a>
+            <a href="pesan.html" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue border-b border-slate-50">Cara Pesan</a>
+            <a href="tentang.html" class="block py-2.5 text-xs font-bold text-brand-blue border-b border-slate-50">Tentang Kami</a>
+            <a href="kontak.html" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue">Kontak</a>
+        </div>
     </header>
 
     <!-- HERO SECTION TENTANG KAMI -->
@@ -147,7 +171,7 @@
     </main>
 
 <!-- FOOTER -->
-    <footer id="kontak" class="bg-gray-900 text-gray-300 pt-12 pb-6 border-t border-gray-800 mt-12">
+    <footer class="bg-gray-900 text-gray-300 pt-12 pb-6 border-t border-gray-800 mt-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                 
@@ -182,6 +206,18 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu) mobileMenu.classList.toggle('hidden');
+        }
+    </script>
+
+    <!-- Floating WhatsApp Button -->
+    <a id="floating-wa-btn" href="https://api.whatsapp.com/send?phone=6285201214267&text=Halo%20ArshaNet%20Printing,%20saya%20ingin%20konsultasi%20cetak." target="_blank" class="fixed bottom-6 right-6 z-40 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-all duration-300" title="Chat WhatsApp Kami">
+        <i class="fa-brands fa-whatsapp text-2xl"></i>
+    </a>
 
 </body>
 </html>
