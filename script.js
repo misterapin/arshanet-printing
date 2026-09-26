@@ -71,13 +71,13 @@ function renderStoreContact() {
     if (settingAddress) settingAddress.value = storeContact.address;
 }
 
-// Perbaikan Checkout & Simpan Transaksi via WhatsApp
+// Checkout WhatsApp yang Aman dan Kompatibel di Semua Perangkat
 async function checkoutWhatsApp() {
     if (cart.length === 0) {
         alert('Keranjang belanja masih kosong!');
         return;
     }
-    let message = "Halo ArshaNet Printing, saya ingin memesan produk berikut:\n";
+    let message = "Halo ArshaNet Printing, saya ingin memesan produk berikut:\n\n";
     let total = 0;
     let itemsSummary = [];
     
@@ -87,6 +87,7 @@ async function checkoutWhatsApp() {
         itemsSummary.push(`${item.name} (${item.qty}x)`);
         message += `${i+1}. ${item.name} (${item.qty}x) - Rp ${sub.toLocaleString('id-ID')}\n`;
     });
+    
     message += `\nTotal Pembayaran: *Rp ${total.toLocaleString('id-ID')}*\nTerima kasih.`;
 
     const newTx = {
@@ -95,13 +96,21 @@ async function checkoutWhatsApp() {
         total: total
     };
 
-    // Simpan ke database Supabase
-    await db.from('transactions').insert([newTx]);
-    transactions.unshift(newTx);
+    // Simpan transaksi ke database Supabase (opsional jika tabel aktif)
+    try {
+        await db.from('transactions').insert([newTx]);
+        transactions.unshift(newTx);
+    } catch (err) {
+        console.error("Gagal mencatat transaksi:", err);
+    }
 
-    // Menggunakan API WhatsApp Resmi yang Aman dari Error 404
     const encodedMessage = encodeURIComponent(message);
-    window.open(`https://api.whatsapp.com/send?phone=${storeContact.phone}&text=${encodedMessage}`, '_blank');
+    
+    // Menggunakan format wa.me yang langsung membuka aplikasi WhatsApp / WhatsApp Web dengan sempurna
+    const targetPhone = storeContact.phone || "6285201214267";
+    const waUrl = `https://wa.me/${targetPhone}?text=${encodedMessage}`;
+    
+    window.open(waUrl, '_blank');
 }
 
 // Render Logo Toko
