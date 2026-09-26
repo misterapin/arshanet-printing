@@ -71,7 +71,6 @@ function renderStoreContact() {
     if (settingAddress) settingAddress.value = storeContact.address;
 }
 
-// Checkout WhatsApp yang Aman dan Kompatibel di Semua Perangkat
 async function checkoutWhatsApp() {
     if (cart.length === 0) {
         alert('Keranjang belanja masih kosong!');
@@ -96,7 +95,6 @@ async function checkoutWhatsApp() {
         total: total
     };
 
-    // Simpan transaksi ke database Supabase (opsional jika tabel aktif)
     try {
         await db.from('transactions').insert([newTx]);
         transactions.unshift(newTx);
@@ -106,11 +104,12 @@ async function checkoutWhatsApp() {
 
     const encodedMessage = encodeURIComponent(message);
     
-    // Menggunakan format wa.me yang langsung membuka aplikasi WhatsApp / WhatsApp Web dengan sempurna
-    const targetPhone = storeContact.phone || "6285201214267";
+    // LANGSUNG GUNAKAN NOMOR PASTI TANPA MENGAMBIL DARI storeContact.phone
+    const targetPhone = "6285201214267"; 
     const waUrl = `https://wa.me/${targetPhone}?text=${encodedMessage}`;
     
-    window.open(waUrl, '_blank');
+    // Gunakan window.location.href agar langsung mengalihkan halaman secara mulus
+    window.location.href = waUrl;
 }
 
 // Render Logo Toko
