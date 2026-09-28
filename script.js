@@ -8,13 +8,23 @@ const db = createClient(SUPABASE_URL, SUPABASE_KEY);
 let categories = [];
 let products = [];
 let transactions = [];
-let adminUsers = [];
 let storeContact = { phone: '6285201214267', address: 'Jl. Melati No. 123, Indonesia', email: 'info@arshanetprinting.com' };
 let customLogo = '';
 let cart = [];
 let isAdminLoggedIn = false;
 
-// 1. Memuat Data dari Supabase saat Halaman Dibuka
+// Sanitasi string untuk mencegah celah Cross-Site Scripting (XSS)
+function escapeHtml(str) {
+    if (str === null || str === undefined) return '';
+    return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+// 1. Memuat Data dari Supabase saat Halaman Dibuka (Hanya data publik yang dimuat)
 async function loadDataFromSupabase() {
     const { data: catData } = await db.from('categories').select('*');
     if (catData) categories = catData;
@@ -22,14 +32,8 @@ async function loadDataFromSupabase() {
     const { data: prodData } = await db.from('products').select('*');
     if (prodData) products = prodData;
 
-    const { data: txData } = await db.from('transactions').select('*');
-    if (txData) transactions = txData;
-
-    const { data: adminData } = await db.from('admins').select('*');
-    if (adminData) adminUsers = adminData;
-
     // Ambil Data Kontak Toko (jika ada di database atau buat default)
-    const { data: contactData } = await db.from('store_settings').select('*').single();
+    const { data: contactData } = await db.from('store_settings').select('*').maybeSingle();
     if (contactData) {
         storeContact = contactData;
     }
@@ -215,39 +219,82 @@ function addToCart(name, price) {
 }
 
 function updateCartUI() {
-    const badge = document.getElementById('cart-badge');
-    const itemsContainer = document.getElementById('cart-items');
-    const totalElement = document.getElementById('cart-total');
-    if (!badge || !itemsContainer || !totalElement) return;
+    const cartCountEl = document.getElementById('cart-count');
+    const cartItemsEl = document.getElementById('cart-items');
+    const cartTotalEl = document.getElementById('cart-total');
 
-    const totalQty = cart.reduce((sum, item) => sum + item.qty, 0);
-    badge.innerText = totalQty;
+    if (!cartItemsEl) return;
+
+    let totalCount = 0;
+    let totalPrice = 0;
+    let html = '';
 
     if (cart.length === 0) {
-        itemsContainer.innerHTML = `<p class="text-xs text-gray-400 text-center py-8">Keranjang belanja masih kosong.</p>`;
-        totalElement.innerText = `Rp 0`;
+        cartItemsEl.innerHTML = '<p class="text-gray-500 text-center py-4 text-xs">Keranjang belanja masih kosong.</p>';
+        if (cartCountEl) cartCountEl.innerText = '0';
+        if (cartTotalEl) cartTotalEl.innerText = 'Rp 0';
         return;
     }
 
-    let totalPrice = 0;
-    itemsContainer.innerHTML = cart.map((item, index) => {
-        const subtotal = item.price * item.qty;
+    cart.forEach((item, index) => {
+        totalCount += item.qty;
+        let subtotal = item.price * item.qty;
         totalPrice += subtotal;
-        return `
-            <div class="flex items-center justify-between bg-gray-50 p-3 rounded-xl text-xs">
-                <div>
+
+        html += `
+            <div class="flex items-center justify-between py-3 border-b border-gray-100 text-xs">
+                <div class="flex-1 pr-2">
                     <h4 class="font-bold text-gray-800">${item.name}</h4>
-                    <p class="text-gray-500">Rp ${item.price.toLocaleString('id-ID')} x ${item.qty}</p>
+                    <span class="text-gray-500 text-[11px]">Rp ${item.price.toLocaleString('id-ID')} x ${item.qty}</span>
                 </div>
-                <div class="flex items-center space-x-2">
-                    <span class="font-bold text-brand-orange">Rp ${subtotal.toLocaleString('id-ID')}</span>
-                    <button onclick="removeFromCart(${index})" class="text-red-500 hover:text-red-700 p-1"><i class="fa-solid fa-trash"></i></button>
+                <div class="flex items-center space-x-1.5">
+                    <!-- Tombol Minus (-) -->
+                    <button onclick="decreaseQty(${index})" class="w-6 h-6 bg-gray-100 hover:bg-gray-200 text-gray-700 font-bold rounded flex items-center justify-center transition">
+                        <i class="fa-solid fa-minus text-[10px]"></i>
+                    </button>
+                    
+                    <!-- Jumlah Qty -->
+                    <span class="w-6 text-center font-bold text-gray-800">${item.qty}</span>
+                    
+                    <!-- Tombol Plus (+) -->
+                    <button onclick="increaseQty(${index})" class="w-6 h-6 bg-brand-blue hover:bg-blue-700 text-white font-bold rounded flex items-center justify-center transition">
+                        <i class="fa-solid fa-plus text-[10px]"></i>
+                    </button>
+                    
+                    <!-- Tombol Hapus -->
+                    <button onclick="removeItem(${index})" class="ml-2 text-red-400 hover:text-red-600 p-1 transition" title="Hapus item">
+                        <i class="fa-solid fa-trash text-xs"></i>
+                    </button>
                 </div>
             </div>
         `;
-    }).join('');
+    });
 
-    totalElement.innerText = `Rp ${totalPrice.toLocaleString('id-ID')}`;
+    cartItemsEl.innerHTML = html;
+    if (cartCountEl) cartCountEl.innerText = totalCount;
+    if (cartTotalEl) cartTotalEl.innerText = 'Rp ' + totalPrice.toLocaleString('id-ID');
+}
+
+// Tambah jumlah item (+1)
+function increaseQty(index) {
+    cart[index].qty += 1;
+    updateCartUI();
+}
+
+// Kurangi jumlah item (-1)
+function decreaseQty(index) {
+    if (cart[index].qty > 1) {
+        cart[index].qty -= 1;
+    } else {
+        cart.splice(index, 1); // Hapus jika jumlahnya 0
+    }
+    updateCartUI();
+}
+
+// Hapus item dari keranjang
+function removeItem(index) {
+    cart.splice(index, 1);
+    updateCartUI();
 }
 
 function removeFromCart(index) {
