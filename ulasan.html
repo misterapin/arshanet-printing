@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ArshaNet Printing - Solusi Percetakan Kita</title>
+    <title>Ulasan Pelanggan - ArshaNet Printing</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
@@ -34,18 +34,16 @@
     <!-- Favicon Website -->
     <link rel="icon" type="image/webp" href="images/logo.webp">
 </head>
-<body class="bg-gray-50 text-gray-800 antialiased">
+<body class="bg-gray-50 text-gray-800 antialiased flex flex-col min-h-screen">
 
     <!-- HEADER / NAVBAR PROFESIONAL -->
     <header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-xs">
-        
-        <!-- Main Navbar -->
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex items-center justify-between h-20">
                 
                 <!-- Logo & Brand -->
                 <div class="flex items-center space-x-12">
-                    <a href="#" class="flex items-center space-x-3 group">
+                    <a href="index.html" class="flex items-center space-x-3 group">
                         <div class="w-12 h-12 bg-gradient-to-tr from-brand-darkblue to-brand-blue rounded-full flex items-center justify-center text-white font-black text-2xl shadow-md group-hover:scale-105 transition-transform duration-200 overflow-hidden">
                             <img src="images/logo.webp" alt="Logo ArshaNet Printing" class="w-full h-full object-cover">
                         </div>                        
@@ -60,9 +58,9 @@
                         <a href="index.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Beranda</a>
                         <a href="index.html#kategori" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Produk</a>
                         <a href="pesan.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Cara Pesan</a>
-                        <a href="tentang.html" class="px-3.5 py-2 text-brand-blue font-semibold rounded-lg hover:bg-slate-50 transition">Tentang Kami</a>
+                        <a href="tentang.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Tentang Kami</a>
                         <a href="kontak.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Kontak</a>
-                        <a href="ulasan.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Ulasan</a>
+                        <a href="ulasan.html" class="px-3.5 py-2 text-brand-blue font-semibold rounded-lg hover:bg-slate-50 transition">Ulasan</a>
                     </nav>
                 </div>
 
@@ -86,97 +84,82 @@
             <a href="index.html" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue border-b border-slate-50">Beranda</a>
             <a href="index.html#kategori" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue border-b border-slate-50">Produk</a>
             <a href="pesan.html" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue border-b border-slate-50">Cara Pesan</a>
-            <a href="tentang.html" class="block py-2.5 text-xs font-bold text-brand-blue border-b border-slate-50">Tentang Kami</a>
-            <a href="kontak.html" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue">Kontak</a>
+            <a href="tentang.html" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue border-b border-slate-50">Tentang Kami</a>
+            <a href="kontak.html" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue border-b border-slate-50">Kontak</a>
+            <a href="ulasan.html" class="block py-2.5 text-xs font-bold text-brand-blue border-b border-slate-50">Ulasan</a>
         </div>
     </header>
 
-    <!-- HERO SECTION TENTANG KAMI -->
+    <!-- HERO SECTION ULASAN -->
     <section class="bg-gradient-to-br from-brand-blue to-brand-darkblue text-white py-16 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden">
         <div class="absolute -right-20 -top-20 w-72 h-72 bg-white/10 rounded-full blur-3xl pointer-events-none"></div>
         <div class="max-w-3xl mx-auto relative z-10">
-            <span class="bg-white/20 text-xs font-semibold px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-block mb-4">Profil Perusahaan</span>
-            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Mengenal Lebih Dekat ArshaNet Printing</h1>
+            <span class="bg-white/20 text-xs font-semibold px-3.5 py-1.5 rounded-full uppercase tracking-wider inline-block mb-4">Testimoni Pelanggan</span>
+            <h1 class="text-3xl sm:text-4xl font-extrabold tracking-tight mb-4">Apa Kata Mereka Tentang ArshaNet?</h1>
             <p class="text-blue-100 text-sm sm:text-base leading-relaxed">
-                Mitra terpercaya untuk seluruh kebutuhan percetakan digital, cetak banner, merchandise, dan atribut promosi bisnis Anda dengan kualitas terbaik dan ketepatan waktu tinggi.
+                Baca pengalaman langsung dari pelanggan kami atau tuliskan ulasan pengalaman cetak Anda melalui formulir di bawah.
             </p>
         </div>
     </section>
 
-    <!-- KONTEN UTAMA -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
-        
-        <!-- VISI & MISI -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 bg-blue-50 text-brand-blue rounded-xl flex items-center justify-center text-xl font-bold mb-6">
-                        <i class="fa-solid fa-eye"></i>
+    <!-- KONTEN UTAMA: FORM & DAFTAR ULASAN -->
+    <main class="flex-grow max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 w-full">
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            
+            <!-- FORM TULIS ULASAN (Kolom Kiri) -->
+            <div class="bg-white p-6 sm:p-8 rounded-2xl shadow-sm border border-gray-100 h-fit">
+                <h2 class="font-extrabold text-gray-900 text-base mb-4 flex items-center space-x-2 border-b pb-3">
+                    <i class="fa-solid fa-pen-to-square text-brand-orange"></i>
+                    <span>Tulis Ulasan Anda</span>
+                </h2>
+                <form onsubmit="submitReview(event)" class="space-y-4 text-xs">
+                    <div>
+                        <label class="block font-bold text-gray-700 mb-1">Nama Lengkap <span class="text-red-500">*</span></label>
+                        <input type="text" id="review-name" placeholder="Contoh: Budi Santoso" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-blue">
                     </div>
-                    <h2 class="text-xl font-extrabold text-gray-900 mb-3">Visi Kami</h2>
-                    <p class="text-gray-600 text-sm leading-relaxed">
-                        Menjadi perusahaan percetakan digital terdepan di Indonesia yang mengutamakan kualitas premium, inovasi teknologi cetak, serta kepuasan pelanggan melalui pelayanan yang cepat dan profesional.
-                    </p>
+                    <div>
+                        <label class="block font-bold text-gray-700 mb-1">Status / Profesi <span class="text-red-500">*</span></label>
+                        <input type="text" id="review-role" placeholder="Contoh: Pelaku UMKM / Pemesan" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-blue">
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-700 mb-1">Rating Bintang <span class="text-red-500">*</span></label>
+                        <select id="review-rating" required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 bg-white font-semibold text-gray-800 focus:outline-none focus:border-brand-blue">
+                            <option value="5">⭐⭐⭐⭐⭐ (5 - Sangat Memuaskan)</option>
+                            <option value="4">⭐⭐⭐⭐ (4 - Puas)</option>
+                            <option value="3">⭐⭐⭐ (3 - Cukup)</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block font-bold text-gray-700 mb-1">Pesan Ulasan / Testimoni <span class="text-red-500">*</span></label>
+                        <textarea id="review-comment" rows="4" placeholder="Tuliskan pengalaman Anda menggunakan layanan ArshaNet Printing..." required class="w-full px-4 py-2.5 rounded-xl border border-gray-200 focus:outline-none focus:border-brand-blue"></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-brand-blue hover:bg-blue-700 text-white font-bold py-3.5 rounded-xl shadow-md transition flex items-center justify-center space-x-2 text-xs">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Kirim Ulasan</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- DAFTAR ULASAN (Kolom Kanan) -->
+            <div class="lg:col-span-2">
+                <h2 class="font-extrabold text-gray-900 text-base mb-4 flex items-center space-x-2 border-b pb-3">
+                    <i class="fa-solid fa-comments text-brand-blue"></i>
+                    <span>Semua Ulasan Pelanggan</span>
+                </h2>
+                <div id="reviews-container" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <p class="text-gray-400 text-xs italic col-span-2">Memuat ulasan pelanggan...</p>
                 </div>
             </div>
 
-            <div class="bg-white p-8 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between">
-                <div>
-                    <div class="w-12 h-12 bg-orange-50 text-brand-orange rounded-xl flex items-center justify-center text-xl font-bold mb-6">
-                        <i class="fa-solid fa-bullseye"></i>
-                    </div>
-                    <h2 class="text-xl font-extrabold text-gray-900 mb-3">Misi Kami</h2>
-                    <ul class="text-gray-600 text-sm space-y-2 leading-relaxed">
-                        <li><i class="fa-solid fa-check text-brand-orange mr-2"></i> Memberikan hasil cetak dengan standar kualitas tinggi dan warna presisi.</li>
-                        <li><i class="fa-solid fa-check text-brand-orange mr-2"></i> Menyediakan layanan pemesanan online yang praktis dan terintegrasi.</li>
-                        <li><i class="fa-solid fa-check text-brand-orange mr-2"></i> Menghadirkan harga yang kompetitif untuk mendukung pelaku UMKM dan perusahaan.</li>
-                    </ul>
-                </div>
-            </div>
         </div>
-
-        <!-- KEUNGGULAN KAMI -->
-        <div class="bg-white rounded-2xl shadow-sm border border-gray-100 p-8 sm:p-12">
-            <div class="text-center max-w-2xl mx-auto mb-12">
-                <h2 class="text-2xl font-extrabold text-gray-900 mb-3">Mengapa Memilih ArshaNet Printing?</h2>
-                <p class="text-gray-500 text-sm">Komitmen kami untuk selalu memberikan yang terbaik bagi setiap pesanan Anda.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
-                <div class="text-center p-4">
-                    <div class="w-14 h-14 bg-blue-50 text-brand-blue rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
-                        <i class="fa-solid fa-bolt"></i>
-                    </div>
-                    <h3 class="font-bold text-base text-gray-800 mb-2">Proses Cepat & Tepat Waktu</h3>
-                    <p class="text-xs text-gray-500 leading-relaxed">Pengerjaan kilat dengan deadline yang terukur tanpa mengorbankan kualitas hasil akhir.</p>
-                </div>
-
-                <div class="text-center p-4">
-                    <div class="w-14 h-14 bg-orange-50 text-brand-orange rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
-                        <i class="fa-solid fa-gem"></i>
-                    </div>
-                    <h3 class="font-bold text-base text-gray-800 mb-2">Bahan Berkualitas Tinggi</h3>
-                    <p class="text-xs text-gray-500 leading-relaxed">Menggunakan material pilihan terbaik, tahan lama, tajam, dan profesional.</p>
-                </div>
-
-                <div class="text-center p-4">
-                    <div class="w-14 h-14 bg-blue-50 text-brand-blue rounded-2xl flex items-center justify-center text-2xl mx-auto mb-4">
-                        <i class="fa-solid fa-headset"></i>
-                    </div>
-                    <h3 class="font-bold text-base text-gray-800 mb-2">Konsultasi Ramah</h3>
-                    <p class="text-xs text-gray-500 leading-relaxed">Tim support siap membantu konsultasi desain dan spesifikasi cetak melalui WhatsApp.</p>
-                </div>
-            </div>
-        </div>
-
     </main>
 
-<!-- FOOTER -->
+    <!-- FOOTER -->
     <footer class="bg-gray-900 text-gray-300 pt-12 pb-6 border-t border-gray-800 mt-12">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                 
-                <!-- Kolom 1: Profil Toko (Tanpa Tombol Login) -->
+                <!-- Kolom 1: Profil Toko -->
                 <div>
                     <div class="flex items-center space-x-3 mb-4">
                         <div class="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md overflow-hidden">
@@ -204,16 +187,13 @@
             <div class="border-t border-gray-800 pt-6 text-xs text-gray-500 flex flex-col sm:flex-row justify-between items-center">
                 <p>&copy; 2026 ArshaNet Printing. Semua hak cipta dilindungi.</p>
                 <a href="index.html" class="text-[10px] text-gray-600 hover:text-gray-400 transition mt-2 sm:mt-0">Kembali ke Beranda</a>
+
             </div>
         </div>
     </footer>
 
-    <script>
-        function toggleMobileMenu() {
-            const mobileMenu = document.getElementById('mobile-menu');
-            if (mobileMenu) mobileMenu.classList.toggle('hidden');
-        }
-    </script>
+    <!-- Panggil file script.js utama -->
+    <script src="script.js"></script>
 
     <!-- Floating WhatsApp Button -->
     <a id="floating-wa-btn" href="https://api.whatsapp.com/send?phone=6285201214267&text=Halo%20ArshaNet%20Printing,%20saya%20ingin%20konsultasi%20cetak." target="_blank" class="fixed bottom-6 right-6 z-40 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-all duration-300" title="Chat WhatsApp Kami">

@@ -694,3 +694,116 @@ window.onload = function() {
     showSlide(0);
     startSlideTimer();
 };
+
+// ==========================================
+// KODE KHUSUS HALAMAN ULASAN (REVIEWS)
+// ==========================================
+
+// Ambil Ulasan dari Supabase
+async function loadReviewsFromSupabase() {
+    try {
+        // Memastikan variabel 'db' sudah diinisialisasi di script.js utama
+        if (typeof db === 'undefined') {
+            console.error("Koneksi Supabase (db) belum diinisialisasi.");
+            return;
+        }
+
+        const { data, error } = await db.from('reviews').select('*').order('created_at', { ascending: false });
+        if (error) throw error;
+        if (data) {
+            renderReviews(data);
+        }
+    } catch (err) {
+        console.error("Gagal memuat ulasan:", err);
+        const container = document.getElementById('reviews-container');
+        if (container) {
+            container.innerHTML = '<p class="text-gray-500 text-xs italic col-span-2">Belum ada ulasan atau gagal memuat data.</p>';
+        }
+    }
+}
+
+// Render Ulasan ke HTML
+function renderReviews(reviewsList) {
+    const container = document.getElementById('reviews-container');
+    if (!container) return;
+
+    if (reviewsList.length === 0) {
+        container.innerHTML = '<p class="text-gray-500 text-xs italic col-span-2">Belum ada ulasan. Jadilah yang pertama memberikan ulasan!</p>';
+        return;
+    }
+
+    let html = '';
+    reviewsList.forEach(rev => {
+        let stars = '';
+        for (let i = 0; i < rev.rating; i++) {
+            stars += '<i class="fa-solid fa-star"></i>';
+        }
+
+        // Ambil inisial nama untuk avatar
+        let initials = rev.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+
+        html += `
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between relative">
+                <div class="absolute top-5 right-5 text-brand-orange/20 text-2xl"><i class="fa-solid fa-quote-right"></i></div>
+                <div>
+                    <div class="flex items-center space-x-1 text-amber-400 text-[11px] mb-2">
+                        ${stars}
+                    </div>
+                    <p class="text-gray-600 text-xs leading-relaxed mb-4">
+                        "${rev.comment}"
+                    </p>
+                </div>
+                <div class="flex items-center space-x-3 pt-3 border-t border-gray-100">
+                    <div class="w-9 h-9 rounded-full bg-brand-blue/10 text-brand-blue font-bold flex items-center justify-center text-xs">
+                        ${initials}
+                    </div>
+                    <div>
+                        <h4 class="font-bold text-gray-900 text-xs">${rev.name}</h4>
+                        <span class="text-[10px] text-gray-400">${rev.role}</span>
+                    </div>
+                </div>
+            </div>
+        `;
+    });
+
+    container.innerHTML = html;
+}
+
+// Kirim Ulasan Baru ke Supabase
+async function submitReview(event) {
+    event.preventDefault();
+
+    const name = document.getElementById('review-name').value;
+    const role = document.getElementById('review-role').value;
+    const rating = parseInt(document.getElementById('review-rating').value);
+    const comment = document.getElementById('review-comment').value;
+
+    const newReview = { name, role, rating, comment };
+
+    try {
+        if (typeof db === 'undefined') {
+            alert('Koneksi database belum siap.');
+            return;
+        }
+
+        const { data, error } = await db.from('reviews').insert([newReview]).select();
+        if (error) throw error;
+
+        alert('Terima kasih! Ulasan Anda berhasil dikirim.');
+        document.getElementById('review-name').value = '';
+        document.getElementById('review-role').value = '';
+        document.getElementById('review-comment').value = '';
+
+        loadReviewsFromSupabase();
+    } catch (err) {
+        console.error("Gagal mengirim ulasan:", err);
+        alert('Gagal mengirim ulasan: ' + (err.message || 'Periksa koneksi database.'));
+    }
+}
+
+// Otomatis muat ulasan saat halaman ulasan dibuka
+document.addEventListener('DOMContentLoaded', () => {
+    if (document.getElementById('reviews-container')) {
+        loadReviewsFromSupabase();
+    }
+});
