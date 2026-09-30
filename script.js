@@ -8,7 +8,7 @@ const db = createClient(SUPABASE_URL, SUPABASE_KEY);
 let categories = [];
 let products = [];
 let transactions = [];
-let storeContact = { phone: '6285201214267', address: 'Jl. Melati No. 123, Indonesia', email: 'info@arshanetprinting.com' };
+let storeContact = { phone: '6285201214267', address: 'Desa Karangjambu RT 03 RW 03, Kec. Balapulang, Kab. Tegal', email: 'info@arshanetprinting.com' };
 let customLogo = '';
 let cart = [];
 let isAdminLoggedIn = false;
@@ -132,21 +132,26 @@ function renderCategories() {
         return;
     }
 
-    categoryGrid.innerHTML = categories.map((cat, index) => `
+    categoryGrid.innerHTML = categories.map((cat, index) => {
+        const safeCatName = escapeHtml(cat.name);
+        const safeCatIcon = escapeHtml(cat.icon);
+        const jsParamCatName = (cat.name || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+        return `
         <div class="bg-white p-4 rounded-2xl shadow-sm hover:shadow-md transition text-center cursor-pointer group flex flex-col items-center relative">
             ${isAdminLoggedIn ? `
                 <button onclick="openEditCategoryModal(${index})" class="absolute top-2 right-2 bg-brand-blue text-white w-6 h-6 rounded-full flex items-center justify-center text-[10px] shadow-md hover:bg-blue-700 z-10" title="Edit Kategori">
                     <i class="fa-solid fa-pen"></i>
                 </button>
             ` : ''}
-            <div onclick="filterCategory('${cat.name}')" class="w-full flex flex-col items-center">
+            <div onclick="filterCategory('${jsParamCatName}')" class="w-full flex flex-col items-center">
                 <div class="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center p-3 mb-3 group-hover:scale-105 transition">
-                    <img src="${cat.icon}" alt="${cat.name}" class="w-full h-full object-contain" loading="lazy" decoding="async">
+                    <img src="${safeCatIcon}" alt="${safeCatName}" class="w-full h-full object-contain" loading="lazy" decoding="async">
                 </div>
-                <span class="text-xs font-semibold text-gray-700 group-hover:text-brand-blue">${cat.name}</span>
+                <span class="text-xs font-semibold text-gray-700 group-hover:text-brand-blue">${safeCatName}</span>
             </div>
         </div>
-    `).join('');
+    `;
+    }).join('');
 }
 
 function renderCategoryDropdown() {
@@ -157,7 +162,7 @@ function renderCategoryDropdown() {
         return;
     }
     select.innerHTML = categories.map(cat => `
-        <option value="${cat.name}">${cat.name}</option>
+        <option value="${escapeHtml(cat.name)}">${escapeHtml(cat.name)}</option>
     `).join('');
 }
 
@@ -174,7 +179,14 @@ function renderProducts(filter = 'Semua') {
         return;
     }
     
-    grid.innerHTML = filtered.map(p => `
+    grid.innerHTML = filtered.map(p => {
+        const safeName = escapeHtml(p.name);
+        const safeCat = escapeHtml(p.category);
+        const safeUnit = escapeHtml(p.unit);
+        const safeImage = escapeHtml(p.image);
+        const jsParamName = (p.name || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'");
+        const numPrice = Number(p.price) || 0;
+        return `
         <div class="bg-white rounded-2xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-md transition flex flex-col justify-between relative group">
             ${isAdminLoggedIn ? `
                 <button onclick="openEditModal(${p.id})" class="absolute top-2 right-2 bg-brand-blue text-white w-7 h-7 rounded-full flex items-center justify-center text-xs shadow-md hover:bg-blue-700 z-10" title="Edit Produk">
@@ -183,22 +195,23 @@ function renderProducts(filter = 'Semua') {
             ` : ''}
             <div>
                 <div class="h-36 overflow-hidden bg-gray-100 relative">
-                    <img src="${p.image}" alt="${p.name}" class="w-full h-full object-cover hover:scale-105 transition duration-300" loading="lazy" decoding="async">
+                    <img src="${safeImage}" alt="${safeName}" class="w-full h-full object-cover hover:scale-105 transition duration-300" loading="lazy" decoding="async">
                 </div>
                 <div class="p-3">
-                    <span class="text-[10px] text-brand-blue font-semibold uppercase tracking-wider">${p.category}</span>
-                    <h3 class="font-bold text-xs text-gray-800 mt-0.5 mb-1 line-clamp-1">${p.name}</h3>
-                    <p class="text-xs font-extrabold text-brand-orange">Mulai dari<br>Rp ${p.price.toLocaleString('id-ID')} <span class="text-[10px] text-gray-400 font-normal">/ ${p.unit}</span></p>
+                    <span class="text-[10px] text-brand-blue font-semibold uppercase tracking-wider">${safeCat}</span>
+                    <h3 class="font-bold text-xs text-gray-800 mt-0.5 mb-1 line-clamp-1">${safeName}</h3>
+                    <p class="text-xs font-extrabold text-brand-orange">Mulai dari<br>Rp ${numPrice.toLocaleString('id-ID')} <span class="text-[10px] text-gray-400 font-normal">/ ${safeUnit}</span></p>
                 </div>
             </div>
             <div class="p-3 pt-0">
-                <button onclick="addToCart('${p.name}', ${p.price})" class="w-full bg-brand-blue hover:bg-blue-700 text-white text-xs font-semibold py-2 rounded-xl transition flex items-center justify-center space-x-1">
+                <button onclick="addToCart('${jsParamName}', ${numPrice})" class="w-full bg-brand-blue hover:bg-blue-700 text-white text-xs font-semibold py-2 rounded-xl transition flex items-center justify-center space-x-1">
                     <i class="fa-solid fa-cart-plus text-[10px]"></i>
                     <span>Pesan Sekarang</span>
                 </button>
             </div>
         </div>
-    `).join('');
+    `;
+    }).join('');
 }
 
 function filterCategory(cat) {
@@ -219,7 +232,7 @@ function addToCart(name, price) {
 }
 
 function updateCartUI() {
-    const cartCountEl = document.getElementById('cart-count');
+    const cartCountEl = document.getElementById('cart-badge') || document.getElementById('cart-count');
     const cartItemsEl = document.getElementById('cart-items');
     const cartTotalEl = document.getElementById('cart-total');
 
@@ -241,10 +254,12 @@ function updateCartUI() {
         let subtotal = item.price * item.qty;
         totalPrice += subtotal;
 
+        const safeItemName = escapeHtml(item.name);
+
         html += `
             <div class="flex items-center justify-between py-3 border-b border-gray-100 text-xs">
                 <div class="flex-1 pr-2">
-                    <h4 class="font-bold text-gray-800">${item.name}</h4>
+                    <h4 class="font-bold text-gray-800">${safeItemName}</h4>
                     <span class="text-gray-500 text-[11px]">Rp ${item.price.toLocaleString('id-ID')} x ${item.qty}</span>
                 </div>
                 <div class="flex items-center space-x-1.5">
@@ -734,13 +749,19 @@ function renderReviews(reviewsList) {
 
     let html = '';
     reviewsList.forEach(rev => {
+        const rating = Math.max(1, Math.min(5, parseInt(rev.rating) || 5));
         let stars = '';
-        for (let i = 0; i < rev.rating; i++) {
+        for (let i = 0; i < rating; i++) {
             stars += '<i class="fa-solid fa-star"></i>';
         }
 
+        const safeName = escapeHtml(rev.name || 'Pelanggan');
+        const safeRole = escapeHtml(rev.role || 'Pelanggan');
+        const safeComment = escapeHtml(rev.comment || '');
+
         // Ambil inisial nama untuk avatar
-        let initials = rev.name.split(' ').map(n => n[0]).join('').substring(0, 2).toUpperCase();
+        const words = (rev.name || '').trim().split(/\s+/);
+        let initials = words.slice(0, 2).map(n => n[0]).join('').toUpperCase() || 'U';
 
         html += `
             <div class="bg-white p-5 rounded-2xl shadow-sm border border-gray-100 flex flex-col justify-between relative">
@@ -750,16 +771,16 @@ function renderReviews(reviewsList) {
                         ${stars}
                     </div>
                     <p class="text-gray-600 text-xs leading-relaxed mb-4">
-                        "${rev.comment}"
+                        "${safeComment}"
                     </p>
                 </div>
                 <div class="flex items-center space-x-3 pt-3 border-t border-gray-100">
                     <div class="w-9 h-9 rounded-full bg-brand-blue/10 text-brand-blue font-bold flex items-center justify-center text-xs">
-                        ${initials}
+                        ${escapeHtml(initials)}
                     </div>
                     <div>
-                        <h4 class="font-bold text-gray-900 text-xs">${rev.name}</h4>
-                        <span class="text-[10px] text-gray-400">${rev.role}</span>
+                        <h4 class="font-bold text-gray-900 text-xs">${safeName}</h4>
+                        <span class="text-[10px] text-gray-400">${safeRole}</span>
                     </div>
                 </div>
             </div>
