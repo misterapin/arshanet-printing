@@ -1,0 +1,1527 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Katalog 50 Tema Undangan Online | ArshaNet Printing</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0056b3',
+                            darkblue: '#003d82',
+                            orange: '#ff7a00',
+                            yellow: '#ffc107',
+                            light: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Great+Vibes&family=Inter:wght@300;400;500;600;700;800;900&family=Playfair+Display:ital,wght@0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Supabase JS Client CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Favicon Website -->
+    <link rel="icon" type="image/webp" href="images/logo.webp">
+    <style>
+        .font-playfair { font-family: 'Playfair Display', serif; }
+        .font-script { font-family: 'Great Vibes', cursive; }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        
+        /* Device Simulator Styling */
+        .phone-mockup {
+            width: 360px;
+            height: 720px;
+            max-width: 90vw;
+            max-height: 82vh;
+            border-radius: 44px;
+            box-shadow: 0 0 0 10px #1e293b, 0 0 0 12px #334155, 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+        }
+        @media (max-width: 640px) {
+            .phone-mockup {
+                width: 320px;
+                height: 640px;
+                border-radius: 36px;
+                box-shadow: 0 0 0 7px #1e293b, 0 0 0 9px #334155, 0 20px 35px -10px rgba(0, 0, 0, 0.7);
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased flex flex-col min-h-screen">
+
+    <!-- HEADER / NAVBAR PROFESIONAL -->
+    <header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-xs">
+        
+        <!-- Main Navbar -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                
+                <!-- Logo & Brand -->
+                <div class="flex items-center space-x-12">
+                    <a href="index.html" class="flex items-center space-x-3 group">
+                        <div class="w-12 h-12 bg-gradient-to-tr from-brand-darkblue to-brand-blue rounded-full flex items-center justify-center text-white font-black text-2xl shadow-md group-hover:scale-105 transition-transform duration-200 overflow-hidden">
+                            <img src="images/logo.webp" alt="Logo ArshaNet Printing" class="w-full h-full object-cover">
+                        </div>                        
+                        <div class="flex flex-col">
+                            <span class="text-2xl font-black text-slate-900 tracking-tight leading-none">ArshaNet Printing</span>
+                            <span class="text-[10px] font-bold text-brand-orange uppercase tracking-widest mt-1">Solusi Percetakan Kita</span>
+                        </div>
+                    </a>
+
+                    <!-- Navigasi Desktop -->
+                    <nav class="hidden lg:flex items-center space-x-1 text-sm font-medium text-slate-600">
+                        <a href="index.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Beranda</a>
+                        <a href="index.html#kategori" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Produk</a>
+                        <a href="tema-undangan.html" class="px-3.5 py-2 text-brand-blue font-bold rounded-lg bg-blue-50 transition flex items-center space-x-1.5">Tema Undangan</a>
+                        <a href="pesan.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Cara Pesan</a>
+                        <a href="tentang.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Tentang Kami</a>
+                        <a href="ulasan.html" class="px-3.5 py-2 hover:text-brand-blue rounded-lg hover:bg-slate-50 transition">Ulasan</a>
+                    </nav>
+                </div>
+
+                <!-- Aksi Kanan & Mobile Button -->
+                <div class="flex items-center space-x-3">
+                    <a id="nav-wa-btn" href="https://api.whatsapp.com/send?phone=6285201214267&text=Halo%20ArshaNet%20Printing,%20saya%20ingin%20konsultasi%20tema%20undangan%20online." target="_blank" class="hidden sm:inline-flex items-center space-x-2 bg-green-500 hover:bg-green-600 text-white font-bold px-4 py-2.5 rounded-xl text-xs transition shadow-sm">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>Chat WhatsApp</span>
+                    </a>
+
+                    <button onclick="toggleMobileMenu()" class="lg:hidden p-2.5 bg-slate-50 hover:bg-slate-100 text-slate-700 rounded-xl border border-slate-200 transition focus:outline-none" aria-label="Menu Navigasi">
+                        <i class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- Menu Mobile Dropdown -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-white border-t border-slate-100 px-6 py-4 space-y-2 shadow-xl">
+            <a href="index.html" class="block py-2.5 text-xs font-semibold text-slate-600 hover:text-brand-blue border-b border-slate-50">Beranda</a>
+            <a href="index.html#kategori" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue border-b border-slate-50">Produk</a>
+            <a href="tema-undangan.html" class="block py-2.5 text-xs font-bold text-brand-blue border-b border-slate-50 flex items-center justify-between">Tema Undangan Digital</a>
+            <a href="pesan.html" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue border-b border-slate-50">Cara Pesan</a>
+            <a href="tentang.html" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue border-b border-slate-50">Tentang Kami</a>
+            <a href="ulasan.html" class="block py-2.5 text-xs font-medium text-slate-600 hover:text-brand-blue">Ulasan</a>
+        </div>
+    </header>
+
+    <main class="flex-grow">
+        <!-- HERO SECTION TEMA UNDANGAN -->
+        <section class="bg-gradient-to-br from-brand-blue via-brand-darkblue to-slate-900 text-white py-16 px-4 sm:px-6 lg:px-8 text-center relative overflow-hidden">
+            <div class="absolute -right-20 -top-20 w-80 h-80 bg-brand-orange/20 rounded-full blur-3xl pointer-events-none"></div>
+            <div class="absolute -left-20 -bottom-20 w-80 h-80 bg-blue-400/20 rounded-full blur-3xl pointer-events-none"></div>
+            
+            <div class="max-w-3xl mx-auto relative z-10">
+                <span class="bg-white/20 text-xs font-bold px-4 py-1.5 rounded-full uppercase tracking-widest inline-block mb-4 border border-white/10 shadow-sm backdrop-blur-sm">
+                    <i class="fa-solid fa-wand-magic-sparkles text-brand-orange mr-1.5"></i> Koleksi Lengkap 50 Tema Eksklusif
+                </span>
+                <h1 class="text-3xl sm:text-5xl font-black tracking-tight mb-4">Katalog 50 Tema Undangan Online</h1>
+                <p class="text-blue-100 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto">
+                    Wujudkan pernikahan impian dengan undangan website modern & interaktif. Klik <strong>Simulator HP</strong> untuk preview langsung seperti di smartphone, atau klik <strong>Buka Layar Penuh</strong> untuk melihat tampilan utuh.
+                </p>
+
+                <!-- Ringkasan Keunggulan -->
+                <div class="mt-8 flex flex-wrap justify-center gap-2 sm:gap-4 text-xs font-semibold">
+                    <span class="bg-white/10 backdrop-blur-sm border border-white/20 px-3.5 py-1.5 rounded-full flex items-center gap-1.5">
+                        <i class="fa-solid fa-music text-yellow-300"></i> Musik Latar Otomatis
+                    </span>
+                    <span class="bg-white/10 backdrop-blur-sm border border-white/20 px-3.5 py-1.5 rounded-full flex items-center gap-1.5">
+                        <i class="fa-solid fa-clock text-emerald-300"></i> Hitung Mundur Acara
+                    </span>
+                    <span class="bg-white/10 backdrop-blur-sm border border-white/20 px-3.5 py-1.5 rounded-full flex items-center gap-1.5">
+                        <i class="fa-solid fa-envelope-open-text text-amber-300"></i> RSVP & Doa Tamu
+                    </span>
+                    <span class="bg-white/10 backdrop-blur-sm border border-white/20 px-3.5 py-1.5 rounded-full flex items-center gap-1.5">
+                        <i class="fa-solid fa-gift text-pink-300"></i> Amplop Digital & QRIS
+                    </span>
+                    <span class="bg-white/10 backdrop-blur-sm border border-white/20 px-3.5 py-1.5 rounded-full flex items-center gap-1.5">
+                        <i class="fa-solid fa-map-location-dot text-cyan-300"></i> Navigasi Google Maps
+                    </span>
+                </div>
+            </div>
+        </section>
+
+        <!-- KATALOG LENGKAP 50 TEMA UNDANGAN -->
+        <section id="katalog" class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 scroll-mt-20">
+            <div class="text-center max-w-3xl mx-auto mb-8">
+                <span class="text-xs font-bold uppercase tracking-widest text-blue-700 bg-blue-50 px-4 py-1.5 rounded-full border border-blue-200 inline-block mb-2">Desain Responsif & Lengkap</span>
+                <h2 class="text-3xl sm:text-4xl font-black text-slate-900">Pilih Desain Sesuai Konsep Pernikahan</h2>
+                <p class="text-slate-600 mt-2 text-sm">Gunakan tombol filter kategori atau cari langsung berdasarkan nama tema, konsep adat, atau warna favorit Anda.</p>
+            </div>
+
+            <!-- Filter Tab & Live Search Box -->
+            <div class="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-4 mb-6 bg-white p-4 rounded-2xl border border-slate-200 shadow-sm">
+                <!-- Filter Kategori Buttons -->
+                <div class="flex flex-wrap items-center gap-2 text-xs font-bold" id="filter-buttons">
+                    <button onclick="filterThemes('all')" id="btn-filter-all" class="filter-btn active bg-brand-blue text-white px-4 py-2.5 rounded-xl font-bold shadow-md shadow-blue-500/20 transition flex items-center gap-1.5">
+                        <span>Semua</span>
+                        <span class="bg-white/20 text-white text-[10px] px-2 py-0.5 rounded-full">50</span>
+                    </button>
+                    <button onclick="filterThemes('modern')" id="btn-filter-modern" class="filter-btn bg-slate-50 hover:bg-blue-50 text-slate-700 px-4 py-2.5 rounded-xl border border-slate-200 font-semibold transition flex items-center gap-1.5">
+                        <span>Modern & Pastel</span>
+                        <span class="bg-slate-200 text-slate-700 text-[10px] px-2 py-0.5 rounded-full">13</span>
+                    </button>
+                    <button onclick="filterThemes('adat')" id="btn-filter-adat" class="filter-btn bg-slate-50 hover:bg-blue-50 text-slate-700 px-4 py-2.5 rounded-xl border border-slate-200 font-semibold transition flex items-center gap-1.5">
+                        <span>Adat Nusantara</span>
+                        <span class="bg-slate-200 text-slate-700 text-[10px] px-2 py-0.5 rounded-full">12</span>
+                    </button>
+                    <button onclick="filterThemes('floral')" id="btn-filter-floral" class="filter-btn bg-slate-50 hover:bg-blue-50 text-slate-700 px-4 py-2.5 rounded-xl border border-slate-200 font-semibold transition flex items-center gap-1.5">
+                        <span>Floral & Alam</span>
+                        <span class="bg-slate-200 text-slate-700 text-[10px] px-2 py-0.5 rounded-full">11</span>
+                    </button>
+                    <button onclick="filterThemes('luxury')" id="btn-filter-luxury" class="filter-btn bg-slate-50 hover:bg-blue-50 text-slate-700 px-4 py-2.5 rounded-xl border border-slate-200 font-semibold transition flex items-center gap-1.5">
+                        <span>Mewah & Eksklusif</span>
+                        <span class="bg-slate-200 text-slate-700 text-[10px] px-2 py-0.5 rounded-full">14</span>
+                    </button>
+                </div>
+                
+                <!-- Live Search Box -->
+                <div class="w-full lg:w-80 relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="theme-search" oninput="searchThemes()" placeholder="Cari dari 50 tema (contoh: Adat, Batik, Rose)..." class="w-full pl-10 pr-9 py-2.5 text-xs bg-slate-50 border border-slate-200 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-blue focus:bg-white text-slate-800 transition">
+                    <button id="clear-search-btn" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 text-xs">
+                        <i class="fa-solid fa-circle-xmark"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Counter Info -->
+            <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between text-xs text-slate-500 mb-6 px-1 gap-2">
+                <span id="theme-count-label" class="font-medium">Menampilkan <strong>50</strong> tema undangan</span>
+                <span class="text-emerald-700 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 font-semibold flex items-center gap-1.5">
+                    <i class="fa-solid fa-circle-check text-emerald-500 text-xs"></i> 100% Responsif, Lengkap dengan Musik & Fitur Tamu
+                </span>
+            </div>
+
+            <!-- GRID 50 TEMA -->
+            <div id="themes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-7">
+                <!-- Tema akan di-render secara dinamis oleh JavaScript -->
+            </div>
+
+            <!-- Empty State jika pencarian tidak ditemukan -->
+            <div id="no-themes-state" class="hidden text-center py-16 bg-white rounded-3xl border border-slate-200 p-8">
+                <div class="w-20 h-20 bg-blue-50 text-brand-blue rounded-full flex items-center justify-center mx-auto mb-4 text-3xl">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+                <h3 class="text-lg font-bold text-slate-800 mb-1">Tema Tidak Ditemukan</h3>
+                <p class="text-xs text-slate-500 max-w-sm mx-auto mb-6">Tidak ada tema yang cocok dengan kata kunci pencarian Anda. Coba kata kunci lain atau reset filter pencarian.</p>
+                <button onclick="resetFiltersAndSearch()" class="bg-brand-blue hover:bg-blue-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition shadow-sm inline-flex items-center gap-2">
+                    <i class="fa-solid fa-rotate-left"></i>
+                    <span>Tampilkan Semua 50 Tema</span>
+                </button>
+            </div>
+        </section>
+    </main>
+
+    <!-- MODAL SIMULATOR FRAME HP (INTERACTIVE DEVICE PREVIEW) -->
+    <div id="simulator-modal" class="fixed inset-0 z-50 bg-slate-950/85 backdrop-blur-md hidden flex items-center justify-center p-3 sm:p-4 overflow-y-auto">
+        <div class="relative flex flex-col items-center my-auto w-full max-w-lg animate-in fade-in zoom-in duration-200">
+            
+            <!-- Toolbar Atas Simulator -->
+            <div class="w-full bg-slate-900 text-white px-4 py-3 rounded-2xl border border-slate-800 flex items-center justify-between mb-3 shadow-xl">
+                <div class="flex items-center space-x-2.5 overflow-hidden">
+                    <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                    <div class="truncate">
+                        <h4 id="simulator-theme-title" class="font-bold text-xs text-white truncate">Preview Tema Undangan</h4>
+                        <span id="simulator-theme-category" class="text-[10px] text-slate-400 block truncate">Adat Nusantara</span>
+                    </div>
+                </div>
+
+                <div class="flex items-center space-x-2 shrink-0">
+                    <!-- Tombol Reload -->
+                    <button onclick="reloadSimulator()" title="Muat Ulang Undangan" class="p-2 text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-xl transition text-xs">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+                    <!-- Tombol Buka Tab Baru -->
+                    <a id="simulator-open-tab" href="#" target="_blank" title="Buka Layar Penuh" class="p-2 text-slate-300 hover:text-white bg-slate-800 hover:bg-slate-700 rounded-xl transition text-xs flex items-center gap-1">
+                        <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                        <span class="hidden sm:inline text-[11px] font-semibold">Penuh</span>
+                    </a>
+                    <!-- Tombol Pesan WA -->
+                    <a id="simulator-order-wa" href="#" target="_blank" title="Pesan Tema Ini via WhatsApp" class="px-3 py-1.5 bg-green-500 hover:bg-green-600 text-white rounded-xl transition text-xs font-bold flex items-center gap-1.5 shadow-sm">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span class="hidden sm:inline text-[11px]">Pesan</span>
+                    </a>
+                    <!-- Tombol Tutup -->
+                    <button onclick="closeSimulator()" title="Tutup Simulator (Esc)" class="p-2 text-slate-400 hover:text-red-400 bg-slate-800 hover:bg-slate-700 rounded-xl transition text-xs">
+                        <i class="fa-solid fa-xmark text-sm"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Frame Smartphone Mockup -->
+            <div class="phone-mockup bg-black relative flex flex-col items-center justify-between overflow-hidden">
+                <!-- Notch / Dynamic Island Speaker -->
+                <div class="w-full h-7 bg-slate-950 flex items-center justify-center relative shrink-0 z-20">
+                    <div class="w-24 h-4 bg-slate-900 rounded-full flex items-center justify-center px-2">
+                        <div class="w-2.5 h-2.5 bg-slate-800 rounded-full mr-2"></div>
+                        <div class="w-8 h-1 bg-slate-800 rounded-full"></div>
+                    </div>
+                </div>
+
+                <!-- Iframe Preview Undangan Realtime -->
+                <div class="w-full flex-grow bg-white relative overflow-hidden">
+                    <iframe id="simulator-iframe" src="" class="w-full h-full border-0 select-none" loading="lazy"></iframe>
+                </div>
+
+                <!-- Home Indicator Bar -->
+                <div class="w-full h-4 bg-slate-950 flex items-center justify-center shrink-0 z-20">
+                    <div class="w-24 h-1 bg-slate-600 rounded-full"></div>
+                </div>
+            </div>
+
+            <p class="text-[11px] text-slate-400 text-center mt-3">
+                <i class="fa-solid fa-info-circle mr-1"></i> Gulir ke bawah pada layar HP untuk melihat animasi & konten tema. Tekan <kbd class="px-1.5 py-0.5 bg-slate-800 rounded text-[10px] text-slate-300">Esc</kbd> untuk menutup.
+            </p>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-gray-900 text-gray-300 pt-12 pb-6 border-t border-gray-800 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                
+                <!-- Kolom 1: Profil Toko -->
+                <div>
+                    <div class="flex items-center space-x-3 mb-4">
+                        <div class="w-10 h-10 bg-brand-blue rounded-full flex items-center justify-center text-white font-bold text-xl shadow-md overflow-hidden">
+                            <img src="images/logo.webp" alt="Logo ArshaNet Printing" class="w-full h-full object-cover">
+                        </div>
+                        <div>
+                            <span class="text-2xl font-black text-white tracking-tight">ArshaNet Printing</span>
+                            <span class="text-xs block font-semibold text-brand-orange uppercase tracking-wider">Solusi Percetakan Kita</span>
+                        </div>
+                    </div>
+                    <p class="text-xs text-gray-400 leading-relaxed mb-4">Penyedia jasa cetak undangan fisik & pembuatan undangan digital online terbaik dengan 50+ pilihan tema responsif siap pakai.</p>
+                </div>
+
+                <!-- Kolom 2: Hubungi Kami -->
+                <div>
+                    <h3 class="text-white font-bold text-sm mb-4 uppercase tracking-wider border-b border-gray-800 pb-2">Hubungi Kami</h3>
+                    <ul class="space-y-3 text-xs text-gray-400">
+                        <li><i class="fa-solid fa-phone text-brand-orange mr-2"></i> <span id="footer-phone">0852-0121-4267</span></li>
+                        <li><i class="fa-solid fa-envelope text-brand-orange mr-2"></i> <span id="footer-email">info@arshanetprinting.com</span></li>
+                        <li><i class="fa-solid fa-location-dot text-brand-orange mr-2"></i> <span id="footer-address">Desa Karangjambu RT 03 RW 03 Kec. Balapulang - Kab. Tegal</span></li>
+                    </ul>
+                </div>
+
+                <!-- Kolom 3: Layanan Undangan -->
+                <div>
+                    <h3 class="text-white font-bold text-sm mb-4 uppercase tracking-wider border-b border-gray-800 pb-2">Fitur Undangan Online</h3>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><i class="fa-solid fa-check text-brand-orange mr-1.5"></i> Custom Nama Tamu Tanpa Batas</li>
+                        <li><i class="fa-solid fa-check text-brand-orange mr-1.5"></i> Musik Latar Otomatis (Autoplay)</li>
+                        <li><i class="fa-solid fa-check text-brand-orange mr-1.5"></i> Hitung Mundur Acara Real-Time</li>
+                        <li><i class="fa-solid fa-check text-brand-orange mr-1.5"></i> Navigasi Peta Google Maps</li>
+                        <li><i class="fa-solid fa-check text-brand-orange mr-1.5"></i> Buku Tamu Doa & Ucapan RSVP</li>
+                    </ul>
+                </div>
+
+                <!-- Kolom 4: Kategori Tema -->
+                <div>
+                    <h3 class="text-white font-bold text-sm mb-4 uppercase tracking-wider border-b border-gray-800 pb-2">Kategori Tema</h3>
+                    <ul class="space-y-2 text-xs text-gray-400">
+                        <li><a href="javascript:void(0)" onclick="filterThemes('adat'); window.scrollTo({top: 400, behavior: 'smooth'});" class="hover:text-brand-orange transition"><i class="fa-solid fa-arrow-right text-[10px] mr-1"></i> Adat Nusantara (12 Tema)</a></li>
+                        <li><a href="javascript:void(0)" onclick="filterThemes('modern'); window.scrollTo({top: 400, behavior: 'smooth'});" class="hover:text-brand-orange transition"><i class="fa-solid fa-arrow-right text-[10px] mr-1"></i> Modern & Pastel (13 Tema)</a></li>
+                        <li><a href="javascript:void(0)" onclick="filterThemes('floral'); window.scrollTo({top: 400, behavior: 'smooth'});" class="hover:text-brand-orange transition"><i class="fa-solid fa-arrow-right text-[10px] mr-1"></i> Floral & Alam (11 Tema)</a></li>
+                        <li><a href="javascript:void(0)" onclick="filterThemes('luxury'); window.scrollTo({top: 400, behavior: 'smooth'});" class="hover:text-brand-orange transition"><i class="fa-solid fa-arrow-right text-[10px] mr-1"></i> Mewah & Eksklusif (14 Tema)</a></li>
+                    </ul>
+                </div>
+
+            </div>
+            <div class="border-t border-gray-800 pt-6 text-xs text-gray-500 flex flex-col sm:flex-row justify-between items-center">
+                <p>&copy; 2026 ArshaNet Printing. Semua hak cipta dilindungi.</p>
+                <a href="index.html" class="text-[10px] text-gray-600 hover:text-gray-400 transition mt-2 sm:mt-0">Kembali ke Beranda</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a id="floating-wa-btn" href="https://api.whatsapp.com/send?phone=6285201214267&text=Halo%20ArshaNet%20Printing,%20saya%20ingin%20konsultasi%20tema%20undangan%20online." target="_blank" class="fixed bottom-6 right-6 z-40 bg-green-500 hover:bg-green-600 text-white w-14 h-14 rounded-full flex items-center justify-center shadow-xl hover:scale-110 transition-all duration-300" title="Chat WhatsApp Kami">
+        <i class="fa-brands fa-whatsapp text-2xl"></i>
+    </a>
+
+    <!-- SCRIPT DATA & INTERAKTIF 50 TEMA -->
+    <script>
+        // Data Kontak Toko (Default & Sinkron Supabase)
+        let storeContact = {
+            phone: '6285201214267',
+            address: 'Desa Karangjambu RT 03 RW 03 Kec. Balapulang - Kab. Tegal',
+            email: 'info@arshanetprinting.com'
+        };
+
+        // DATA LENGKAP 50 TEMA UNDANGAN DIGITAL
+        const themesData = [
+            // === 1. ADAT NUSANTARA (12 TEMA) ===
+            {
+                id: 'aceh-meukuta',
+                file: 'themes/aceh-meukuta.html',
+                name: 'Aceh Meukuta Alam',
+                category: 'adat',
+                categoryLabel: 'Adat Nusantara',
+                categoryBadgeClass: 'bg-amber-100 text-amber-800 border-amber-300',
+                couple: 'Teuku Akbar & Cut Syarifah',
+                date: 'Ahad, 20 Desember 2026',
+                desc: 'Adat Aceh bernuansa Rencong Meukuta Alam megah berpadu balutan warna emas dan marun diraja.',
+                colors: ['#d97706', '#78350f', '#0f0b01'],
+                gradient: 'from-amber-950 via-[#1c1602] to-stone-950',
+                textColor: 'text-amber-300',
+                icon: 'fa-mosque',
+                features: ['Musik Auto', 'RSVP & Doa', 'Amplop Digital']
+            },
+            {
+                id: 'balinese-royal',
+                file: 'themes/balinese-royal.html',
+                name: 'Balinese Royal Prada',
+                category: 'adat',
+                categoryLabel: 'Adat Nusantara',
+                categoryBadgeClass: 'bg-amber-100 text-amber-800 border-amber-300',
+                couple: 'Wayan & Ni Made',
+                date: 'Sabtu, 14 November 2026',
+                desc: 'Pawiwahan agung Bali dengan kemewahan kain prada emas dan nuansa pura kental nan sakral.',
+                colors: ['#ca8a04', '#451a03', '#1e1b4b'],
+                gradient: 'from-yellow-950 via-[#261501] to-stone-900',
+                textColor: 'text-yellow-300',
+                icon: 'fa-om',
+                features: ['Ornamen Prada', 'Musik Gamelan', 'Buku Doa']
+            },
+            {
+                id: 'batak-heritage',
+                file: 'themes/batak-heritage.html',
+                name: 'Batak Ulos Heritage',
+                category: 'adat',
+                categoryLabel: 'Adat Nusantara',
+                categoryBadgeClass: 'bg-amber-100 text-amber-800 border-amber-300',
+                couple: 'Tigor & Butet',
+                date: 'Sabtu, 05 Desember 2026',
+                desc: 'Pesta unjuk adat Batak Toba berbalut motif Ulos Sadum merah membara, hitam arang dan aksen emas.',
+                colors: ['#b91c1c', '#18181b', '#d97706'],
+                gradient: 'from-red-950 via-[#1a0505] to-zinc-950',
+                textColor: 'text-red-300',
+                icon: 'fa-shield-halved',
+                features: ['Motif Ulos', 'RSVP Realtime', 'Hitung Mundur']
+            },
+            {
+                id: 'batik-kawung',
+                file: 'themes/batik-kawung.html',
+                name: 'Javanese Batik Kawung',
+                category: 'adat',
+                categoryLabel: 'Adat Nusantara',
+                categoryBadgeClass: 'bg-amber-100 text-amber-800 border-amber-300',
+                couple: 'Suryo & Dyah',
+                date: 'Minggu, 18 Oktober 2026',
+                desc: 'Keagungan adat Jawa dengan motif klasik Batik Kawung bernuansa sogan cokelat keemasan bangsawan.',
+                colors: ['#92400e', '#78350f', '#fef3c7'],
+                gradient: 'from-amber-950 via-[#241203] to-stone-950',
+                textColor: 'text-amber-200',
+                icon: 'fa-fan',
+                features: ['Sogan Klasik', 'Gending Jawa', 'Amplop Bank']
+            },
+            {
+                id: 'bugis-makassar',
+                file: 'themes/bugis-makassar.html',
+                name: 'Bugis Baju Bodo',
+                category: 'adat',
+                categoryLabel: 'Adat Nusantara',
+                categoryBadgeClass: 'bg-amber-100 text-amber-800 border-amber-300',
+                couple: 'Andi Fadly & Nurul Aulia',
+                date: 'Ahad, 22 November 2026',
+                desc: 'Tradisi Mappabotting Sulawesi Selatan dengan pesona Baju Bodo hijau zamrud dan sulaman benang emas.',
+                colors: ['#047857', '#ca8a04', '#064e3b'],
+                gradient: 'from-emerald-950 via-[#03261a] to-stone-950',
+                textColor: 'text-emerald-300',
+                icon: 'fa-feather',
+                features: ['Corak Bodo', 'RSVP & Doa', 'Peta Lokasi']
+            },
+            {
+                id: 'lampung-siger',
+                file: 'themes/lampung-siger.html',
+                name: 'Lampung Siger Emas',
+                category: 'adat',
+                categoryLabel: 'Adat Nusantara',
+                categoryBadgeClass: 'bg-amber-100 text-amber-800 border-amber-300',
+                couple: 'Raden & Intan',
+                date: 'Sabtu, 12 Desember 2026',
+                desc: 'Begawi adat Lampung dengan kemegahan mahkota Siger emas berpadu ornamen kain tapis pesisir.',
+                colors: ['#eab308', '#831843', '#1c1917'],
+                gradient: 'from-yellow-950 via-[#260f1c] to-stone-950',
+                textColor: 'text-yellow-300',
+                icon: 'fa-crown',
+                features: ['Mahkota Siger', 'Musik Syahdu', 'Amplop QRIS']
+            },
+            {
+                id: 'melayu-deli',
+                file: 'themes/melayu-deli.html',
+                name: 'Melayu Deli Diraja',
+                category: 'adat',
+                categoryLabel: 'Adat Nusantara',
+                categoryBadgeClass: 'bg-amber-100 text-amber-800 border-amber-300',
+                couple: 'Tengku Haris & Wan Zulaikha',
+                date: 'Jumat, 11 Desember 2026',
+                desc: 'Akad nikah adat Melayu Deli istana Maimun, kuning diraja berpadu songket hijau lumut bertabur pantun.',
+                colors: ['#eab308', '#065f46', '#14532d'],
+                gradient: 'from-emerald-950 via-[#1f1b02] to-amber-950',
+                textColor: 'text-yellow-200',
+                icon: 'fa-mosque',
+                features: ['Diraja Melayu', 'Buku Doa Tamu', 'Amplop Bank']
+            },
+            {
+                id: 'minang-crimson',
+                file: 'themes/minang-crimson.html',
+                name: 'Minang Baralek Gadang',
+                category: 'adat',
+                categoryLabel: 'Adat Nusantara',
+                categoryBadgeClass: 'bg-amber-100 text-amber-800 border-amber-300',
+                couple: 'Sutan & Puti Reno',
+                date: 'Ahad, 08 November 2026',
+                desc: 'Pesta Baralek Gadang Minangkabau dengan siluet Rumah Gadang, gonjong megah, merah marun & emas.',
+                colors: ['#991b1b', '#d97706', '#450a0a'],
+                gradient: 'from-red-950 via-[#2b0505] to-stone-950',
+                textColor: 'text-red-300',
+                icon: 'fa-monument',
+                features: ['Rumah Gadang', 'Galeri Foto', 'Doa & Restu']
+            },
+            {
+                id: 'palembang-songket',
+                file: 'themes/palembang-songket.html',
+                name: 'Palembang Songket Lepus',
+                category: 'adat',
+                categoryLabel: 'Adat Nusantara',
+                categoryBadgeClass: 'bg-amber-100 text-amber-800 border-amber-300',
+                couple: 'M. Fikri & Siti Sarah',
+                date: 'Ahad, 29 November 2026',
+                desc: 'Keagungan bumi Sriwijaya bertabur motif Songket Lepus emas tenunan benang kencana berkilau.',
+                colors: ['#dc2626', '#ca8a04', '#450a0a'],
+                gradient: 'from-rose-950 via-[#260505] to-stone-950',
+                textColor: 'text-amber-300',
+                icon: 'fa-gem',
+                features: ['Songket Emas', 'Hitung Mundur', 'Buku Tamu']
+            },
+            {
+                id: 'sunda-parahyangan',
+                file: 'themes/sunda-parahyangan.html',
+                name: 'Sunda Parahyangan Heritage',
+                category: 'adat',
+                categoryLabel: 'Adat Nusantara',
+                categoryBadgeClass: 'bg-amber-100 text-amber-800 border-amber-300',
+                couple: 'Cecep & Lilis',
+                date: 'Minggu, 06 Desember 2026',
+                desc: 'Walimatul Ursy adat Sunda Parahyangan dengan mahkota Siger Sunda, ronce melati suci dan warna biru langit.',
+                colors: ['#0284c7', '#0369a1', '#f0fdf4'],
+                gradient: 'from-sky-950 via-[#031d2b] to-slate-900',
+                textColor: 'text-sky-300',
+                icon: 'fa-spa',
+                features: ['Siger Sunda', 'Kecapi Suling', 'Doa Tamu']
+            },
+            {
+                id: 'islamic-emerald',
+                file: 'themes/islamic-emerald.html',
+                name: 'Islamic Emerald Gold',
+                category: 'adat',
+                categoryLabel: 'Adat Nusantara',
+                categoryBadgeClass: 'bg-amber-100 text-amber-800 border-amber-300',
+                couple: 'Farhan & Aisyah',
+                date: 'Ahad, 13 Desember 2026',
+                desc: 'Walimatul Ursy Islami dengan warna hijau zamrud, kaligrafi anggun, dan ornamen kubah masjid sakral.',
+                colors: ['#059669', '#d97706', '#064e3b'],
+                gradient: 'from-emerald-950 via-[#022115] to-stone-950',
+                textColor: 'text-emerald-300',
+                icon: 'fa-kaaba',
+                features: ['Ayat Suci', 'Kaligrafi Islam', 'Amplop Digital']
+            },
+            {
+                id: 'moroccan-arabian',
+                file: 'themes/moroccan-arabian.html',
+                name: 'Moroccan Arabian Nights',
+                category: 'adat',
+                categoryLabel: 'Adat Nusantara',
+                categoryBadgeClass: 'bg-amber-100 text-amber-800 border-amber-300',
+                couple: 'Zayn & Yasmin',
+                date: 'Sabtu, 19 Desember 2026',
+                desc: 'Eksotika Timur Tengah berpadu pola geometris arabesque Maroko bernuansa royal amber dan lentera khas.',
+                colors: ['#d97706', '#b45309', '#1e1b4b'],
+                gradient: 'from-amber-950 via-[#1f1003] to-slate-950',
+                textColor: 'text-amber-300',
+                icon: 'fa-moon',
+                features: ['Pola Arabesque', 'Lentera Khas', 'Musik Eksotis']
+            },
+
+            // === 2. MODERN & PASTEL (13 TEMA) ===
+            {
+                id: 'clean-minimalist',
+                file: 'themes/clean-minimalist.html',
+                name: 'Clean Minimalist Monokrom',
+                category: 'modern',
+                categoryLabel: 'Modern & Pastel',
+                categoryBadgeClass: 'bg-blue-100 text-blue-800 border-blue-300',
+                couple: 'Leo & Maya',
+                date: '28 . 11 . 2026',
+                desc: 'Desain ultra modern, bersih dan monokromatik. Tipografi editorial majalah kontemporer tingkat tinggi.',
+                colors: ['#0f172a', '#64748b', '#f8fafc'],
+                gradient: 'from-slate-950 via-slate-900 to-zinc-900',
+                textColor: 'text-slate-100',
+                icon: 'fa-border-none',
+                features: ['Editorial Fonts', 'Minimalist UI', 'Buku Tamu']
+            },
+            {
+                id: 'pastel-lavender',
+                file: 'themes/pastel-lavender.html',
+                name: 'Pastel Lavender Glow',
+                category: 'modern',
+                categoryLabel: 'Modern & Pastel',
+                categoryBadgeClass: 'bg-blue-100 text-blue-800 border-blue-300',
+                couple: 'Kevin & Natasha',
+                date: 'Sabtu, 14 November 2026',
+                desc: 'Nuansa ungu lavender lembut yang menenangkan dengan estetika pastel romantis, anggun dan modern.',
+                colors: ['#a855f7', '#c084fc', '#faf5ff'],
+                gradient: 'from-purple-950 via-[#1f0a2e] to-indigo-950',
+                textColor: 'text-purple-300',
+                icon: 'fa-wand-magic-sparkles',
+                features: ['Palet Pastel', 'Animasi Halus', 'Doa Tamu']
+            },
+            {
+                id: 'pastel-mint',
+                file: 'themes/pastel-mint.html',
+                name: 'Pastel Mint Fresh',
+                category: 'modern',
+                categoryLabel: 'Modern & Pastel',
+                categoryBadgeClass: 'bg-blue-100 text-blue-800 border-blue-300',
+                couple: 'Alvin & Michelle',
+                date: 'Minggu, 20 Desember 2026',
+                desc: 'Kesegaran warna mint pastel yang manis dan clean, memberi nuansa kontemporer yang teduh & sejuk.',
+                colors: ['#10b981', '#6ee7b7', '#ecfdf5'],
+                gradient: 'from-teal-950 via-[#03261f] to-emerald-950',
+                textColor: 'text-teal-300',
+                icon: 'fa-seedling',
+                features: ['Mint Fresh', 'Kado Digital', 'Hitung Mundur']
+            },
+            {
+                id: 'sweet-peach',
+                file: 'themes/sweet-peach.html',
+                name: 'Sweet Peach Blossom',
+                category: 'modern',
+                categoryLabel: 'Modern & Pastel',
+                categoryBadgeClass: 'bg-blue-100 text-blue-800 border-blue-300',
+                couple: 'Fajar & Melati',
+                date: 'Ahad, 13 Desember 2026',
+                desc: 'Gradasi warna peach manis nan hangat, mencerminkan cinta yang penuh kelembutan, keceriaan dan tulus.',
+                colors: ['#fb923c', '#fdba74', '#fff7ed'],
+                gradient: 'from-orange-950 via-[#260e04] to-amber-950',
+                textColor: 'text-orange-300',
+                icon: 'fa-heart',
+                features: ['Peach Warmth', 'RSVP Online', 'Peta Acara']
+            },
+            {
+                id: 'sunset-horizon',
+                file: 'themes/sunset-horizon.html',
+                name: 'Sunset Horizon Ombre',
+                category: 'modern',
+                categoryLabel: 'Modern & Pastel',
+                categoryBadgeClass: 'bg-blue-100 text-blue-800 border-blue-300',
+                couple: 'Yoga & Sheila',
+                date: 'Sabtu, 05 Desember 2026',
+                desc: 'Gradasi ombre senja jingga keemasan dan merah muda yang sinematik seperti panorama matahari terbenam.',
+                colors: ['#f97316', '#db2777', '#431407'],
+                gradient: 'from-orange-950 via-[#2b0818] to-pink-950',
+                textColor: 'text-orange-300',
+                icon: 'fa-sun',
+                features: ['Ombre Senja', 'Efek Sinematik', 'Buku Doa']
+            },
+            {
+                id: 'geometric-scandi',
+                file: 'themes/geometric-scandi.html',
+                name: 'Geometric Scandinavian',
+                category: 'modern',
+                categoryLabel: 'Modern & Pastel',
+                categoryBadgeClass: 'bg-blue-100 text-blue-800 border-blue-300',
+                couple: 'Lucas & Hannah',
+                date: 'Sabtu, 21 November 2026',
+                desc: 'Gaya Nordik Scandinavian dengan garis geometris tegas, perpaduan arsitektural modern dan estetika rapi.',
+                colors: ['#334155', '#94a3b8', '#f1f5f9'],
+                gradient: 'from-slate-900 via-[#18202d] to-zinc-950',
+                textColor: 'text-slate-200',
+                icon: 'fa-shapes',
+                features: ['Scandi Layout', 'Font Modern', 'Countdown Acara']
+            },
+            {
+                id: 'nordic-frost',
+                file: 'themes/nordic-frost.html',
+                name: 'Nordic Winter Frost',
+                category: 'modern',
+                categoryLabel: 'Modern & Pastel',
+                categoryBadgeClass: 'bg-blue-100 text-blue-800 border-blue-300',
+                couple: 'Erik & Freya',
+                date: 'Sabtu, 12 Desember 2026',
+                desc: 'Sentuhan sejuk es dan kristal salju Skandinavia dengan palet biru es esensial nan bersih dan menawan.',
+                colors: ['#38bdf8', '#7dd3fc', '#0c4a6e'],
+                gradient: 'from-sky-950 via-[#051f2e] to-cyan-950',
+                textColor: 'text-sky-300',
+                icon: 'fa-snowflake',
+                features: ['Ice Glow', 'Musik Lembut', 'RSVP Online']
+            },
+            {
+                id: 'cinnamon-terracotta',
+                file: 'themes/cinnamon-terracotta.html',
+                name: 'Warm Cinnamon Terracotta',
+                category: 'modern',
+                categoryLabel: 'Modern & Pastel',
+                categoryBadgeClass: 'bg-blue-100 text-blue-800 border-blue-300',
+                couple: 'Bayu & Tiara',
+                date: 'Ahad, 15 November 2026',
+                desc: 'Nuansa tembikar terakota dan kayu manis bumi (earth tone) yang hangat, trendi, dan estetik kekinian.',
+                colors: ['#c2410c', '#ea580c', '#431407'],
+                gradient: 'from-amber-950 via-[#260c03] to-stone-950',
+                textColor: 'text-amber-300',
+                icon: 'fa-mug-hot',
+                features: ['Earthy Warm', 'Hitung Mundur', 'Buku Doa']
+            },
+            {
+                id: 'golden-terracotta',
+                file: 'themes/golden-terracotta.html',
+                name: 'Golden Terracotta Chic',
+                category: 'modern',
+                categoryLabel: 'Modern & Pastel',
+                categoryBadgeClass: 'bg-blue-100 text-blue-800 border-blue-300',
+                couple: 'Dimas & Annisa',
+                date: 'Sabtu, 28 November 2026',
+                desc: 'Harmoni warna earth tone terakota dengan sentuhan aksen gold foil yang mewah, elegan dan berkelas.',
+                colors: ['#d97706', '#9a3412', '#292524'],
+                gradient: 'from-orange-950 via-[#241302] to-yellow-950',
+                textColor: 'text-orange-200',
+                icon: 'fa-fire-flame-simple',
+                features: ['Gold Leaf Accent', 'Musik Latar', 'Peta Gmaps']
+            },
+            {
+                id: 'dusty-rose',
+                file: 'themes/dusty-rose.html',
+                name: 'Dusty Rose & Mauve',
+                category: 'modern',
+                categoryLabel: 'Modern & Pastel',
+                categoryBadgeClass: 'bg-blue-100 text-blue-800 border-blue-300',
+                couple: 'Brian & Cheryl',
+                date: 'Sabtu, 07 November 2026',
+                desc: 'Warna dusty rose berpadu mauve vintage. Manis, dewasa, tidak mencolok dan memancarkan keanggunan sejati.',
+                colors: ['#f43f5e', '#fb7185', '#ffe4e6'],
+                gradient: 'from-rose-950 via-[#240611] to-pink-950',
+                textColor: 'text-rose-300',
+                icon: 'fa-spa',
+                features: ['Dusty Rose Tone', 'Doa Restu', 'Amplop Digital']
+            },
+            {
+                id: 'ocean-coastal',
+                file: 'themes/ocean-coastal.html',
+                name: 'Ocean Coastal Blue',
+                category: 'modern',
+                categoryLabel: 'Modern & Pastel',
+                categoryBadgeClass: 'bg-blue-100 text-blue-800 border-blue-300',
+                couple: 'Samudra & Marina',
+                date: 'Sabtu, 19 Desember 2026',
+                desc: 'Pesona tepi pantai dan pesisir laut biru toska berpadu pasir putih, ombak rileks dan angin kebebasan.',
+                colors: ['#0284c7', '#06b6d4', '#e0f2fe'],
+                gradient: 'from-cyan-950 via-[#031d26] to-sky-950',
+                textColor: 'text-cyan-300',
+                icon: 'fa-water',
+                features: ['Coastal Vibe', 'Peta Lokasi', 'Buku Tamu']
+            },
+            {
+                id: 'silver-moonlight',
+                file: 'themes/silver-moonlight.html',
+                name: 'Silver Moonlight Glow',
+                category: 'modern',
+                categoryLabel: 'Modern & Pastel',
+                categoryBadgeClass: 'bg-blue-100 text-blue-800 border-blue-300',
+                couple: 'Kevin & Cindy',
+                date: 'Sabtu, 26 Desember 2026',
+                desc: 'Kilau perak bulan purnama di malam hari, bersih, berkilau dingin, modern dan futuristik dengan aksen metalik.',
+                colors: ['#94a3b8', '#cbd5e1', '#0f172a'],
+                gradient: 'from-slate-900 via-[#131b29] to-slate-950',
+                textColor: 'text-slate-200',
+                icon: 'fa-moon',
+                features: ['Silver Shimmer', 'Animasi Halus', 'Kado QRIS']
+            },
+            {
+                id: 'vintage-retro',
+                file: 'themes/vintage-retro.html',
+                name: 'Vintage Retro Heritage',
+                category: 'modern',
+                categoryLabel: 'Modern & Pastel',
+                categoryBadgeClass: 'bg-blue-100 text-blue-800 border-blue-300',
+                couple: 'Bagus & Sekar',
+                date: 'Ahad, 22 November 2026',
+                desc: 'Gaya tempo doeloe penuh kehangatan nostalgia dengan nuansa kertas kraft cokelat dan tipografi serif antik.',
+                colors: ['#78350f', '#b45309', '#fef3c7'],
+                gradient: 'from-amber-950 via-[#241304] to-stone-900',
+                textColor: 'text-amber-200',
+                icon: 'fa-camera-retro',
+                features: ['Nostalgia Vibe', 'Font Klasik', 'Hitung Mundur']
+            },
+
+            // === 3. FLORAL & ALAM (11 TEMA) ===
+            {
+                id: 'rustic-botanical',
+                file: 'themes/rustic-botanical.html',
+                name: 'Rustic Botanical Garden',
+                category: 'floral',
+                categoryLabel: 'Floral & Alam',
+                categoryBadgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+                couple: 'Rama & Shinta',
+                date: 'Sabtu, 21 November 2026',
+                desc: 'Dedaunan liar berpadu kayu pedesaan yang asri, hangat, bersahaja dan menjadi tren favorit sepanjang masa.',
+                colors: ['#15803d', '#78350f', '#fefce8'],
+                gradient: 'from-green-950 via-[#10240d] to-stone-900',
+                textColor: 'text-emerald-300',
+                icon: 'fa-leaf',
+                features: ['Dedaunan Asri', 'Musik Akustik', 'Amplop Bank']
+            },
+            {
+                id: 'romantic-rose',
+                file: 'themes/romantic-rose.html',
+                name: 'Romantic Rose Garland',
+                category: 'floral',
+                categoryLabel: 'Floral & Alam',
+                categoryBadgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+                couple: 'Romeo & Juliet',
+                date: 'Minggu, 14 Februari 2027',
+                desc: 'Rangkaian mawar merah muda yang merekah harum, simbol cinta sejati nan abadi, penuh gairah & romantisme.',
+                colors: ['#e11d48', '#f43f5e', '#fff1f2'],
+                gradient: 'from-rose-950 via-[#260510] to-stone-950',
+                textColor: 'text-rose-300',
+                icon: 'fa-heart',
+                features: ['Mawar Merah', 'Lirik Romantis', 'Buku Doa']
+            },
+            {
+                id: 'cherry-blossom',
+                file: 'themes/cherry-blossom.html',
+                name: 'Cherry Blossom Sakura',
+                category: 'floral',
+                categoryLabel: 'Floral & Alam',
+                categoryBadgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+                couple: 'Kenji & Sakura',
+                date: 'Sabtu, 03 April 2027',
+                desc: 'Bunga sakura Jepang berguguran lembut dalam nuansa merah muda sakura yang puitis, damai dan mempesona.',
+                colors: ['#f472b6', '#fbcfe8', '#500724'],
+                gradient: 'from-pink-950 via-[#260817] to-rose-950',
+                textColor: 'text-pink-300',
+                icon: 'fa-tree',
+                features: ['Sakura Falling', 'Soundtrack Halus', 'Amplop Kado']
+            },
+            {
+                id: 'emerald-eucalyptus',
+                file: 'themes/emerald-eucalyptus.html',
+                name: 'Emerald Eucalyptus Green',
+                category: 'floral',
+                categoryLabel: 'Floral & Alam',
+                categoryBadgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+                couple: 'Rizky & Nabila',
+                date: 'Ahad, 29 November 2026',
+                desc: 'Ilustrasi daun eukaliptus segar berpadu warna hijau zamrud teduh, memberi kesan rileks dan kesegaran alamiah.',
+                colors: ['#059669', '#10b981', '#064e3b'],
+                gradient: 'from-emerald-950 via-[#032117] to-teal-950',
+                textColor: 'text-emerald-300',
+                icon: 'fa-seedling',
+                features: ['Eucalyptus Wreath', 'Hitung Mundur', 'Peta Acara']
+            },
+            {
+                id: 'forest-pine',
+                file: 'themes/forest-pine.html',
+                name: 'Forest Pine Wood',
+                category: 'floral',
+                categoryLabel: 'Floral & Alam',
+                categoryBadgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+                couple: 'Reno & Citra',
+                date: 'Sabtu, 12 Desember 2026',
+                desc: 'Pesona hutan pinus pegunungan dengan hijau gelap mistis dan wangi alam bebas yang tenang nan misterius.',
+                colors: ['#166534', '#15803d', '#14532d'],
+                gradient: 'from-green-950 via-[#07240c] to-emerald-950',
+                textColor: 'text-green-300',
+                icon: 'fa-tree',
+                features: ['Pinus Pegunungan', 'Akustik Hutan', 'RSVP Realtime']
+            },
+            {
+                id: 'rustic-daisy',
+                file: 'themes/rustic-daisy.html',
+                name: 'Rustic Daisy Farm Sunshine',
+                category: 'floral',
+                categoryLabel: 'Floral & Alam',
+                categoryBadgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+                couple: 'Fajar & Daisy',
+                date: 'Ahad, 20 Desember 2026',
+                desc: 'Padang rumput bunga krisan aster putih berseri dengan pancaran mentari pagi yang hangat, ceria dan bersinar.',
+                colors: ['#eab308', '#ca8a04', '#713f12'],
+                gradient: 'from-amber-950 via-[#261702] to-yellow-950',
+                textColor: 'text-yellow-300',
+                icon: 'fa-sun',
+                features: ['Bunga Aster Daisy', 'Musik Riang', 'Buku Doa']
+            },
+            {
+                id: 'sage-olive',
+                file: 'themes/sage-olive.html',
+                name: 'Sage Green Olive Branch',
+                category: 'floral',
+                categoryLabel: 'Floral & Alam',
+                categoryBadgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+                couple: 'Adrian & Nadia',
+                date: 'Sabtu, 05 Desember 2026',
+                desc: 'Warna sage green tren terpopuler berpadu ranting zaitun lambang kedamaian, kemakmuran & kesetiaan sejati.',
+                colors: ['#84cc16', '#65a30d', '#1a2e05'],
+                gradient: 'from-lime-950 via-[#152405] to-stone-900',
+                textColor: 'text-lime-300',
+                icon: 'fa-leaf',
+                features: ['Sage Trend', 'Doa Tamu', 'Galeri Estetik']
+            },
+            {
+                id: 'spring-wildflower',
+                file: 'themes/spring-wildflower.html',
+                name: 'Spring Meadow Wildflower',
+                category: 'floral',
+                categoryLabel: 'Floral & Alam',
+                categoryBadgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+                couple: 'Daffa & Syifa',
+                date: 'Sabtu, 28 November 2026',
+                desc: 'Hamparan bunga liar warna-warni padang rumput musim semi yang riang, hidup, segar dan berjiwa bebas.',
+                colors: ['#ec4899', '#8b5cf6', '#1e1b4b'],
+                gradient: 'from-purple-950 via-[#240826] to-pink-950',
+                textColor: 'text-pink-300',
+                icon: 'fa-wand-magic-sparkles',
+                features: ['Wildflower Bloom', 'RSVP Online', 'Peta Gmaps']
+            },
+            {
+                id: 'sunflower-garden',
+                file: 'themes/sunflower-garden.html',
+                name: 'Sunflower Garden Sunshine',
+                category: 'floral',
+                categoryLabel: 'Floral & Alam',
+                categoryBadgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+                couple: 'Surya & Mentari',
+                date: 'Ahad, 06 Desember 2026',
+                desc: 'Kebun bunga matahari kuning cerah yang melambangkan loyalitas cinta, kehangatan jiwa dan kebahagiaan abadi.',
+                colors: ['#eab308', '#f59e0b', '#78350f'],
+                gradient: 'from-yellow-950 via-[#261501] to-amber-950',
+                textColor: 'text-yellow-300',
+                icon: 'fa-sun',
+                features: ['Bunga Matahari', 'Semangat Bahagia', 'Kado Rekening']
+            },
+            {
+                id: 'boho-pampas',
+                file: 'themes/boho-pampas.html',
+                name: 'Boho Pampas Grass',
+                category: 'floral',
+                categoryLabel: 'Floral & Alam',
+                categoryBadgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+                couple: 'Galih & Ratna',
+                date: 'Sabtu, 14 November 2026',
+                desc: 'Gaya bohemian chic dengan bulu pampas lembut, warna netral krem beige dan anyaman makrame estetik.',
+                colors: ['#d97706', '#a16207', '#451a03'],
+                gradient: 'from-amber-950 via-[#241304] to-stone-900',
+                textColor: 'text-amber-200',
+                icon: 'fa-feather-pointed',
+                features: ['Boho Chic Vibe', 'Font Kaligrafi', 'Amplop Digital']
+            },
+            {
+                id: 'autumn-copper',
+                file: 'themes/autumn-copper.html',
+                name: 'Autumn Copper Leaves',
+                category: 'floral',
+                categoryLabel: 'Floral & Alam',
+                categoryBadgeClass: 'bg-emerald-100 text-emerald-800 border-emerald-300',
+                couple: 'Aditya & Karina',
+                date: 'Ahad, 15 November 2026',
+                desc: 'Guguran daun musim gugur berona tembaga berkilau, warna merah jingga dan kehangatan aroma kayu manis.',
+                colors: ['#b45309', '#ea580c', '#451a03'],
+                gradient: 'from-amber-950 via-[#240b03] to-red-950',
+                textColor: 'text-amber-300',
+                icon: 'fa-canadian-maple-leaf',
+                features: ['Autumn Leaves', 'Nuansa Hangat', 'Hitung Mundur']
+            },
+
+            // === 4. MEWAH & EKSKLUSIF (14 TEMA) ===
+            {
+                id: 'art-deco',
+                file: 'themes/art-deco.html',
+                name: 'Art Deco Great Gatsby',
+                category: 'luxury',
+                categoryLabel: 'Mewah & Eksklusif',
+                categoryBadgeClass: 'bg-purple-100 text-purple-800 border-purple-300',
+                couple: 'Gabriel & Chloe',
+                date: 'Sabtu, 19 Desember 2026',
+                desc: 'Kemegahan pesta era The Great Gatsby 1920-an dengan pola geometris emas mewah di atas latar hitam pekat.',
+                colors: ['#eab308', '#ca8a04', '#09090b'],
+                gradient: 'from-amber-950 via-zinc-950 to-black',
+                textColor: 'text-yellow-300',
+                icon: 'fa-gem',
+                features: ['Gatsby 1920s', 'Emas Metalik', 'Buku Doa Tamu']
+            },
+            {
+                id: 'elegance-black-gold',
+                file: 'themes/elegance-black-gold.html',
+                name: 'Luxury Black & Gold Foil',
+                category: 'luxury',
+                categoryLabel: 'Mewah & Eksklusif',
+                categoryBadgeClass: 'bg-purple-100 text-purple-800 border-purple-300',
+                couple: 'Edward & Victoria',
+                date: 'Sabtu, 12 Desember 2026',
+                desc: 'Kemewahan paripurna warna hitam legam obsidian dengan aksen goresan foil emas murni berkilau.',
+                colors: ['#eab308', '#fef08a', '#000000'],
+                gradient: 'from-neutral-950 via-stone-900 to-black',
+                textColor: 'text-yellow-200',
+                icon: 'fa-crown',
+                features: ['Black & Gold', 'Font High End', 'RSVP Online']
+            },
+            {
+                id: 'gold-marble',
+                file: 'themes/gold-marble.html',
+                name: 'Gold Foil Marble Luxury',
+                category: 'luxury',
+                categoryLabel: 'Mewah & Eksklusif',
+                categoryBadgeClass: 'bg-purple-100 text-purple-800 border-purple-300',
+                couple: 'Jason & Felicia',
+                date: 'Sabtu, 05 Desember 2026',
+                desc: 'Tekstur marmer Carrera Italia dengan urat urat serbuk emas cair yang memancarkan pesona prestisius tinggi.',
+                colors: ['#d97706', '#f59e0b', '#18181b'],
+                gradient: 'from-stone-900 via-neutral-950 to-zinc-950',
+                textColor: 'text-amber-300',
+                icon: 'fa-gem',
+                features: ['Tekstur Marmer', 'Kilau Emas', 'Hitung Mundur']
+            },
+            {
+                id: 'royal-maroon',
+                file: 'themes/royal-maroon.html',
+                name: 'Royal Maroon & Gold Crown',
+                category: 'luxury',
+                categoryLabel: 'Mewah & Eksklusif',
+                categoryBadgeClass: 'bg-purple-100 text-purple-800 border-purple-300',
+                couple: 'Arya & Kirana',
+                date: 'Sabtu, 28 November 2026',
+                desc: 'Nuansa kerajaan bangsawan dengan merah marun darah yang pekat dan ornamen mahkota emas kaisar nan agung.',
+                colors: ['#881337', '#eab308', '#4c0519'],
+                gradient: 'from-rose-950 via-[#26050e] to-stone-950',
+                textColor: 'text-amber-300',
+                icon: 'fa-crown',
+                features: ['Royal Velvet', 'Ornamen Bangsawan', 'Amplop Bank']
+            },
+            {
+                id: 'royal-indigo',
+                file: 'themes/royal-indigo.html',
+                name: 'Royal Indigo Night',
+                category: 'luxury',
+                categoryLabel: 'Mewah & Eksklusif',
+                categoryBadgeClass: 'bg-purple-100 text-purple-800 border-purple-300',
+                couple: 'Tristan & Kimberly',
+                date: 'Sabtu, 19 Desember 2026',
+                desc: 'Warna indigo biru tua keunguan yang megah berpadu pantulan bintang perak platinum malam nan anggun.',
+                colors: ['#3730a3', '#4338ca', '#0f172a'],
+                gradient: 'from-indigo-950 via-[#100f2e] to-slate-950',
+                textColor: 'text-indigo-300',
+                icon: 'fa-ring',
+                features: ['Indigo Deep Blue', 'Elegan Glamor', 'Peta Acara']
+            },
+            {
+                id: 'navy-sapphire',
+                file: 'themes/navy-sapphire.html',
+                name: 'Navy Sapphire Classic',
+                category: 'luxury',
+                categoryLabel: 'Mewah & Eksklusif',
+                categoryBadgeClass: 'bg-purple-100 text-purple-800 border-purple-300',
+                couple: 'Arthur & Diana',
+                date: 'Sabtu, 21 November 2026',
+                desc: 'Kombinasi warna biru navy safir laut dalam dengan font serif emas kerajaan Inggris yang anggun dan berwibawa.',
+                colors: ['#1e3a8a', '#1d4ed8', '#020617'],
+                gradient: 'from-blue-950 via-[#061129] to-slate-950',
+                textColor: 'text-blue-300',
+                icon: 'fa-gem',
+                features: ['Navy Sapphire', 'Tipografi Kerajaan', 'Amplop Digital']
+            },
+            {
+                id: 'velvet-sapphire',
+                file: 'themes/velvet-sapphire.html',
+                name: 'Royal Velvet Sapphire',
+                category: 'luxury',
+                categoryLabel: 'Mewah & Eksklusif',
+                categoryBadgeClass: 'bg-purple-100 text-purple-800 border-purple-300',
+                couple: 'Brandon & Stephanie',
+                date: 'Sabtu, 12 Desember 2026',
+                desc: 'Tekstur beludru safir biru berkilau mewah berpadu hiasan permata intan berlian abadi nan menawan.',
+                colors: ['#1d4ed8', '#60a5fa', '#090d16'],
+                gradient: 'from-blue-950 via-[#08162e] to-indigo-950',
+                textColor: 'text-sky-300',
+                icon: 'fa-diamond',
+                features: ['Diamond Sparkle', 'Musik Mewah', 'Kado Transfer']
+            },
+            {
+                id: 'champagne-pearl',
+                file: 'themes/champagne-pearl.html',
+                name: 'Luxury Champagne Pearl',
+                category: 'luxury',
+                categoryLabel: 'Mewah & Eksklusif',
+                categoryBadgeClass: 'bg-purple-100 text-purple-800 border-purple-300',
+                couple: 'William & Grace',
+                date: 'Ahad, 13 Desember 2026',
+                desc: 'Kilau mutiara champagne yang hangat dan glamor, menciptakan nuansa jamuan mewah ballroom bintang lima.',
+                colors: ['#d97706', '#fef3c7', '#292524'],
+                gradient: 'from-amber-950 via-[#261705] to-stone-900',
+                textColor: 'text-amber-200',
+                icon: 'fa-champagne-glasses',
+                features: ['Champagne Glow', 'Suasana Ballroom', 'Buku Tamu']
+            },
+            {
+                id: 'deep-teal-copper',
+                file: 'themes/deep-teal-copper.html',
+                name: 'Deep Teal & Copper Glow',
+                category: 'luxury',
+                categoryLabel: 'Mewah & Eksklusif',
+                categoryBadgeClass: 'bg-purple-100 text-purple-800 border-purple-300',
+                couple: 'Samuel & Jessica',
+                date: 'Sabtu, 05 Desember 2026',
+                desc: 'Perpaduan warna hijau toska tua (deep teal) dengan kilauan tembaga metalik (copper) yang eksentrik nan anggun.',
+                colors: ['#0f766e', '#f97316', '#042f2e'],
+                gradient: 'from-teal-950 via-[#02211e] to-stone-950',
+                textColor: 'text-teal-300',
+                icon: 'fa-sparkles',
+                features: ['Deep Teal & Tembaga', 'Galeri Foto', 'Amplop Bank']
+            },
+            {
+                id: 'gothic-noir',
+                file: 'themes/gothic-noir.html',
+                name: 'Gothic Victorian Noir',
+                category: 'luxury',
+                categoryLabel: 'Mewah & Eksklusif',
+                categoryBadgeClass: 'bg-purple-100 text-purple-800 border-purple-300',
+                couple: 'Vincent & Scarlett',
+                date: 'Sabtu, 31 Oktober 2026',
+                desc: 'Pesona era Victoria gothic yang dramatis, misterius dan berani dengan ornamen renda mawar hitam anggun.',
+                colors: ['#4c0519', '#b91c1c', '#000000'],
+                gradient: 'from-red-950 via-zinc-950 to-black',
+                textColor: 'text-rose-300',
+                icon: 'fa-feather',
+                features: ['Gothic Romance', 'Sentuhan Dramatis', 'RSVP Online']
+            },
+            {
+                id: 'galaxy-nebula',
+                file: 'themes/galaxy-nebula.html',
+                name: 'Galaxy Cosmic Nebula',
+                category: 'luxury',
+                categoryLabel: 'Mewah & Eksklusif',
+                categoryBadgeClass: 'bg-purple-100 text-purple-800 border-purple-300',
+                couple: 'Orion & Vega',
+                date: 'Sabtu, 19 Desember 2026',
+                desc: 'Keindahan alam semesta, kabut nebula kosmik dan taburan debu bintang galaksi yang tak terhingga luasnya.',
+                colors: ['#6366f1', '#ec4899', '#030712'],
+                gradient: 'from-indigo-950 via-[#180829] to-purple-950',
+                textColor: 'text-indigo-300',
+                icon: 'fa-meteor',
+                features: ['Starry Space Glow', 'Suasana Magis', 'Buku Doa']
+            },
+            {
+                id: 'midnight-celestial',
+                file: 'themes/midnight-celestial.html',
+                name: 'Midnight Celestial Constellation',
+                category: 'luxury',
+                categoryLabel: 'Mewah & Eksklusif',
+                categoryBadgeClass: 'bg-purple-100 text-purple-800 border-purple-300',
+                couple: 'Bintang & Luna',
+                date: 'Sabtu, 12 Desember 2026',
+                desc: 'Malam langit tengah malam bertabur rasi konstelasi bintang emas dan fase bulan sabit romantis nan syahdu.',
+                colors: ['#eab308', '#38bdf8', '#020617'],
+                gradient: 'from-blue-950 via-[#070e24] to-slate-950',
+                textColor: 'text-yellow-300',
+                icon: 'fa-moon',
+                features: ['Moon & Stars', 'Musik Romantis', 'Hitung Mundur']
+            },
+            {
+                id: 'ivory-lace',
+                file: 'themes/ivory-lace.html',
+                name: 'Classical Ivory Lace',
+                category: 'luxury',
+                categoryLabel: 'Mewah & Eksklusif',
+                categoryBadgeClass: 'bg-purple-100 text-purple-800 border-purple-300',
+                couple: 'Christian & Amanda',
+                date: 'Sabtu, 28 November 2026',
+                desc: 'Renda gading Prancis klasik yang abadi, memancarkan kesucian cinta, keanggunan dan kemurnian janji suci.',
+                colors: ['#d97706', '#fef9c3', '#1c1917'],
+                gradient: 'from-stone-900 via-[#21190f] to-amber-950',
+                textColor: 'text-amber-200',
+                icon: 'fa-ring',
+                features: ['French Lace Texture', 'Anggun Klasik', 'Amplop Bank']
+            },
+            {
+                id: 'burgundy-wine',
+                file: 'themes/burgundy-wine.html',
+                name: 'Burgundy Romance Wine',
+                category: 'luxury',
+                categoryLabel: 'Mewah & Eksklusif',
+                categoryBadgeClass: 'bg-purple-100 text-purple-800 border-purple-300',
+                couple: 'Daniel & Melissa',
+                date: 'Ahad, 06 Desember 2026',
+                desc: 'Warna anggur burgundy mewah dengan kehangatan cinta yang mendalam, anggun, memikat dan bernyawa.',
+                colors: ['#881337', '#9f1239', '#2e020d'],
+                gradient: 'from-rose-950 via-[#26030c] to-neutral-950',
+                textColor: 'text-rose-300',
+                icon: 'fa-wine-glass',
+                features: ['Burgundy Wine', 'Mewah Memikat', 'RSVP Tamu']
+            }
+        ];
+
+        // State Aplikasi
+        let currentFilter = 'all';
+        let searchQuery = '';
+        let currentActiveSimulatorTheme = null;
+
+        // Sanitasi XSS sederhana
+        function escapeHtml(str) {
+            if (!str) return '';
+            return String(str)
+                .replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&#039;');
+        }
+
+        // Render Katalog 50 Tema
+        function renderThemes() {
+            const gridEl = document.getElementById('themes-grid');
+            const countLabel = document.getElementById('theme-count-label');
+            const emptyState = document.getElementById('no-themes-state');
+            
+            if (!gridEl) return;
+
+            // Filter data berdasarkan Kategori dan Search Query
+            const query = searchQuery.trim().toLowerCase();
+            const filtered = themesData.filter(theme => {
+                const matchCategory = (currentFilter === 'all') || (theme.category === currentFilter);
+                if (!matchCategory) return false;
+
+                if (!query) return true;
+                const matchQuery = 
+                    theme.name.toLowerCase().includes(query) ||
+                    theme.couple.toLowerCase().includes(query) ||
+                    theme.desc.toLowerCase().includes(query) ||
+                    theme.categoryLabel.toLowerCase().includes(query);
+                return matchQuery;
+            });
+
+            // Update Label Jumlah
+            if (countLabel) {
+                if (query) {
+                    countLabel.innerHTML = `Menampilkan <strong>${filtered.length}</strong> dari ${themesData.length} tema untuk pencarian "<em>${escapeHtml(query)}</em>"`;
+                } else if (currentFilter !== 'all') {
+                    countLabel.innerHTML = `Menampilkan <strong>${filtered.length}</strong> tema pada kategori ini`;
+                } else {
+                    countLabel.innerHTML = `Menampilkan semua <strong>${filtered.length}</strong> tema undangan online`;
+                }
+            }
+
+            // Tampilkan Empty State bila kosong
+            if (filtered.length === 0) {
+                gridEl.innerHTML = '';
+                if (emptyState) emptyState.classList.remove('hidden');
+                return;
+            } else {
+                if (emptyState) emptyState.classList.add('hidden');
+            }
+
+            // Render Kartu Tema
+            gridEl.innerHTML = filtered.map((theme, index) => {
+                const waText = encodeURIComponent(`Halo ArshaNet Printing, saya tertarik memesan Undangan Digital Tema: *${theme.name}* (${theme.file}). Mohon info penawaran & proses pembuatannya.`);
+                const waUrl = `https://api.whatsapp.com/send?phone=${storeContact.phone}&text=${waText}`;
+
+                // Palet Warna Dot Bulat
+                const swatchesHtml = theme.colors.map(c => 
+                    `<span class="w-3.5 h-3.5 rounded-full border border-white/40 shadow-xs inline-block" style="background-color: ${c};" title="Warna ${c}"></span>`
+                ).join('');
+
+                // Fitur Pills
+                const featuresHtml = theme.features.map(f => 
+                    `<span class="bg-slate-100 text-slate-600 text-[10px] font-medium px-2 py-0.5 rounded-md border border-slate-200">${f}</span>`
+                ).join('');
+
+                return `
+                <div class="bg-white rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-xl transition-all duration-300 flex flex-col justify-between overflow-hidden group hover:-translate-y-1">
+                    
+                    <!-- Card Visual Banner Preview -->
+                    <div class="relative bg-gradient-to-br ${theme.gradient} text-white p-6 h-56 flex flex-col justify-between overflow-hidden cursor-pointer" onclick="openSimulator('${theme.id}')">
+                        <!-- Pola Dekorasi Lingkaran -->
+                        <div class="absolute -right-8 -top-8 w-32 h-32 bg-white/5 rounded-full blur-xl pointer-events-none"></div>
+                        <div class="absolute -left-8 -bottom-8 w-32 h-32 bg-white/5 rounded-full blur-xl pointer-events-none"></div>
+                        
+                        <!-- Top Bar Banner: Category & Device Indicator -->
+                        <div class="relative z-10 flex items-center justify-between">
+                            <span class="text-[10px] font-extrabold uppercase tracking-wider px-2.5 py-1 rounded-full bg-black/40 backdrop-blur-md border border-white/10 text-white flex items-center gap-1.5 shadow-sm">
+                                <i class="fa-solid ${theme.icon} text-amber-300"></i>
+                                <span>${escapeHtml(theme.categoryLabel)}</span>
+                            </span>
+
+                            <div class="flex items-center space-x-1.5 bg-black/30 backdrop-blur-sm px-2 py-1 rounded-full border border-white/10">
+                                ${swatchesHtml}
+                            </div>
+                        </div>
+
+                        <!-- Center Text: Nama Pasangan & Tema -->
+                        <div class="relative z-10 text-center my-auto py-2">
+                            <span class="text-[9px] uppercase tracking-[0.25em] opacity-75 font-semibold block mb-1">THE WEDDING OF</span>
+                            <h3 class="text-2xl font-serif font-bold ${theme.textColor} tracking-tight drop-shadow-md truncate font-playfair">
+                                ${escapeHtml(theme.couple)}
+                            </h3>
+                            <p class="text-[10px] text-white/80 font-mono tracking-widest mt-1">${escapeHtml(theme.date)}</p>
+                        </div>
+
+                        <!-- Bottom Tag Banner -->
+                        <div class="relative z-10 flex items-center justify-between text-[11px] text-white/70 border-t border-white/10 pt-2">
+                            <span class="font-semibold text-white/90 truncate"><i class="fa-solid fa-sparkles text-amber-400 mr-1"></i> ${escapeHtml(theme.name)}</span>
+                            <span class="text-[10px] bg-white/20 hover:bg-white/30 text-white font-bold px-2 py-0.5 rounded transition flex items-center gap-1">
+                                <i class="fa-solid fa-mobile-screen-button"></i> Simulator
+                            </span>
+                        </div>
+
+                        <!-- Hover Overlay Button -->
+                        <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-xs flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-200 z-20 p-4">
+                            <div class="flex flex-col gap-2 w-full max-w-[200px]">
+                                <button onclick="event.stopPropagation(); openSimulator('${theme.id}')" class="w-full bg-brand-blue hover:bg-blue-600 text-white font-bold py-2.5 px-3 rounded-xl text-xs transition shadow flex items-center justify-center gap-2">
+                                    <i class="fa-solid fa-mobile-screen"></i>
+                                    <span>Coba Simulator HP</span>
+                                </button>
+                                <a href="${theme.file}" target="_blank" onclick="event.stopPropagation();" class="w-full bg-white/20 hover:bg-white/30 text-white font-semibold py-2 px-3 rounded-xl text-xs transition border border-white/30 flex items-center justify-center gap-1.5">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    <span>Buka Layar Penuh</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Card Body -->
+                    <div class="p-5 flex-grow flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center justify-between gap-2 mb-1.5">
+                                <h4 class="font-bold text-slate-900 text-sm group-hover:text-brand-blue transition truncate" title="${escapeHtml(theme.name)}">
+                                    ${escapeHtml(theme.name)}
+                                </h4>
+                                <span class="text-[10px] font-bold px-2 py-0.5 rounded-full border ${theme.categoryBadgeClass} shrink-0">
+                                    ${escapeHtml(theme.categoryLabel)}
+                                </span>
+                            </div>
+
+                            <p class="text-xs text-slate-500 line-clamp-2 leading-relaxed mb-3">
+                                ${escapeHtml(theme.desc)}
+                            </p>
+
+                            <!-- Feature Tags -->
+                            <div class="flex flex-wrap gap-1.5 mb-4">
+                                ${featuresHtml}
+                            </div>
+                        </div>
+
+                        <!-- Action Buttons -->
+                        <div class="pt-3 border-t border-slate-100 flex items-center gap-2">
+                            <!-- Tombol Simulator HP -->
+                            <button onclick="openSimulator('${theme.id}')" class="flex-1 bg-slate-100 hover:bg-brand-blue hover:text-white text-slate-800 font-bold py-2.5 px-3 rounded-xl text-xs transition flex items-center justify-center gap-1.5 shadow-2xs group/btn">
+                                <i class="fa-solid fa-mobile-screen-button text-brand-blue group-hover/btn:text-white transition"></i>
+                                <span>Simulator HP</span>
+                            </button>
+
+                            <!-- Tombol Tab Baru -->
+                            <a href="${theme.file}" target="_blank" title="Buka Halaman Utuh" class="p-2.5 bg-slate-50 hover:bg-slate-200 text-slate-600 rounded-xl transition text-xs border border-slate-200" aria-label="Buka Fullscreen">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </a>
+
+                            <!-- Tombol Chat WA -->
+                            <a href="${waUrl}" target="_blank" title="Pesan Tema Ini via WhatsApp" class="p-2.5 bg-green-500 hover:bg-green-600 text-white rounded-xl transition text-xs shadow-sm flex items-center justify-center" aria-label="Pesan via WhatsApp">
+                                <i class="fa-brands fa-whatsapp text-sm"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                </div>
+                `;
+            }).join('');
+        }
+
+        // Filter Kategori
+        function filterThemes(category) {
+            currentFilter = category;
+            
+            // Perbarui Style Tombol Filter
+            const buttons = document.querySelectorAll('.filter-btn');
+            buttons.forEach(btn => {
+                btn.classList.remove('active', 'bg-brand-blue', 'text-white', 'shadow-md', 'shadow-blue-500/20');
+                btn.classList.add('bg-slate-50', 'text-slate-700', 'border', 'border-slate-200');
+            });
+
+            const activeBtn = document.getElementById(`btn-filter-${category}`);
+            if (activeBtn) {
+                activeBtn.classList.remove('bg-slate-50', 'text-slate-700', 'border', 'border-slate-200');
+                activeBtn.classList.add('active', 'bg-brand-blue', 'text-white', 'shadow-md', 'shadow-blue-500/20');
+            }
+
+            renderThemes();
+        }
+
+        // Live Search Handler
+        function searchThemes() {
+            const input = document.getElementById('theme-search');
+            const clearBtn = document.getElementById('clear-search-btn');
+            if (input) {
+                searchQuery = input.value;
+                if (clearBtn) {
+                    if (searchQuery.length > 0) {
+                        clearBtn.classList.remove('hidden');
+                    } else {
+                        clearBtn.classList.add('hidden');
+                    }
+                }
+            }
+            renderThemes();
+        }
+
+        function clearSearch() {
+            const input = document.getElementById('theme-search');
+            const clearBtn = document.getElementById('clear-search-btn');
+            if (input) input.value = '';
+            if (clearBtn) clearBtn.classList.add('hidden');
+            searchQuery = '';
+            renderThemes();
+        }
+
+        function resetFiltersAndSearch() {
+            clearSearch();
+            filterThemes('all');
+        }
+
+        // Buka Simulator HP
+        function openSimulator(themeId) {
+            const theme = themesData.find(t => t.id === themeId);
+            if (!theme) return;
+            currentActiveSimulatorTheme = theme;
+
+            const modal = document.getElementById('simulator-modal');
+            const iframe = document.getElementById('simulator-iframe');
+            const titleEl = document.getElementById('simulator-theme-title');
+            const catEl = document.getElementById('simulator-theme-category');
+            const openTabEl = document.getElementById('simulator-open-tab');
+            const orderWaEl = document.getElementById('simulator-order-wa');
+
+            if (titleEl) titleEl.innerText = `${theme.name} (${theme.couple})`;
+            if (catEl) catEl.innerText = `${theme.categoryLabel} • Responsif Mobile`;
+            if (openTabEl) openTabEl.href = theme.file;
+            
+            if (orderWaEl) {
+                const waText = encodeURIComponent(`Halo ArshaNet Printing, saya mencoba simulator tema *${theme.name}* (${theme.file}) dan ingin memesan undangan ini.`);
+                orderWaEl.href = `https://api.whatsapp.com/send?phone=${storeContact.phone}&text=${waText}`;
+            }
+
+            if (iframe) {
+                iframe.src = theme.file;
+            }
+
+            if (modal) {
+                modal.classList.remove('hidden');
+                document.body.classList.add('overflow-hidden');
+            }
+        }
+
+        // Tutup Simulator HP
+        function closeSimulator() {
+            const modal = document.getElementById('simulator-modal');
+            const iframe = document.getElementById('simulator-iframe');
+            
+            if (iframe) {
+                // Bersihkan src agar musik berhenti otomatis
+                iframe.src = '';
+            }
+
+            if (modal) {
+                modal.classList.add('hidden');
+                document.body.classList.remove('overflow-hidden');
+            }
+            currentActiveSimulatorTheme = null;
+        }
+
+        // Reload Iframe di Simulator
+        function reloadSimulator() {
+            const iframe = document.getElementById('simulator-iframe');
+            if (iframe && currentActiveSimulatorTheme) {
+                iframe.src = currentActiveSimulatorTheme.file;
+            }
+        }
+
+        // Navigasi Mobile Menu
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobile-menu');
+            if (mobileMenu) mobileMenu.classList.toggle('hidden');
+        }
+
+        // Event Listener Tombol Keyboard (Esc untuk menutup simulator)
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeSimulator();
+            }
+        });
+
+        // Event Klik Diluar Frame Mockup untuk Menutup Modal
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('simulator-modal');
+            if (modal) {
+                modal.addEventListener('click', (e) => {
+                    if (e.target === modal) {
+                        closeSimulator();
+                    }
+                });
+            }
+
+            // Muat Data Kontak dari Supabase jika tersedia
+            loadStoreContactFromSupabase();
+
+            // Render tema awal (50 tema)
+            renderThemes();
+        });
+
+        // Sinkronisasi Kontak Toko dari Supabase
+        async function loadStoreContactFromSupabase() {
+            try {
+                if (typeof supabase !== 'undefined') {
+                    const SUPABASE_URL = 'https://ubanymhsupakazmcrton.supabase.co';
+                    const SUPABASE_KEY = 'sb_publishable_ucZL64OQIPz3FV275S7qew_gAqAfIqg';
+                    const db = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+                    const { data: contactData } = await db.from('store_settings').select('*').maybeSingle();
+                    if (contactData && contactData.phone) {
+                        storeContact = contactData;
+                        
+                        // Perbarui teks nomor di footer
+                        const phoneEl = document.getElementById('footer-phone');
+                        const addressEl = document.getElementById('footer-address');
+                        const emailEl = document.getElementById('footer-email');
+                        if (phoneEl && storeContact.phone) phoneEl.innerText = storeContact.phone;
+                        if (addressEl && storeContact.address) addressEl.innerText = storeContact.address;
+                        if (emailEl && storeContact.email) emailEl.innerText = storeContact.email;
+
+                        // Perbarui tombol WA navigasi & floating
+                        const navWa = document.getElementById('nav-wa-btn');
+                        const floatingWa = document.getElementById('floating-wa-btn');
+                        const text = encodeURIComponent("Halo ArshaNet Printing, saya ingin konsultasi tema undangan online.");
+                        const url = `https://api.whatsapp.com/send?phone=${storeContact.phone}&text=${text}`;
+                        if (navWa) navWa.href = url;
+                        if (floatingWa) floatingWa.href = url;
+
+                        // Re-render tema dengan URL WA terbaru
+                        renderThemes();
+                    }
+                }
+            } catch (err) {
+                console.log("Supabase contact sync fallback to default:", err);
+            }
+        }
+    </script>
+
+</body>
+</html>

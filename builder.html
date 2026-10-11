@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Builder Undangan Online | ArshaNet Printing</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            blue: '#0056b3',
+                            darkblue: '#003d82',
+                            orange: '#ff7a00',
+                            yellow: '#ffc107',
+                            light: '#f8fafc'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:ital,wght@0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Supabase JS Client CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <!-- Favicon Website -->
+    <link rel="icon" type="image/webp" href="images/logo.webp">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        
+        /* Smartphone Preview Mockup */
+        .phone-frame {
+            width: 360px;
+            height: 740px;
+            max-height: calc(100vh - 130px);
+            border-radius: 42px;
+            box-shadow: 0 0 0 9px #0f172a, 0 0 0 11px #334155, 0 25px 45px -10px rgba(0, 0, 0, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        @media (max-width: 1200px) {
+            .phone-frame {
+                width: 320px;
+                height: 660px;
+                border-radius: 36px;
+                box-shadow: 0 0 0 7px #0f172a, 0 0 0 9px #334155, 0 20px 35px -10px rgba(0, 0, 0, 0.4);
+            }
+        }
+
+        /* Clean scrollbar */
+        .nice-scroll::-webkit-scrollbar {
+            width: 5px;
+            height: 5px;
+        }
+        .nice-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 9999px;
+        }
+    </style>
+</head>
+
+<body class="bg-slate-50 text-slate-800 antialiased min-h-screen flex flex-col">
+
+    <!-- HEADER SEDERHANA & BERSIH -->
+    <header class="sticky top-0 z-50 bg-white border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16">
+                
+                <!-- Logo & Navigasi Kembali -->
+                <div class="flex items-center space-x-3">
+                    <a href="tema-undangan.html" class="flex items-center space-x-2.5 group">
+                        <div class="w-9 h-9 bg-brand-blue rounded-full flex items-center justify-center text-white font-black text-base shadow-sm overflow-hidden">
+                            <img src="images/logo.webp" alt="Logo ArshaNet" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex flex-col">
+                            <span class="text-base font-extrabold text-slate-900 leading-none">ArshaNet</span>
+                            <span class="text-[10px] font-bold text-brand-orange uppercase tracking-wider mt-0.5">Builder Undangan</span>
+                        </div>
+                    </a>
+
+                    <a href="tema-undangan.html" class="hidden sm:inline-flex items-center gap-1.5 text-xs text-slate-500 hover:text-brand-blue pl-4 border-l border-slate-200 ml-2 font-medium transition">
+                        <i class="fa-solid fa-arrow-left text-[10px]"></i>
+                        <span>Katalog 50 Tema</span>
+                    </a>
+                </div>
+
+                <!-- Tombol Aksi Header -->
+                <div class="flex items-center space-x-2">
+                    <!-- Tombol Isi Contoh -->
+                    <button onclick="loadSampleData()" class="inline-flex items-center gap-1.5 bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 px-3 py-1.5 rounded-xl text-xs font-bold transition" title="Isi otomatis contoh data pernikahan">
+                        <i class="fa-solid fa-wand-magic-sparkles text-amber-600"></i>
+                        <span>Isi Contoh</span>
+                    </button>
+
+                    <!-- Tombol Reset -->
+                    <button onclick="resetBuilderForm()" class="hidden sm:inline-flex items-center gap-1 bg-slate-100 hover:bg-slate-200 text-slate-600 px-2.5 py-1.5 rounded-xl text-xs font-medium transition" title="Reset form ke kosong">
+                        <i class="fa-solid fa-rotate-left text-[10px]"></i>
+                        <span>Reset</span>
+                    </button>
+
+                    <!-- Tombol Toggle Mobile Preview (Khusus Layar HP) -->
+                    <button onclick="toggleMobilePreview()" class="lg:hidden inline-flex items-center gap-1.5 bg-blue-50 text-brand-blue px-3 py-1.5 rounded-xl text-xs font-bold border border-blue-200">
+                        <i class="fa-solid fa-mobile-screen"></i>
+                        <span id="mobile-preview-toggle-text">Lihat Hasil HP</span>
+                    </button>
+
+                    <!-- Tombol WhatsApp Utama -->
+                    <button onclick="orderViaWhatsApp()" class="inline-flex items-center gap-1.5 bg-green-500 hover:bg-green-600 text-white font-bold px-4 py-2 rounded-xl text-xs transition shadow-sm">
+                        <i class="fa-brands fa-whatsapp text-sm"></i>
+                        <span>Pesan ke WhatsApp</span>
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </header>
+
+    <!-- KONTEN UTAMA: SPLIT LAYOUT SEDERHANA -->
+    <main class="flex-grow max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            
+            <!-- ==================== KOLOM FORMULIR (LG: 7 COLS) ==================== -->
+            <div id="form-column" class="lg:col-span-7 space-y-4">
+
+                <!-- 1. PILIH TEMA UNDANGAN (50 PILIHAN) -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs space-y-3">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-brand-blue text-white text-xs font-bold flex items-center justify-center">1</span>
+                            <h3 class="font-bold text-sm text-slate-900">Pilih Desain Tema Undangan</h3>
+                        </div>
+                        <span id="active-theme-label" class="text-xs font-bold text-blue-700 bg-blue-50 px-2.5 py-0.5 rounded-full border border-blue-200">Clean Minimalist</span>
+                    </div>
+
+                    <!-- Kategori Filter Sederhana -->
+                    <div class="flex flex-wrap items-center gap-1.5 text-xs font-medium">
+                        <span class="text-slate-400 text-[11px] mr-1">Kategori:</span>
+                        <button onclick="filterThemesDropdown('all')" class="cat-pill active bg-slate-900 text-white px-2.5 py-1 rounded-lg text-xs font-semibold">Semua (50)</button>
+                        <button onclick="filterThemesDropdown('modern')" class="cat-pill bg-slate-100 text-slate-600 hover:bg-slate-200 px-2.5 py-1 rounded-lg text-xs">Modern (13)</button>
+                        <button onclick="filterThemesDropdown('adat')" class="cat-pill bg-slate-100 text-slate-600 hover:bg-slate-200 px-2.5 py-1 rounded-lg text-xs">Adat (12)</button>
+                        <button onclick="filterThemesDropdown('floral')" class="cat-pill bg-slate-100 text-slate-600 hover:bg-slate-200 px-2.5 py-1 rounded-lg text-xs">Floral (11)</button>
+                        <button onclick="filterThemesDropdown('luxury')" class="cat-pill bg-slate-100 text-slate-600 hover:bg-slate-200 px-2.5 py-1 rounded-lg text-xs">Mewah (14)</button>
+                    </div>
+
+                    <!-- Single Clean Dropdown Selector -->
+                    <div>
+                        <select id="theme-selector" onchange="changeTheme(this.value)" class="w-full text-xs font-semibold p-3 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-blue text-slate-800">
+                            <!-- Populated dynamically -->
+                        </select>
+                    </div>
+                </div>
+
+                <!-- 2. DATA MEMPELAI & PASANGAN -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs space-y-4">
+                    <div class="flex items-center gap-2 border-b border-slate-100 pb-2.5">
+                        <span class="w-6 h-6 rounded-full bg-brand-blue text-white text-xs font-bold flex items-center justify-center">2</span>
+                        <h3 class="font-bold text-sm text-slate-900">Nama Pengantin & Judul Undangan</h3>
+                    </div>
+
+                    <!-- Judul Singkat Pasangan -->
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-700 mb-1">
+                            Judul Pasangan (Tampil di Sampul & Header Undangan):
+                        </label>
+                        <input type="text" id="input-judul" oninput="updateField('judul_pasangan', this.value)" placeholder="Contoh: Romeo & Juliet" class="w-full text-sm font-bold p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-blue text-slate-900">
+                    </div>
+
+                    <!-- Grid Nama Pria & Wanita -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <!-- Mempelai Pria -->
+                        <div class="p-3.5 rounded-xl bg-blue-50/50 border border-blue-100 space-y-2.5">
+                            <span class="text-xs font-bold text-blue-900 flex items-center gap-1.5">
+                                <i class="fa-solid fa-mars text-blue-600"></i> Mempelai Pria
+                            </span>
+
+                            <!-- Foto Mempelai Pria -->
+                            <div class="flex items-center gap-2.5 p-2 bg-white rounded-lg border border-blue-100">
+                                <div class="w-12 h-12 rounded-full overflow-hidden shrink-0 border border-blue-200 bg-slate-100">
+                                    <img id="thumb-pria" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
+                                </div>
+                                <div class="flex-grow">
+                                    <label class="block text-[10px] font-bold text-slate-700">Foto Pengantin Pria:</label>
+                                    <input type="file" accept="image/*" onchange="uploadPriaPhoto(event)" class="text-[10px] text-slate-500 mt-0.5 file:mr-2 file:py-0.5 file:px-2 file:rounded file:border-0 file:text-[10px] file:bg-blue-100 file:text-blue-700 hover:file:bg-blue-200 cursor-pointer">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-[11px] font-medium text-slate-600 mb-0.5">Nama Panggilan / Populer:</label>
+                                <input type="text" id="input-pria-nama" oninput="updateField('pria_nama', this.value); autoGenerateJudul();" placeholder="Romeo" class="w-full text-xs p-2 bg-white border border-slate-200 rounded-lg">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-medium text-slate-600 mb-0.5">Nama Lengkap & Gelar:</label>
+                                <input type="text" id="input-pria-lengkap" oninput="updateField('pria_lengkap', this.value)" placeholder="Romeo Montague, S.Kom." class="w-full text-xs p-2 bg-white border border-slate-200 rounded-lg">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-medium text-slate-600 mb-0.5">Putra dari (Orang Tua):</label>
+                                <input type="text" id="input-pria-ortu" oninput="updateField('pria_ortu', this.value)" placeholder="Bpk. Lord Montague & Ibu Lady Montague" class="w-full text-xs p-2 bg-white border border-slate-200 rounded-lg">
+                            </div>
+                        </div>
+
+                        <!-- Mempelai Wanita -->
+                        <div class="p-3.5 rounded-xl bg-pink-50/50 border border-pink-100 space-y-2.5">
+                            <span class="text-xs font-bold text-pink-900 flex items-center gap-1.5">
+                                <i class="fa-solid fa-venus text-pink-600"></i> Mempelai Wanita
+                            </span>
+
+                            <!-- Foto Mempelai Wanita -->
+                            <div class="flex items-center gap-2.5 p-2 bg-white rounded-lg border border-pink-100">
+                                <div class="w-12 h-12 rounded-full overflow-hidden shrink-0 border border-pink-200 bg-slate-100">
+                                    <img id="thumb-wanita" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" class="w-full h-full object-cover">
+                                </div>
+                                <div class="flex-grow">
+                                    <label class="block text-[10px] font-bold text-slate-700">Foto Pengantin Wanita:</label>
+                                    <input type="file" accept="image/*" onchange="uploadWanitaPhoto(event)" class="text-[10px] text-slate-500 mt-0.5 file:mr-2 file:py-0.5 file:px-2 file:rounded file:border-0 file:text-[10px] file:bg-pink-100 file:text-pink-700 hover:file:bg-pink-200 cursor-pointer">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-[11px] font-medium text-slate-600 mb-0.5">Nama Panggilan / Populer:</label>
+                                <input type="text" id="input-wanita-nama" oninput="updateField('wanita_nama', this.value); autoGenerateJudul();" placeholder="Juliet" class="w-full text-xs p-2 bg-white border border-slate-200 rounded-lg">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-medium text-slate-600 mb-0.5">Nama Lengkap & Gelar:</label>
+                                <input type="text" id="input-wanita-lengkap" oninput="updateField('wanita_lengkap', this.value)" placeholder="Juliet Capulet, S.E." class="w-full text-xs p-2 bg-white border border-slate-200 rounded-lg">
+                            </div>
+                            <div>
+                                <label class="block text-[11px] font-medium text-slate-600 mb-0.5">Putri dari (Orang Tua):</label>
+                                <input type="text" id="input-wanita-ortu" oninput="updateField('wanita_ortu', this.value)" placeholder="Bpk. Lord Capulet & Ibu Lady Capulet" class="w-full text-xs p-2 bg-white border border-slate-200 rounded-lg">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 3. TANGGAL, WAKTU & TEMPAT ACARA -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs space-y-4">
+                    <div class="flex items-center gap-2 border-b border-slate-100 pb-2.5">
+                        <span class="w-6 h-6 rounded-full bg-brand-blue text-white text-xs font-bold flex items-center justify-center">3</span>
+                        <h3 class="font-bold text-sm text-slate-900">Tanggal, Waktu & Lokasi Acara</h3>
+                    </div>
+
+                    <!-- Tanggal Acara & Countdown -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Tanggal Teks (Tampil di Undangan):</label>
+                            <input type="text" id="input-tanggal-acara" oninput="updateField('tanggal_acara', this.value)" placeholder="Contoh: Sabtu, 28 November 2026" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-300 rounded-xl">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Waktu Acara (Untuk Hitung Mundur):</label>
+                            <input type="datetime-local" id="input-tanggal-iso" onchange="updateCountdown(this.value)" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-300 rounded-xl">
+                        </div>
+                    </div>
+
+                    <!-- Akad & Resepsi -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                            <span class="text-xs font-bold text-slate-700">Akad Nikah / Pemberkatan:</span>
+                            <input type="text" id="input-akad-waktu" oninput="updateField('akad_waktu', this.value)" placeholder="Pukul 08:00 - 10:00 WIB" class="w-full text-xs p-2 bg-white border border-slate-200 rounded-lg">
+                            <input type="text" id="input-akad-tempat" oninput="updateField('akad_tempat', this.value)" placeholder="Tempat / Masjid / Gereja" class="w-full text-xs p-2 bg-white border border-slate-200 rounded-lg">
+                        </div>
+                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-2">
+                            <span class="text-xs font-bold text-slate-700">Resepsi Pernikahan:</span>
+                            <input type="text" id="input-resepsi-waktu" oninput="updateField('resepsi_waktu', this.value)" placeholder="Pukul 11:00 WIB - Selesai" class="w-full text-xs p-2 bg-white border border-slate-200 rounded-lg">
+                            <input type="text" id="input-resepsi-tempat" oninput="updateField('resepsi_tempat', this.value)" placeholder="Gedung / Ballroom / Kediaman" class="w-full text-xs p-2 bg-white border border-slate-200 rounded-lg">
+                        </div>
+                    </div>
+
+                    <!-- Alamat & Link Google Maps -->
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Alamat Lengkap Acara:</label>
+                            <input type="text" id="input-resepsi-alamat" oninput="updateField('resepsi_alamat', this.value)" placeholder="Desa Karangjambu RT 03 RW 03 Kec. Balapulang - Tegal" class="w-full text-xs p-2.5 bg-slate-50 border border-slate-300 rounded-xl">
+                        </div>
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Tautan Google Maps:</label>
+                            <input type="url" id="input-maps-link" oninput="updateField('maps_link', this.value)" placeholder="https://maps.app.goo.gl/..." class="w-full text-xs p-2.5 bg-slate-50 border border-slate-300 rounded-xl">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 4. UPLOAD FOTO NIKAH (HINGGA 8 FOTO LEBIH) -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs space-y-3">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-brand-blue text-white text-xs font-bold flex items-center justify-center">4</span>
+                            <h3 class="font-bold text-sm text-slate-900">Foto Prewedding (Bisa 8 Foto Lebih)</h3>
+                        </div>
+                        <span id="gallery-count-badge" class="text-xs font-bold text-emerald-700 bg-emerald-50 px-2.5 py-0.5 rounded-full border border-emerald-200">4 Foto</span>
+                    </div>
+
+                    <!-- Foto Sampul / Cover -->
+                    <div class="flex items-center gap-3 p-3 bg-slate-50 rounded-xl border border-slate-200">
+                        <div class="w-14 h-14 rounded-lg bg-slate-200 overflow-hidden shrink-0 border border-slate-300">
+                            <img id="thumb-cover" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=300&q=80" class="w-full h-full object-cover">
+                        </div>
+                        <div class="flex-grow">
+                            <label class="block text-xs font-bold text-slate-800">Foto Utama (Sampul/Cover Berdua):</label>
+                            <input type="file" accept="image/*" onchange="uploadCoverPhoto(event)" class="text-xs text-slate-500 mt-1 file:mr-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:text-[11px] file:bg-blue-100 file:text-brand-blue hover:file:bg-blue-200">
+                        </div>
+                    </div>
+
+                    <!-- Upload Galeri 8+ Foto -->
+                    <div>
+                        <label class="block text-xs font-bold text-slate-800 mb-1.5">Unggah Foto Galeri Prewedding:</label>
+                        <div class="flex items-center gap-2">
+                            <input type="file" id="input-gallery-files" multiple accept="image/*" onchange="uploadMultiplePhotos(event)" class="hidden">
+                            <button type="button" onclick="document.getElementById('input-gallery-files').click()" class="bg-brand-blue hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-xl text-xs transition flex items-center gap-2 shadow-2xs">
+                                <i class="fa-solid fa-cloud-arrow-up"></i>
+                                <span>Pilih Foto (Bisa Banyak Sekaligus)</span>
+                            </button>
+                            <button type="button" onclick="clearGallery()" class="text-xs text-rose-500 hover:text-rose-700 font-semibold px-2 py-1">
+                                Kosongkan
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Grid Thumbnail Foto -->
+                    <div id="gallery-thumbs" class="grid grid-cols-4 sm:grid-cols-6 gap-2 max-h-52 overflow-y-auto p-1 nice-scroll">
+                        <!-- Populated dynamically -->
+                    </div>
+                </div>
+
+                <!-- 5. MUSIK LATAR & REKENING AMPLOP -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs space-y-4">
+                    <div class="flex items-center gap-2 border-b border-slate-100 pb-2.5">
+                        <span class="w-6 h-6 rounded-full bg-brand-blue text-white text-xs font-bold flex items-center justify-center">5</span>
+                        <h3 class="font-bold text-sm text-slate-900">Musik Latar & Rekening Kado</h3>
+                    </div>
+
+                    <!-- Musik Latar -->
+                    <div class="space-y-2">
+                        <label class="block text-xs font-semibold text-slate-700">Musik Latar Belakang (Backsound):</label>
+                        
+                        <!-- Pilihan Musik Preset -->
+                        <div class="flex items-center gap-2">
+                            <select id="music-selector" onchange="changeMusic(this.value)" class="flex-grow text-xs p-2.5 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                                <option value="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-love-113543.mp3">Romantic Acoustic Love (Gitar Lembut)</option>
+                                <option value="https://cdn.pixabay.com/download/audio/2022/03/15/audio_c3be992a54.mp3?filename=wedding-piano-10738.mp3">A Thousand Years (Piano & Cello)</option>
+                                <option value="https://cdn.pixabay.com/download/audio/2021/08/09/audio_82315fa467.mp3?filename=canon-in-d-major-pachelbel-6395.mp3">Canon in D Major (Klasik Sakral)</option>
+                                <option value="https://cdn.pixabay.com/download/audio/2022/10/14/audio_99396f9202.mp3?filename=sweet-romance-123498.mp3">Sweet Romance (Melodi Hangat)</option>
+                                <option value="custom" id="opt-custom-music" class="hidden">Musik Kustom Pilihan Anda</option>
+                            </select>
+                            <button type="button" onclick="toggleTestAudio()" id="btn-test-music" class="px-3 py-2.5 bg-purple-100 hover:bg-purple-200 text-purple-800 rounded-xl text-xs font-bold transition shrink-0 flex items-center gap-1">
+                                <i id="icon-test-music" class="fa-solid fa-play"></i>
+                                <span>Putar</span>
+                            </button>
+                        </div>
+
+                        <!-- Opsi Upload File Audio Sendiri / URL Custom -->
+                        <div class="p-3 bg-purple-50/50 rounded-xl border border-purple-100 space-y-2">
+                            <div class="flex items-center justify-between">
+                                <span class="text-[11px] font-bold text-purple-950 flex items-center gap-1.5">
+                                    <i class="fa-solid fa-file-audio text-purple-600"></i> Upload Musik Sendiri (.mp3 / .m4a / .wav):
+                                </span>
+                                <span id="music-file-status" class="text-[10px] text-purple-600 font-medium"></span>
+                            </div>
+                            <div class="flex items-center gap-2">
+                                <input type="file" id="input-music-file" accept="audio/*" onchange="uploadCustomMusic(event)" class="text-xs text-slate-500 file:mr-2 file:py-1 file:px-2.5 file:rounded-lg file:border-0 file:text-[11px] file:bg-purple-100 file:text-purple-800 hover:file:bg-purple-200 cursor-pointer flex-grow">
+                                <button type="button" onclick="resetToPresetMusic()" class="text-[11px] text-slate-500 hover:text-slate-700 px-2 py-1 font-semibold">
+                                    Reset Musik
+                                </button>
+                            </div>
+                            <div class="pt-1">
+                                <label class="block text-[10px] text-slate-500 mb-0.5">Atau masukkan Link Audio MP3 langsung (URL):</label>
+                                <input type="url" id="input-music-url" oninput="changeCustomMusicUrl(this.value)" placeholder="https://domain.com/musik-pilihan.mp3" class="w-full text-xs p-2 bg-white border border-slate-200 rounded-lg">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Rekening Bank -->
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5 pt-1">
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Nama Bank / e-Wallet:</label>
+                            <input type="text" id="input-bank-nama" oninput="updateField('bank_1_nama', this.value)" placeholder="BANK BCA / DANA" class="w-full text-xs p-2 bg-slate-50 border border-slate-200 rounded-lg">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Nomor Rekening:</label>
+                            <input type="text" id="input-bank-norek" oninput="updateField('bank_1_norek', this.value)" placeholder="682-019-3382" class="w-full text-xs p-2 bg-slate-50 border border-slate-200 rounded-lg font-mono">
+                        </div>
+                        <div>
+                            <label class="block text-[11px] font-semibold text-slate-600 mb-0.5">Atas Nama (a.n.):</label>
+                            <input type="text" id="input-bank-an" oninput="updateField('bank_1_an', this.value)" placeholder="Romeo Montague" class="w-full text-xs p-2 bg-slate-50 border border-slate-200 rounded-lg">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 6. GENERATOR LINK TAMU UNDANGAN (KHUSUS / PERSONAL) -->
+                <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-2xs space-y-4">
+                    <div class="flex items-center justify-between border-b border-slate-100 pb-2.5">
+                        <div class="flex items-center gap-2">
+                            <span class="w-6 h-6 rounded-full bg-brand-blue text-white text-xs font-bold flex items-center justify-center">6</span>
+                            <h3 class="font-bold text-sm text-slate-900">Generator Link Tamu Undangan</h3>
+                        </div>
+                        <span class="text-[11px] font-semibold text-purple-700 bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-200">
+                            <i class="fa-solid fa-wand-magic-sparkles mr-1"></i>Link Otomatis
+                        </span>
+                    </div>
+
+                    <p class="text-xs text-slate-500">
+                        Buat tautan undangan personal atas nama tamu (contoh: <em>Kepada Yth. Bpk/Ibu/Sdr...</em>) yang siap dibagikan via WhatsApp.
+                    </p>
+
+                    <!-- Input Nama Tamu Satuan -->
+                    <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 space-y-3">
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 mb-1">Nama Tamu Undangan:</label>
+                            <div class="flex items-center gap-2">
+                                <input type="text" id="input-guest-name" oninput="generateSingleGuestLink()" placeholder="Contoh: Bpk. Bambang & Keluarga" class="flex-grow text-xs p-2.5 bg-white border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-brand-blue">
+                                <button type="button" onclick="generateSingleGuestLink()" class="bg-brand-blue hover:bg-blue-700 text-white px-3.5 py-2.5 rounded-xl text-xs font-bold transition shrink-0 flex items-center gap-1.5 shadow-2xs">
+                                    <i class="fa-solid fa-link"></i>
+                                    <span>Buat Link</span>
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Hasil Link & Tombol Salin / Kirim WA Tamu -->
+                        <div id="single-guest-result" class="space-y-2">
+                            <div>
+                                <label class="block text-[10px] font-semibold text-slate-500 mb-0.5">Tautan Undangan Khusus Tamu:</label>
+                                <div class="flex items-center gap-1.5">
+                                    <input type="text" id="output-guest-url" readonly class="flex-grow text-[11px] p-2 bg-slate-100 border border-slate-200 rounded-lg text-slate-700 font-mono select-all">
+                                    <button type="button" onclick="copyGuestLink()" class="px-3 py-2 bg-slate-200 hover:bg-slate-300 text-slate-800 rounded-lg text-xs font-bold transition shrink-0 flex items-center gap-1" title="Salin Tautan">
+                                        <i id="icon-copy-guest" class="fa-regular fa-copy"></i>
+                                        <span id="text-copy-guest">Salin</span>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="flex flex-wrap items-center gap-2 pt-1">
+                                <button type="button" onclick="shareGuestToWhatsApp()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-3.5 py-1.5 rounded-lg text-xs transition flex items-center gap-1.5 shadow-2xs">
+                                    <i class="fa-brands fa-whatsapp text-sm"></i>
+                                    <span>Kirim via WhatsApp Tamu</span>
+                                </button>
+                                <button type="button" onclick="testGuestLink()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold px-3 py-1.5 rounded-lg text-xs transition flex items-center gap-1">
+                                    <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                                    <span>Coba Buka</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pembuat Banyak Tamu Sekaligus (Batch) -->
+                    <details class="text-xs group border border-slate-200 rounded-xl bg-white overflow-hidden">
+                        <summary class="p-3 font-semibold text-slate-700 cursor-pointer hover:bg-slate-50 flex items-center justify-between select-none">
+                            <span class="flex items-center gap-1.5">
+                                <i class="fa-solid fa-users text-brand-blue"></i>
+                                <span>Buat Banyak Nama Tamu Sekaligus (Batch List)</span>
+                            </span>
+                            <i class="fa-solid fa-chevron-down text-slate-400 text-[10px] group-open:rotate-180 transition"></i>
+                        </summary>
+                        <div class="p-3 border-t border-slate-100 bg-slate-50/50 space-y-2">
+                            <label class="block text-[11px] text-slate-500">Masukkan nama-nama tamu (1 nama per baris):</label>
+                            <textarea id="batch-guest-names" rows="3" placeholder="Bpk. Hendra & Rekan&#10;Ibu Ratna Sari&#10;Sahabat Alumni SMA 1" class="w-full text-xs p-2 bg-white border border-slate-200 rounded-lg"></textarea>
+                            <button type="button" onclick="generateBatchGuestLinks()" class="bg-slate-900 hover:bg-black text-white px-3 py-1.5 rounded-lg text-xs font-semibold">
+                                Generate Daftar Link
+                            </button>
+                            <div id="batch-results-container" class="hidden space-y-1 pt-2 max-h-40 overflow-y-auto nice-scroll">
+                                <!-- Populated dynamically -->
+                            </div>
+                        </div>
+                    </details>
+                </div>
+
+                <!-- TOMBOL SIMPAN & SELESAI DENGAN SUPABASE -->
+                <div class="p-4 bg-white rounded-2xl border border-slate-200 shadow-2xs space-y-3">
+                    <div class="flex flex-wrap items-center justify-between gap-2 border-b border-slate-100 pb-3">
+                        <span class="text-xs text-slate-600 font-medium flex items-center gap-1.5">
+                            <i class="fa-solid fa-cloud-arrow-up text-brand-blue"></i>
+                            <span id="save-status-badge">Tersimpan lokal & siap disinkronkan ke Supabase</span>
+                        </span>
+                        <button type="button" onclick="saveToSupabaseCloud()" id="btn-save-supabase" class="bg-brand-blue hover:bg-blue-700 text-white font-bold px-4 py-2 rounded-xl text-xs transition shadow-2xs flex items-center gap-1.5">
+                            <i class="fa-solid fa-floppy-disk"></i>
+                            <span id="text-save-supabase">Simpan ke Supabase</span>
+                        </button>
+                    </div>
+
+                    <div class="flex flex-wrap items-center justify-between gap-3">
+                        <button onclick="openFullPreview()" class="bg-slate-100 hover:bg-slate-200 text-slate-700 px-4 py-2 rounded-xl text-xs font-bold transition flex items-center gap-1.5">
+                            <i class="fa-solid fa-arrow-up-right-from-square"></i> Buka Layar Penuh
+                        </button>
+                        <button onclick="orderViaWhatsApp()" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-5 py-2.5 rounded-xl text-xs transition shadow-sm flex items-center gap-1.5">
+                            <i class="fa-brands fa-whatsapp text-sm"></i>
+                            <span>Selesai & Kirim Pesanan</span>
+                        </button>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ==================== KOLOM PREVIEW SMARTPHONE (LG: 5 COLS) ==================== -->
+            <div id="preview-column" class="lg:col-span-5 flex flex-col items-center">
+                
+                <div class="sticky top-20 w-full flex flex-col items-center">
+                    
+                    <!-- Toolbar Atas Simulator -->
+                    <div class="w-full max-w-[360px] bg-slate-900 text-white px-3.5 py-2.5 rounded-2xl border border-slate-800 flex items-center justify-between mb-3 shadow-lg">
+                        <div class="flex items-center space-x-2 truncate">
+                            <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0"></span>
+                            <span id="simulator-theme-title" class="font-bold text-xs truncate">Clean Minimalist</span>
+                        </div>
+
+                        <div class="flex items-center space-x-1.5 shrink-0">
+                            <button onclick="reloadPreviewIframe()" title="Muat Ulang" class="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition text-xs">
+                                <i class="fa-solid fa-rotate-right"></i>
+                            </button>
+                            <button onclick="openFullPreview()" title="Layar Penuh" class="p-1.5 bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition text-xs">
+                                <i class="fa-solid fa-arrow-up-right-from-square"></i>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Frame Mockup Smartphone -->
+                    <div class="phone-frame bg-slate-950 relative flex flex-col items-center justify-between overflow-hidden shadow-2xl">
+                        
+                        <!-- Notch Speaker -->
+                        <div class="w-full h-6 bg-slate-950 flex items-center justify-center relative shrink-0 z-20">
+                            <div class="w-20 h-3.5 bg-slate-900 rounded-full flex items-center justify-center">
+                                <div class="w-2 h-2 bg-slate-800 rounded-full mr-2"></div>
+                                <div class="w-7 h-1 bg-slate-800 rounded-full"></div>
+                            </div>
+                        </div>
+
+                        <!-- Iframe Real-Time -->
+                        <div class="w-full flex-grow bg-white relative overflow-hidden">
+                            <iframe id="preview-iframe" src="" class="w-full h-full border-0 select-none"></iframe>
+                        </div>
+
+                        <!-- Home Bar -->
+                        <div class="w-full h-3.5 bg-slate-950 flex items-center justify-center shrink-0 z-20">
+                            <div class="w-20 h-1 bg-slate-600 rounded-full"></div>
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </main>
+
+    <!-- FOOTER SEDERHANA -->
+    <footer class="bg-white border-t border-slate-200 py-4 text-center text-xs text-slate-500 mt-8">
+        <p>&copy; 2026 ArshaNet Printing. Solusi Cetak & Undangan Online Terlengkap.</p>
+    </footer>
+
+    <!-- Audio Element untuk Pengujian -->
+    <audio id="test-audio" loop></audio>
+
+    <!-- ==================== JAVASCRIPT LOGIKA UTAMA ==================== -->
+    <script>
+        // 50 TEMA UNDANGAN LENGKAP
+        const ALL_THEMES = [
+            // Modern & Pastel (13)
+            { id: 'clean-minimalist', file: 'themes/clean-minimalist.html', name: 'Clean Minimalist Monokrom', cat: 'modern' },
+            { id: 'pastel-lavender', file: 'themes/pastel-lavender.html', name: 'Pastel Lavender Glow', cat: 'modern' },
+            { id: 'pastel-mint', file: 'themes/pastel-mint.html', name: 'Pastel Mint Fresh', cat: 'modern' },
+            { id: 'sweet-peach', file: 'themes/sweet-peach.html', name: 'Sweet Peach Blossom', cat: 'modern' },
+            { id: 'sunset-horizon', file: 'themes/sunset-horizon.html', name: 'Sunset Horizon Ombre', cat: 'modern' },
+            { id: 'geometric-scandi', file: 'themes/geometric-scandi.html', name: 'Geometric Scandinavian', cat: 'modern' },
+            { id: 'nordic-frost', file: 'themes/nordic-frost.html', name: 'Nordic Winter Frost', cat: 'modern' },
+            { id: 'cinnamon-terracotta', file: 'themes/cinnamon-terracotta.html', name: 'Warm Cinnamon Terracotta', cat: 'modern' },
+            { id: 'golden-terracotta', file: 'themes/golden-terracotta.html', name: 'Golden Terracotta Chic', cat: 'modern' },
+            { id: 'dusty-rose', file: 'themes/dusty-rose.html', name: 'Dusty Rose & Mauve', cat: 'modern' },
+            { id: 'ocean-coastal', file: 'themes/ocean-coastal.html', name: 'Ocean Coastal Blue', cat: 'modern' },
+            { id: 'silver-moonlight', file: 'themes/silver-moonlight.html', name: 'Silver Moonlight Glow', cat: 'modern' },
+            { id: 'vintage-retro', file: 'themes/vintage-retro.html', name: 'Vintage Retro Heritage', cat: 'modern' },
+
+            // Adat Nusantara (12)
+            { id: 'aceh-meukuta', file: 'themes/aceh-meukuta.html', name: 'Aceh Meukuta Alam', cat: 'adat' },
+            { id: 'balinese-royal', file: 'themes/balinese-royal.html', name: 'Balinese Royal Prada', cat: 'adat' },
+            { id: 'batak-heritage', file: 'themes/batak-heritage.html', name: 'Batak Ulos Heritage', cat: 'adat' },
+            { id: 'batik-kawung', file: 'themes/batik-kawung.html', name: 'Javanese Batik Kawung', cat: 'adat' },
+            { id: 'bugis-makassar', file: 'themes/bugis-makassar.html', name: 'Bugis Baju Bodo', cat: 'adat' },
+            { id: 'lampung-siger', file: 'themes/lampung-siger.html', name: 'Lampung Siger Emas', cat: 'adat' },
+            { id: 'melayu-deli', file: 'themes/melayu-deli.html', name: 'Melayu Deli Diraja', cat: 'adat' },
+            { id: 'minang-crimson', file: 'themes/minang-crimson.html', name: 'Minang Baralek Gadang', cat: 'adat' },
+            { id: 'palembang-songket', file: 'themes/palembang-songket.html', name: 'Palembang Songket Lepus', cat: 'adat' },
+            { id: 'sunda-parahyangan', file: 'themes/sunda-parahyangan.html', name: 'Sunda Parahyangan Heritage', cat: 'adat' },
+            { id: 'islamic-emerald', file: 'themes/islamic-emerald.html', name: 'Islamic Emerald Gold', cat: 'adat' },
+            { id: 'moroccan-arabian', file: 'themes/moroccan-arabian.html', name: 'Moroccan Arabian Nights', cat: 'adat' },
+
+            // Floral & Alam (11)
+            { id: 'rustic-botanical', file: 'themes/rustic-botanical.html', name: 'Rustic Botanical Garden', cat: 'floral' },
+            { id: 'romantic-rose', file: 'themes/romantic-rose.html', name: 'Romantic Rose Garland', cat: 'floral' },
+            { id: 'cherry-blossom', file: 'themes/cherry-blossom.html', name: 'Cherry Blossom Sakura', cat: 'floral' },
+            { id: 'emerald-eucalyptus', file: 'themes/emerald-eucalyptus.html', name: 'Emerald Eucalyptus Green', cat: 'floral' },
+            { id: 'forest-pine', file: 'themes/forest-pine.html', name: 'Forest Pine Wood', cat: 'floral' },
+            { id: 'rustic-daisy', file: 'themes/rustic-daisy.html', name: 'Rustic Daisy Farm Sunshine', cat: 'floral' },
+            { id: 'sage-olive', file: 'themes/sage-olive.html', name: 'Sage Green Olive Branch', cat: 'floral' },
+            { id: 'spring-wildflower', file: 'themes/spring-wildflower.html', name: 'Spring Meadow Wildflower', cat: 'floral' },
+            { id: 'sunflower-garden', file: 'themes/sunflower-garden.html', name: 'Sunflower Garden Sunshine', cat: 'floral' },
+            { id: 'boho-pampas', file: 'themes/boho-pampas.html', name: 'Boho Pampas Grass', cat: 'floral' },
+            { id: 'autumn-copper', file: 'themes/autumn-copper.html', name: 'Autumn Copper Leaves', cat: 'floral' },
+
+            // Mewah & Eksklusif (14)
+            { id: 'art-deco', file: 'themes/art-deco.html', name: 'Art Deco Great Gatsby', cat: 'luxury' },
+            { id: 'elegance-black-gold', file: 'themes/elegance-black-gold.html', name: 'Luxury Black & Gold Foil', cat: 'luxury' },
+            { id: 'gold-marble', file: 'themes/gold-marble.html', name: 'Gold Foil Marble Luxury', cat: 'luxury' },
+            { id: 'royal-maroon', file: 'themes/royal-maroon.html', name: 'Royal Maroon & Gold Crown', cat: 'luxury' },
+            { id: 'royal-indigo', file: 'themes/royal-indigo.html', name: 'Royal Indigo Night', cat: 'luxury' },
+            { id: 'navy-sapphire', file: 'themes/navy-sapphire.html', name: 'Navy Sapphire Classic', cat: 'luxury' },
+            { id: 'velvet-sapphire', file: 'themes/velvet-sapphire.html', name: 'Royal Velvet Sapphire', cat: 'luxury' },
+            { id: 'champagne-pearl', file: 'themes/champagne-pearl.html', name: 'Luxury Champagne Pearl', cat: 'luxury' },
+            { id: 'deep-teal-copper', file: 'themes/deep-teal-copper.html', name: 'Deep Teal & Copper Glow', cat: 'luxury' },
+            { id: 'gothic-noir', file: 'themes/gothic-noir.html', name: 'Gothic Victorian Noir', cat: 'luxury' },
+            { id: 'galaxy-nebula', file: 'themes/galaxy-nebula.html', name: 'Galaxy Cosmic Nebula', cat: 'luxury' },
+            { id: 'midnight-celestial', file: 'themes/midnight-celestial.html', name: 'Midnight Celestial Constellation', cat: 'luxury' },
+            { id: 'ivory-lace', file: 'themes/ivory-lace.html', name: 'Classical Ivory Lace', cat: 'luxury' },
+            { id: 'burgundy-wine', file: 'themes/burgundy-wine.html', name: 'Burgundy Romance Wine', cat: 'luxury' }
+        ];
+
+        // DATA PERNIKAHAN UTAMA
+        let weddingData = {
+            judul_pasangan: 'Romeo & Juliet',
+            pria_nama: 'Romeo',
+            pria_lengkap: 'Romeo Montague, S.Kom.',
+            pria_ortu: 'Bpk. Lord Montague & Ibu Lady Montague',
+            foto_pria: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80',
+            wanita_nama: 'Juliet',
+            wanita_lengkap: 'Juliet Capulet, S.E.',
+            wanita_ortu: 'Bpk. Lord Capulet & Ibu Lady Capulet',
+            foto_wanita: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80',
+            tanggal_acara: 'Sabtu, 28 November 2026',
+            tanggal_iso: '2026-11-28T09:00:00',
+            akad_waktu: 'Pukul 08:00 - 10:00 WIB',
+            akad_tempat: 'Masjid Agung Al-Ittihad',
+            resepsi_waktu: 'Pukul 11:00 WIB - Selesai',
+            resepsi_tempat: 'Grand Ballroom Permata Arsha',
+            resepsi_alamat: 'Desa Karangjambu RT 03 RW 03, Kec. Balapulang, Kab. Tegal',
+            maps_link: 'https://maps.google.com/?q=Balapulang+Tegal',
+            foto_cover: 'https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=600&q=80',
+            galeri_foto: [
+                'https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=500&q=80',
+                'https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=500&q=80',
+                'https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=500&q=80',
+                'https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=500&q=80'
+            ],
+            music_url: 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-love-113543.mp3',
+            bank_1_nama: 'BANK BCA',
+            bank_1_norek: '682-019-3382',
+            bank_1_an: 'Romeo Montague'
+        };
+
+        // SUPABASE CLIENT CONFIGURATION
+        const SUPABASE_URL = 'https://ubanymhsupakazmcrton.supabase.co';
+        const SUPABASE_KEY = 'sb_publishable_ucZL64OQIPz3FV275S7qew_gAqAfIqg';
+        const { createClient } = window.supabase || {};
+        const supabaseDb = (createClient && SUPABASE_URL && SUPABASE_KEY) ? createClient(SUPABASE_URL, SUPABASE_KEY) : null;
+
+        let selectedThemeId = 'clean-minimalist';
+        let currentSupabaseInvId = null;
+
+        // INISIALISASI
+        document.addEventListener('DOMContentLoaded', () => {
+            // Cek URL param ?theme=...
+            const urlParams = new URLSearchParams(window.location.search);
+            const paramTheme = urlParams.get('theme');
+            if (paramTheme && ALL_THEMES.some(t => t.id === paramTheme)) {
+                selectedThemeId = paramTheme;
+            } else {
+                const storedTheme = localStorage.getItem('custom_wedding_theme');
+                if (storedTheme && ALL_THEMES.some(t => t.id === storedTheme)) {
+                    selectedThemeId = storedTheme;
+                }
+            }
+
+            // Muat ID tersimpan
+            currentSupabaseInvId = localStorage.getItem('custom_wedding_cloud_id') || null;
+
+            // Muat LocalStorage jika ada
+            const storedData = localStorage.getItem('custom_wedding_data');
+            if (storedData) {
+                try {
+                    weddingData = { ...weddingData, ...JSON.parse(storedData) };
+                } catch(e) {}
+            }
+
+            renderThemesDropdown();
+            populateForm();
+            renderGallery();
+            generateSingleGuestLink();
+            loadPreviewTheme();
+        });
+
+        // 1. TEMA DROPDOWN & FILTER
+        function renderThemesDropdown(catFilter = 'all') {
+            const selectEl = document.getElementById('theme-selector');
+            if (!selectEl) return;
+
+            const filtered = catFilter === 'all' ? ALL_THEMES : ALL_THEMES.filter(t => t.cat === catFilter);
+            
+            selectEl.innerHTML = filtered.map(t => `
+                <option value="${t.id}" ${t.id === selectedThemeId ? 'selected' : ''}>
+                    ${t.name}
+                </option>
+            `).join('');
+
+            updateActiveThemeLabel();
+        }
+
+        function filterThemesDropdown(category) {
+            document.querySelectorAll('.cat-pill').forEach(btn => {
+                btn.classList.remove('bg-slate-900', 'text-white', 'font-semibold');
+                btn.classList.add('bg-slate-100', 'text-slate-600');
+            });
+            event.target.classList.remove('bg-slate-100', 'text-slate-600');
+            event.target.classList.add('bg-slate-900', 'text-white', 'font-semibold');
+
+            renderThemesDropdown(category);
+        }
+
+        function changeTheme(themeId) {
+            selectedThemeId = themeId;
+            updateActiveThemeLabel();
+            generateSingleGuestLink();
+            saveData();
+            loadPreviewTheme();
+        }
+
+        function updateActiveThemeLabel() {
+            const currentTheme = ALL_THEMES.find(t => t.id === selectedThemeId) || ALL_THEMES[0];
+            const badge = document.getElementById('active-theme-label');
+            const simTitle = document.getElementById('simulator-theme-title');
+            if (badge) badge.innerText = currentTheme.name;
+            if (simTitle) simTitle.innerText = currentTheme.name;
+        }
+
+        function loadPreviewTheme() {
+            const iframe = document.getElementById('preview-iframe');
+            if (!iframe) return;
+            const theme = ALL_THEMES.find(t => t.id === selectedThemeId) || ALL_THEMES[0];
+            iframe.src = theme.file;
+            iframe.onload = () => sendDataToPreview();
+        }
+
+        function reloadPreviewIframe() {
+            loadPreviewTheme();
+        }
+
+        function sendDataToPreview() {
+            const iframe = document.getElementById('preview-iframe');
+            if (iframe && iframe.contentWindow) {
+                iframe.contentWindow.postMessage({
+                    type: 'UPDATE_WEDDING_DATA',
+                    payload: weddingData
+                }, '*');
+            }
+        }
+
+        // 2. INPUT UPDATER
+        function updateField(key, value) {
+            weddingData[key] = value;
+            sendDataToPreview();
+            saveData();
+        }
+
+        function autoGenerateJudul() {
+            const pria = (weddingData.pria_nama || '').trim();
+            const wanita = (weddingData.wanita_nama || '').trim();
+            if (pria && wanita) {
+                const judul = `${pria} & ${wanita}`;
+                const inputJudul = document.getElementById('input-judul');
+                if (inputJudul) inputJudul.value = judul;
+                weddingData.judul_pasangan = judul;
+                sendDataToPreview();
+                saveData();
+            }
+        }
+
+        function updateCountdown(datetimeVal) {
+            weddingData.tanggal_iso = datetimeVal ? new Date(datetimeVal).toISOString() : '';
+            sendDataToPreview();
+            saveData();
+        }
+
+        function populateForm() {
+            const setVal = (id, val) => {
+                const el = document.getElementById(id);
+                if (el && val !== undefined) el.value = val;
+            };
+
+            setVal('input-judul', weddingData.judul_pasangan);
+            setVal('input-pria-nama', weddingData.pria_nama);
+            setVal('input-pria-lengkap', weddingData.pria_lengkap);
+            setVal('input-pria-ortu', weddingData.pria_ortu);
+            setVal('input-wanita-nama', weddingData.wanita_nama);
+            setVal('input-wanita-lengkap', weddingData.wanita_lengkap);
+            setVal('input-wanita-ortu', weddingData.wanita_ortu);
+
+            setVal('input-tanggal-acara', weddingData.tanggal_acara);
+            if (weddingData.tanggal_iso) {
+                try {
+                    const d = new Date(weddingData.tanggal_iso);
+                    const localIso = new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 16);
+                    setVal('input-tanggal-iso', localIso);
+                } catch(e) {}
+            }
+
+            setVal('input-akad-waktu', weddingData.akad_waktu);
+            setVal('input-akad-tempat', weddingData.akad_tempat);
+            setVal('input-resepsi-waktu', weddingData.resepsi_waktu);
+            setVal('input-resepsi-tempat', weddingData.resepsi_tempat);
+            setVal('input-resepsi-alamat', weddingData.resepsi_alamat);
+            setVal('input-maps-link', weddingData.maps_link);
+
+            setVal('input-bank-nama', weddingData.bank_1_nama);
+            setVal('input-bank-norek', weddingData.bank_1_norek);
+            setVal('input-bank-an', weddingData.bank_1_an);
+            setVal('music-selector', weddingData.music_url);
+
+            const thumbCover = document.getElementById('thumb-cover');
+            if (thumbCover && weddingData.foto_cover) thumbCover.src = weddingData.foto_cover;
+
+            const thumbPria = document.getElementById('thumb-pria');
+            if (thumbPria && weddingData.foto_pria) thumbPria.src = weddingData.foto_pria;
+
+            const thumbWanita = document.getElementById('thumb-wanita');
+            if (thumbWanita && weddingData.foto_wanita) thumbWanita.src = weddingData.foto_wanita;
+
+            // Check if music is preset or custom
+            const musicSel = document.getElementById('music-selector');
+            const customUrlInput = document.getElementById('input-music-url');
+            const optCustom = document.getElementById('opt-custom-music');
+            if (musicSel) {
+                const isPreset = Array.from(musicSel.options).some(o => o.value !== 'custom' && o.value === weddingData.music_url);
+                if (isPreset) {
+                    musicSel.value = weddingData.music_url;
+                    if (optCustom) optCustom.classList.add('hidden');
+                    if (customUrlInput) customUrlInput.value = '';
+                } else {
+                    if (optCustom) optCustom.classList.remove('hidden');
+                    musicSel.value = 'custom';
+                    if (customUrlInput) {
+                        customUrlInput.value = (weddingData.music_url && !weddingData.music_url.startsWith('data:')) ? weddingData.music_url : '';
+                    }
+                }
+            }
+        }
+
+        // 3. FOTO & KOMPRESI OTOMATIS
+        function compressPhoto(file) {
+            return new Promise((resolve) => {
+                const reader = new FileReader();
+                reader.readAsDataURL(file);
+                reader.onload = (e) => {
+                    const img = new Image();
+                    img.src = e.target.result;
+                    img.onload = () => {
+                        let w = img.width, h = img.height;
+                        const max = 800;
+                        if (w > max || h > max) {
+                            if (w > h) { h = Math.round((h * max) / w); w = max; }
+                            else { w = Math.round((w * max) / h); h = max; }
+                        }
+                        const canvas = document.createElement('canvas');
+                        canvas.width = w; canvas.height = h;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, w, h);
+                        resolve(canvas.toDataURL('image/jpeg', 0.75));
+                    };
+                };
+            });
+        }
+
+        async function uploadCoverPhoto(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const b64 = await compressPhoto(file);
+            weddingData.foto_cover = b64;
+            const thumb = document.getElementById('thumb-cover');
+            if (thumb) thumb.src = b64;
+            sendDataToPreview();
+            saveData();
+        }
+
+        async function uploadPriaPhoto(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const b64 = await compressPhoto(file);
+            weddingData.foto_pria = b64;
+            const thumb = document.getElementById('thumb-pria');
+            if (thumb) thumb.src = b64;
+            sendDataToPreview();
+            saveData();
+        }
+
+        async function uploadWanitaPhoto(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+            const b64 = await compressPhoto(file);
+            weddingData.foto_wanita = b64;
+            const thumb = document.getElementById('thumb-wanita');
+            if (thumb) thumb.src = b64;
+            sendDataToPreview();
+            saveData();
+        }
+
+        async function uploadMultiplePhotos(event) {
+            const files = Array.from(event.target.files);
+            if (!files || files.length === 0) return;
+
+            if (!Array.isArray(weddingData.galeri_foto)) {
+                weddingData.galeri_foto = [];
+            }
+
+            for (const file of files) {
+                try {
+                    const b64 = await compressPhoto(file);
+                    weddingData.galeri_foto.push(b64);
+                } catch(e) {}
+            }
+
+            renderGallery();
+            sendDataToPreview();
+            saveData();
+            event.target.value = '';
+        }
+
+        function removePhoto(idx) {
+            if (weddingData.galeri_foto && weddingData.galeri_foto.length > idx) {
+                weddingData.galeri_foto.splice(idx, 1);
+                renderGallery();
+                sendDataToPreview();
+                saveData();
+            }
+        }
+
+        function clearGallery() {
+            if (confirm("Hapus semua foto galeri?")) {
+                weddingData.galeri_foto = [];
+                renderGallery();
+                sendDataToPreview();
+                saveData();
+            }
+        }
+
+        function renderGallery() {
+            const container = document.getElementById('gallery-thumbs');
+            const badge = document.getElementById('gallery-count-badge');
+            if (!container) return;
+
+            const photos = weddingData.galeri_foto || [];
+            if (badge) badge.innerText = `${photos.length} Foto`;
+
+            if (photos.length === 0) {
+                container.innerHTML = `<span class="col-span-full text-[11px] text-slate-400 py-3 text-center">Belum ada foto galeri diunggah.</span>`;
+                return;
+            }
+
+            container.innerHTML = photos.map((src, i) => `
+                <div class="relative group aspect-square rounded-lg overflow-hidden bg-slate-100 border border-slate-200">
+                    <img src="${src}" class="w-full h-full object-cover">
+                    <button onclick="removePhoto(${i})" class="absolute top-1 right-1 bg-red-600 text-white w-5 h-5 rounded-full flex items-center justify-center text-[10px] opacity-80 hover:opacity-100 shadow" title="Hapus">
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                    <span class="absolute bottom-1 left-1 bg-black/60 text-white text-[8px] px-1 rounded">#${i+1}</span>
+                </div>
+            `).join('');
+        }
+
+        // 4. MUSIK PENGATURAN
+        function changeMusic(url) {
+            if (url === 'custom') return;
+            weddingData.music_url = url;
+            const customInput = document.getElementById('input-music-url');
+            if (customInput) customInput.value = '';
+            const statusEl = document.getElementById('music-file-status');
+            if (statusEl) statusEl.innerText = '';
+            const optCustom = document.getElementById('opt-custom-music');
+            if (optCustom) optCustom.classList.add('hidden');
+
+            sendDataToPreview();
+            saveData();
+        }
+
+        function changeCustomMusicUrl(url) {
+            if (!url) return;
+            weddingData.music_url = url;
+            const optCustom = document.getElementById('opt-custom-music');
+            const selectEl = document.getElementById('music-selector');
+            if (optCustom) optCustom.classList.remove('hidden');
+            if (selectEl) selectEl.value = 'custom';
+            const statusEl = document.getElementById('music-file-status');
+            if (statusEl) statusEl.innerText = 'URL Kustom Terpasang';
+
+            sendDataToPreview();
+            saveData();
+        }
+
+        function uploadCustomMusic(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            // Cek ukuran audio (max 6MB untuk base64)
+            if (file.size > 6 * 1024 * 1024) {
+                alert("Ukuran file audio terlalu besar (maksimal 6MB). Silakan gunakan file berukuran lebih kecil atau masukkan link URL audio.");
+                event.target.value = '';
+                return;
+            }
+
+            const statusEl = document.getElementById('music-file-status');
+            if (statusEl) statusEl.innerText = 'Memproses audio...';
+
+            const reader = new FileReader();
+            reader.readAsDataURL(file);
+            reader.onload = (e) => {
+                const b64 = e.target.result;
+                weddingData.music_url = b64;
+                
+                const optCustom = document.getElementById('opt-custom-music');
+                const selectEl = document.getElementById('music-selector');
+                if (optCustom) {
+                    optCustom.innerText = `File: ${file.name.substring(0, 20)}...`;
+                    optCustom.classList.remove('hidden');
+                }
+                if (selectEl) selectEl.value = 'custom';
+                if (statusEl) statusEl.innerText = `✓ File siap (${file.name})`;
+
+                const customUrlInput = document.getElementById('input-music-url');
+                if (customUrlInput) customUrlInput.value = '';
+
+                sendDataToPreview();
+                saveData();
+            };
+            reader.onerror = () => {
+                alert("Gagal membaca file audio.");
+                if (statusEl) statusEl.innerText = '';
+            };
+        }
+
+        function resetToPresetMusic() {
+            const defaultMusic = 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-love-113543.mp3';
+            weddingData.music_url = defaultMusic;
+            const selectEl = document.getElementById('music-selector');
+            const optCustom = document.getElementById('opt-custom-music');
+            const fileInput = document.getElementById('input-music-file');
+            const urlInput = document.getElementById('input-music-url');
+            const statusEl = document.getElementById('music-file-status');
+
+            if (selectEl) selectEl.value = defaultMusic;
+            if (optCustom) optCustom.classList.add('hidden');
+            if (fileInput) fileInput.value = '';
+            if (urlInput) urlInput.value = '';
+            if (statusEl) statusEl.innerText = '';
+
+            sendDataToPreview();
+            saveData();
+        }
+
+        let isTestingAudio = false;
+        function toggleTestAudio() {
+            const audio = document.getElementById('test-audio');
+            const icon = document.getElementById('icon-test-music');
+            const btn = document.getElementById('btn-test-music');
+            if (!audio) return;
+
+            if (isTestingAudio) {
+                audio.pause();
+                isTestingAudio = false;
+                if (icon) icon.className = 'fa-solid fa-play';
+                if (btn) btn.innerHTML = '<i class="fa-solid fa-play"></i> <span>Putar</span>';
+            } else {
+                audio.src = weddingData.music_url;
+                audio.play().then(() => {
+                    isTestingAudio = true;
+                    if (btn) btn.innerHTML = '<i class="fa-solid fa-pause"></i> <span>Jeda</span>';
+                }).catch(e => alert("Gagal memutar audio preview"));
+            }
+        }
+
+        // 5. PENYIMPANAN DATA
+        function saveData() {
+            try {
+                localStorage.setItem('custom_wedding_data', JSON.stringify(weddingData));
+                localStorage.setItem('custom_wedding_theme', selectedThemeId);
+            } catch(e) {}
+        }
+
+        function resetBuilderForm() {
+            if (confirm("Reset seluruh data form?")) {
+                localStorage.removeItem('custom_wedding_data');
+                localStorage.removeItem('custom_wedding_theme');
+                location.reload();
+            }
+        }
+
+        function loadSampleData() {
+            weddingData.judul_pasangan = 'Raden & Intan';
+            weddingData.pria_nama = 'Raden';
+            weddingData.pria_lengkap = 'Raden Pratama, S.T.';
+            weddingData.pria_ortu = 'Putra Bpk. Ir. H. Bambang & Ibu Hj. Siti Rahayu';
+            weddingData.wanita_nama = 'Intan';
+            weddingData.wanita_lengkap = 'Intan Permatasari, M.Psi.';
+            weddingData.wanita_ortu = 'Putri Bpk. Drs. H. Suryanto & Ibu Hj. Sri Wahyuni';
+            weddingData.tanggal_acara = 'Ahad, 20 Desember 2026';
+            weddingData.tanggal_iso = '2026-12-20T08:00:00';
+            weddingData.akad_tempat = 'Masjid Al-Barkah Balapulang';
+            weddingData.resepsi_tempat = 'Convention Hall Balapulang Square';
+            weddingData.resepsi_alamat = 'Jl. Raya Utama No. 88, Balapulang, Tegal';
+            weddingData.foto_pria = 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80';
+            weddingData.foto_wanita = 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80';
+            weddingData.music_url = 'https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3?filename=romantic-wedding-love-113543.mp3';
+
+            populateForm();
+            renderGallery();
+            sendDataToPreview();
+            saveData();
+        }
+
+        function openFullPreview() {
+            saveData();
+            const theme = ALL_THEMES.find(t => t.id === selectedThemeId) || ALL_THEMES[0];
+            window.open(theme.file, '_blank');
+        }
+
+        // Mobile Toggle Preview
+        let isMobilePreviewActive = false;
+        function toggleMobilePreview() {
+            const formCol = document.getElementById('form-column');
+            const prevCol = document.getElementById('preview-column');
+            const toggleText = document.getElementById('mobile-preview-toggle-text');
+
+            if (!isMobilePreviewActive) {
+                if (formCol) formCol.classList.add('hidden');
+                if (prevCol) prevCol.classList.remove('hidden');
+                if (toggleText) toggleText.innerText = 'Kembali ke Form';
+                isMobilePreviewActive = true;
+            } else {
+                if (formCol) formCol.classList.remove('hidden');
+                if (prevCol) prevCol.classList.add('hidden');
+                if (toggleText) toggleText.innerText = 'Lihat Hasil HP';
+                isMobilePreviewActive = false;
+            }
+        }
+
+        // PESAN VIA WHATSAPP
+        function orderViaWhatsApp() {
+            saveData();
+            const theme = ALL_THEMES.find(t => t.id === selectedThemeId) || ALL_THEMES[0];
+            
+            let msg = `*HALO ARSHANET PRINTING, SAYA INGIN MEMESAN UNDANGAN DIGITAL*\n\n`;
+            msg += `📌 *Tema:* ${theme.name}\n`;
+            msg += `💍 *Judul:* ${weddingData.judul_pasangan}\n`;
+            msg += `🤵 *Mempelai Pria:* ${weddingData.pria_nama} (${weddingData.pria_lengkap || '-'})\n`;
+            msg += `👰 *Mempelai Wanita:* ${weddingData.wanita_nama} (${weddingData.wanita_lengkap || '-'})\n`;
+            msg += `📅 *Tanggal:* ${weddingData.tanggal_acara}\n`;
+            msg += `📍 *Akad:* ${weddingData.akad_tempat} (${weddingData.akad_waktu})\n`;
+            msg += `🎉 *Resepsi:* ${weddingData.resepsi_tempat} (${weddingData.resepsi_waktu})\n`;
+            msg += `💳 *Rekening:* ${weddingData.bank_1_nama} ${weddingData.bank_1_norek} (a.n ${weddingData.bank_1_an})\n`;
+            msg += `📸 *Jumlah Foto Galeri:* ${(weddingData.galeri_foto || []).length} Foto\n`;
+            if (currentSupabaseInvId) {
+                msg += `☁️ *ID Supabase Cloud:* ${currentSupabaseInvId}\n`;
+            }
+            msg += `\nMohon diproses pembuatan undangannya. Terima kasih!`;
+
+            const phone = '6285201214267';
+            window.open(`https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        // ==================== 6. GENERATOR LINK TAMU UNDANGAN ====================
+        function getBaseInvitationUrl() {
+            const theme = ALL_THEMES.find(t => t.id === selectedThemeId) || ALL_THEMES[0];
+            const origin = window.location.origin;
+            const pathname = window.location.pathname;
+            const dir = pathname.substring(0, pathname.lastIndexOf('/') + 1);
+            return `${origin}${dir}${theme.file}`;
+        }
+
+        function generateSingleGuestLink() {
+            const guestInput = document.getElementById('input-guest-name');
+            const outputEl = document.getElementById('output-guest-url');
+            if (!outputEl) return '';
+
+            const guestName = (guestInput ? guestInput.value : '').trim();
+            const baseUrl = getBaseInvitationUrl();
+            const finalUrl = guestName ? `${baseUrl}?to=${encodeURIComponent(guestName)}` : baseUrl;
+            outputEl.value = finalUrl;
+            return finalUrl;
+        }
+
+        function copyGuestLink() {
+            const outputEl = document.getElementById('output-guest-url');
+            if (!outputEl) return;
+            const url = outputEl.value || generateSingleGuestLink();
+            
+            navigator.clipboard.writeText(url).then(() => {
+                const icon = document.getElementById('icon-copy-guest');
+                const text = document.getElementById('text-copy-guest');
+                if (icon) icon.className = 'fa-solid fa-check text-emerald-600';
+                if (text) text.innerText = 'Tersalin!';
+                setTimeout(() => {
+                    if (icon) icon.className = 'fa-regular fa-copy';
+                    if (text) text.innerText = 'Salin';
+                }, 2000);
+            }).catch(() => {
+                outputEl.select();
+                document.execCommand('copy');
+                alert("Tautan berhasil disalin!");
+            });
+        }
+
+        function shareGuestToWhatsApp() {
+            const guestInput = document.getElementById('input-guest-name');
+            const guestName = (guestInput ? guestInput.value : '').trim() || 'Bapak/Ibu/Saudara/i';
+            const url = generateSingleGuestLink();
+            const judul = weddingData.judul_pasangan || 'Romeo & Juliet';
+            const tgl = weddingData.tanggal_acara || 'Hari Bahagia';
+
+            const msg = `*Kepada Yth. ${guestName}*\n\nTanpa mengurangi rasa hormat, perkenankan kami mengundang Bapak/Ibu/Saudara/i untuk menghadiri acara pernikahan kami:\n\n*The Wedding of ${judul}*\n🗓️ ${tgl}\n\nUntuk informasi lengkap acara dan konfirmasi kehadiran, silakan buka tautan undangan digital kami berikut ini:\n🔗 ${url}\n\nMerupakan suatu kehormatan dan kebahagiaan bagi kami apabila Bapak/Ibu/Saudara/i berkenan hadir dan memberikan doa restu.\n\nTerima kasih.\n*Salam hangat kami, ${judul}*`;
+
+            window.open(`https://api.whatsapp.com/send?text=${encodeURIComponent(msg)}`, '_blank');
+        }
+
+        function testGuestLink() {
+            const url = generateSingleGuestLink();
+            window.open(url, '_blank');
+        }
+
+        function generateBatchGuestLinks() {
+            const textarea = document.getElementById('batch-guest-names');
+            const container = document.getElementById('batch-results-container');
+            if (!textarea || !container) return;
+
+            const lines = textarea.value.split('\n').map(l => l.trim()).filter(Boolean);
+            if (lines.length === 0) {
+                alert("Silakan masukkan minimal satu nama tamu pada kolom teks.");
+                return;
+            }
+
+            const baseUrl = getBaseInvitationUrl();
+            container.classList.remove('hidden');
+            container.innerHTML = lines.map((name, i) => {
+                const link = `${baseUrl}?to=${encodeURIComponent(name)}`;
+                return `
+                    <div class="flex items-center justify-between p-2 bg-white rounded-lg border border-slate-200 text-[11px] gap-2">
+                        <div class="truncate">
+                            <span class="font-bold text-slate-800">${i + 1}. ${name}</span>
+                            <span class="text-slate-400 block truncate text-[10px] font-mono">${link}</span>
+                        </div>
+                        <div class="flex items-center gap-1 shrink-0">
+                            <button onclick="navigator.clipboard.writeText('${link}'); alert('Tautan untuk ${name} tersalin!');" class="p-1.5 bg-slate-100 hover:bg-slate-200 rounded text-slate-700" title="Salin">
+                                <i class="fa-regular fa-copy"></i>
+                            </button>
+                            <a href="https://api.whatsapp.com/send?text=${encodeURIComponent(`Kepada Yth. *${name}*,\nKami mengundang Anda ke pernikahan *${weddingData.judul_pasangan}*:\n${link}`)}" target="_blank" class="p-1.5 bg-emerald-50 hover:bg-emerald-100 text-emerald-700 rounded" title="Kirim WA">
+                                <i class="fa-brands fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        // ==================== 7. INTEGRASI SIMPAN CLOUD SUPABASE ====================
+        // Helper: Upload file base64 ke Supabase Storage jika ada
+        async function uploadBase64ToSupabaseStorage(base64Data, prefix = 'photo') {
+            if (!base64Data || !base64Data.startsWith('data:')) return base64Data;
+            try {
+                const res = await fetch(base64Data);
+                const blob = await res.blob();
+                const ext = blob.type.includes('png') ? 'png' : (blob.type.includes('webp') ? 'webp' : 'jpg');
+                const fileName = `undangan_${prefix}_${Date.now()}_${Math.random().toString(36).substring(2, 7)}.${ext}`;
+
+                const { data, error } = await supabaseDb.storage.from('arshanet-files').upload(fileName, blob, {
+                    contentType: blob.type,
+                    upsert: true
+                });
+
+                if (error) {
+                    console.log("Supabase storage error (fallback to base64):", error);
+                    return base64Data;
+                }
+
+                const { data: publicData } = supabaseDb.storage.from('arshanet-files').getPublicUrl(fileName);
+                return publicData.publicUrl;
+            } catch(e) {
+                console.log("Error converting/uploading photo:", e);
+                return base64Data;
+            }
+        }
+
+        async function saveToSupabaseCloud() {
+            saveData();
+            const btn = document.getElementById('btn-save-supabase');
+            const btnText = document.getElementById('text-save-supabase');
+            const badge = document.getElementById('save-status-badge');
+
+            if (!supabaseDb) {
+                alert("Koneksi Supabase belum terkonfigurasi dengan benar.");
+                return;
+            }
+
+            try {
+                if (btn) btn.disabled = true;
+                if (btnText) btnText.innerText = 'Menyimpan...';
+                if (badge) badge.innerText = 'Sedang mengunggah aset ke Supabase Storage...';
+
+                // Clone weddingData untuk diproses
+                const dataToSave = JSON.parse(JSON.stringify(weddingData));
+
+                // 1. Upload foto sampul jika base64
+                if (dataToSave.foto_cover && dataToSave.foto_cover.startsWith('data:')) {
+                    dataToSave.foto_cover = await uploadBase64ToSupabaseStorage(dataToSave.foto_cover, 'cover');
+                }
+
+                // 2. Upload foto pria & wanita jika base64
+                if (dataToSave.foto_pria && dataToSave.foto_pria.startsWith('data:')) {
+                    dataToSave.foto_pria = await uploadBase64ToSupabaseStorage(dataToSave.foto_pria, 'pria');
+                }
+                if (dataToSave.foto_wanita && dataToSave.foto_wanita.startsWith('data:')) {
+                    dataToSave.foto_wanita = await uploadBase64ToSupabaseStorage(dataToSave.foto_wanita, 'wanita');
+                }
+
+                // 3. Upload musik jika base64
+                if (dataToSave.music_url && dataToSave.music_url.startsWith('data:')) {
+                    try {
+                        const res = await fetch(dataToSave.music_url);
+                        const blob = await res.blob();
+                        const fileName = `undangan_music_${Date.now()}.mp3`;
+                        const { data: mData, error: mErr } = await supabaseDb.storage.from('arshanet-files').upload(fileName, blob, {
+                            contentType: 'audio/mpeg',
+                            upsert: true
+                        });
+                        if (!mErr) {
+                            const { data: pubMusic } = supabaseDb.storage.from('arshanet-files').getPublicUrl(fileName);
+                            dataToSave.music_url = pubMusic.publicUrl;
+                        }
+                    } catch(e) {}
+                }
+
+                // 4. Upload galeri foto (bisa 8+ foto)
+                if (Array.isArray(dataToSave.galeri_foto)) {
+                    if (badge) badge.innerText = `Mengunggah galeri foto (${dataToSave.galeri_foto.length} foto)...`;
+                    for (let i = 0; i < dataToSave.galeri_foto.length; i++) {
+                        if (dataToSave.galeri_foto[i] && dataToSave.galeri_foto[i].startsWith('data:')) {
+                            dataToSave.galeri_foto[i] = await uploadBase64ToSupabaseStorage(dataToSave.galeri_foto[i], `galeri_${i+1}`);
+                        }
+                    }
+                }
+
+                if (badge) badge.innerText = 'Menyimpan metadata ke database Supabase...';
+
+                // Siapkan row payload untuk tabel database
+                const rowPayload = {
+                    date: new Date().toISOString(),
+                    items: `UNDANGAN_ONLINE: ${JSON.stringify({
+                        theme_id: selectedThemeId,
+                        couple: dataToSave.judul_pasangan,
+                        wedding_data: dataToSave
+                    })}`,
+                    total: 0
+                };
+
+                // Simpan ke Supabase transactions / database
+                const { data: insertResult, error: dbError } = await supabaseDb
+                    .from('transactions')
+                    .insert([rowPayload])
+                    .select();
+
+                if (dbError) {
+                    throw dbError;
+                }
+
+                // Simpan kembali data yang sudah berisi URL Supabase publik ke localStorage
+                weddingData = dataToSave;
+                if (insertResult && insertResult[0]) {
+                    currentSupabaseInvId = insertResult[0].id;
+                    localStorage.setItem('custom_wedding_cloud_id', currentSupabaseInvId);
+                }
+                saveData();
+                populateForm();
+                renderGallery();
+                generateSingleGuestLink();
+
+                if (badge) {
+                    badge.innerHTML = `<span class="text-emerald-600 font-bold">✓ Tersimpan di Supabase Cloud (ID: #${currentSupabaseInvId})</span>`;
+                }
+                alert(`Data undangan berhasil disimpan ke database Supabase Cloud! (ID Transaksi #${currentSupabaseInvId})`);
+
+            } catch (err) {
+                console.error("Gagal simpan Supabase:", err);
+                if (badge) {
+                    badge.innerHTML = `<span class="text-amber-600 font-semibold">Tersimpan lokal (Gagal sync cloud: ${err.message || 'cek jaringan'})</span>`;
+                }
+                alert("Gagal menyimpan ke Supabase Cloud: " + (err.message || "Pastikan tabel transactions/storage siap."));
+            } finally {
+                if (btn) btn.disabled = false;
+                if (btnText) btnText.innerText = 'Simpan ke Supabase';
+            }
+        }
+    </script>
+
+</body>
+</html>

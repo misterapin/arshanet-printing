@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of Kevin & Natasha | Pastel Lavender Theme</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/invitation.css">
+    <style>
+        .font-serif-title { font-family: 'Playfair Display', serif; }
+        .font-script { font-family: 'Great Vibes', cursive; }
+        .bg-lavender-dream { background: radial-gradient(circle, #f5f0fb 0%, #ede4f7 100%); }
+    </style>
+</head>
+<body class="bg-[#f7f2fc] text-slate-700 antialiased overflow-hidden selection:bg-purple-200">
+
+    <!-- COVER -->
+    <div id="cover-invitation" class="cover-overlay bg-lavender-dream text-center px-4">
+        <div class="max-w-md w-full bg-white/80 border border-purple-200 p-8 rounded-3xl shadow-xl backdrop-blur-md relative">
+            <div class="text-purple-400 mb-3 float-gentle text-3xl"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+            <p class="uppercase tracking-[0.3em] text-[10px] text-purple-600 font-bold mb-2">SWEET WEDDING INVITATION</p>
+            <h1 data-field="judul_pasangan" class="text-4xl md:text-5xl font-script text-purple-900 my-3">Kevin & Natasha</h1>
+            <p data-field="tanggal_acara" class="text-purple-600 text-xs tracking-wider uppercase font-serif-title">Minggu, 18 Oktober 2026</p>
+
+            <div class="my-7 py-4 px-6 bg-purple-50/80 rounded-2xl border border-purple-100">
+                <p class="text-xs text-purple-500 mb-1">Kepada Yth:</p>
+                <h3 class="text-lg font-bold text-purple-950 guest-name-placeholder">Tamu Undangan & Rekan</h3>
+                <p class="text-[10px] text-purple-400 mt-1 italic">*Mohon kehadiran dan doa restu Anda</p>
+            </div>
+
+            <button onclick="bukaUndangan()" class="w-full bg-gradient-to-r from-purple-500 to-indigo-500 hover:from-purple-600 hover:to-indigo-600 text-white font-medium py-3 px-6 rounded-xl shadow-lg shadow-purple-500/20 transition flex items-center justify-center space-x-2 text-xs uppercase tracking-wider">
+                <i class="fa-solid fa-envelope-open"></i>
+                <span>Buka Undangan</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- FLOATING MUSIC -->
+    <div id="music-control-btn" onclick="toggleMusic()" class="music-btn bg-white text-purple-600 border border-purple-200 hidden hover:text-purple-800">
+        <i id="music-icon" class="fa-solid fa-compact-disc text-xl"></i>
+    </div>
+
+    <!-- BOTTOM NAV -->
+    <nav id="bottom-nav" class="bottom-nav bg-white/95 text-purple-700 border border-purple-200 hidden">
+        <a href="#hero" class="hover:text-purple-900"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a href="#mempelai" class="hover:text-purple-900"><i class="fa-solid fa-heart"></i><span>Mempelai</span></a>
+        <a href="#acara" class="hover:text-purple-900"><i class="fa-solid fa-calendar-check"></i><span>Acara</span></a>
+        <a href="#galeri" class="hover:text-purple-900"><i class="fa-solid fa-images"></i><span>Galeri</span></a>
+        <a href="#hadiah" class="hover:text-purple-900"><i class="fa-solid fa-gift"></i><span>Hadiah</span></a>
+        <a href="#rsvp" class="hover:text-purple-900"><i class="fa-solid fa-comment-dots"></i><span>Ucapan</span></a>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-md mx-auto bg-white shadow-2xl min-h-screen relative border-x border-purple-100 pb-24">
+        <!-- 1. HERO -->
+        <section id="hero" class="pt-12 pb-16 px-6 text-center bg-gradient-to-b from-purple-100/60 to-white">
+            <span class="text-xs uppercase tracking-widest text-purple-600 font-semibold">Together Forever</span>
+            <h2 data-field="judul_pasangan" class="text-5xl font-script text-purple-900 my-4">Kevin & Natasha</h2>
+            <p class="text-slate-600 text-xs leading-relaxed px-4">
+                "Di antara seribu bintang, takdir mempertemukan kami untuk saling mencintai dan melengkapi."
+            </p>
+
+            <div class="mt-8 relative w-56 h-72 mx-auto rounded-3xl overflow-hidden shadow-xl border-4 border-white ring-2 ring-purple-200">
+                <img data-field="foto_cover" src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=80" alt="Couple" class="w-full h-full object-cover">
+            </div>
+
+            <!-- COUNTDOWN -->
+            <div class="mt-10 p-5 rounded-2xl bg-purple-50/70 border border-purple-200">
+                <p class="text-xs uppercase tracking-widest text-purple-600 font-semibold mb-3">Menghitung Hari</p>
+                <div id="countdown-container" class="grid grid-cols-4 gap-2 text-center">
+                    <div class="bg-white p-2.5 rounded-xl border border-purple-100 shadow-sm"><span id="count-days" class="block text-2xl font-bold text-purple-600">00</span><span class="text-[9px] text-slate-400 uppercase">Hari</span></div>
+                    <div class="bg-white p-2.5 rounded-xl border border-purple-100 shadow-sm"><span id="count-hours" class="block text-2xl font-bold text-purple-600">00</span><span class="text-[9px] text-slate-400 uppercase">Jam</span></div>
+                    <div class="bg-white p-2.5 rounded-xl border border-purple-100 shadow-sm"><span id="count-minutes" class="block text-2xl font-bold text-purple-600">00</span><span class="text-[9px] text-slate-400 uppercase">Menit</span></div>
+                    <div class="bg-white p-2.5 rounded-xl border border-purple-100 shadow-sm"><span id="count-seconds" class="block text-2xl font-bold text-purple-600">00</span><span class="text-[9px] text-slate-400 uppercase">Detik</span></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. MEMPELAI -->
+        <section id="mempelai" class="py-12 px-6 text-center reveal-on-scroll">
+            <h3 class="text-3xl font-serif-title text-purple-900 mb-2 font-bold">Pasangan Mempelai</h3>
+            <p class="text-xs text-slate-400 mb-8">Dengan bahagia kami melangsungkan pernikahan:</p>
+
+            <div class="mb-10">
+                <div class="w-36 h-36 mx-auto rounded-full overflow-hidden shadow-lg border-4 border-white ring-2 ring-purple-300">
+                    <img data-field="foto_pria" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Kevin" class="w-full h-full object-cover">
+                </div>
+                <h4 data-field="pria_nama" class="text-2xl font-serif-title font-bold text-purple-900 mt-4">Kevin Sanjaya, S.Bns.</h4>
+                <p data-field="pria_ortu" class="text-xs text-slate-500 mt-1">Putra dari Bpk. Ir. Robert Sanjaya & Ibu Diana</p>
+            </div>
+
+            <div class="text-2xl font-script text-purple-400 my-4">&</div>
+
+            <div>
+                <div class="w-36 h-36 mx-auto rounded-full overflow-hidden shadow-lg border-4 border-white ring-2 ring-purple-300">
+                    <img data-field="foto_wanita" src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Natasha" class="w-full h-full object-cover">
+                </div>
+                <h4 data-field="wanita_nama" class="text-2xl font-serif-title font-bold text-purple-900 mt-4">Natasha Aurelia, S.Ds.</h4>
+                <p data-field="wanita_ortu" class="text-xs text-slate-500 mt-1">Putri dari Bpk. William Tan & Ibu Christine</p>
+            </div>
+        </section>
+
+        <!-- 3. ACARA -->
+        <section id="acara" class="py-12 px-6 bg-purple-50/50 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-purple-600 font-semibold">Agenda Bahagia</span>
+                <h3 class="text-3xl font-serif-title text-purple-900 font-bold mt-1">Waktu & Tempat</h3>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm mb-6 text-center">
+                <h4 class="text-xl font-bold font-serif-title text-purple-900">Pemberkatan Pernikahan</h4>
+                <div class="my-3 text-slate-600 text-xs space-y-1">
+                    <p data-field="tanggal_acara" class="font-bold text-purple-700"><i class="fa-regular fa-calendar mr-1"></i> Minggu, 18 Oktober 2026</p>
+                    <p data-field="akad_waktu"><i class="fa-regular fa-clock mr-1"></i> 10.00 - 12.00 WIB</p>
+                    <p data-field="akad_tempat" class="font-semibold text-slate-800 mt-2">Gereja Stella Maris, Pluit</p>
+                    <p data-field="akad_alamat" class="text-[11px] text-slate-400">Jl. Pantai Indah Utara, Jakarta Utara</p>
+                </div>
+            </div>
+
+            <div class="bg-white p-6 rounded-2xl border border-purple-100 shadow-sm text-center">
+                <h4 class="text-xl font-bold font-serif-title text-purple-900">Wedding Celebration</h4>
+                <div class="my-3 text-slate-600 text-xs space-y-1">
+                    <p data-field="tanggal_acara" class="font-bold text-purple-700"><i class="fa-regular fa-calendar mr-1"></i> Minggu, 18 Oktober 2026</p>
+                    <p data-field="resepsi_waktu"><i class="fa-regular fa-clock mr-1"></i> 18.00 - 21.00 WIB</p>
+                    <p data-field="resepsi_tempat" class="font-semibold text-slate-800 mt-2">Pullman Central Park Grand Ballroom</p>
+                    <p data-field="resepsi_alamat" class="text-[11px] text-slate-400">Grogol Petamburan, Jakarta Barat</p>
+                </div>
+                <div class="mt-4">
+                    <a data-field="maps_link" href="https://maps.google.com" target="_blank" class="w-full bg-purple-600 hover:bg-purple-700 text-white text-xs font-semibold py-2.5 px-4 rounded-xl shadow transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-location-arrow"></i>
+                        <span>Petunjuk Arah Google Maps</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. GALERI -->
+        <section id="galeri" class="py-12 px-6 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-purple-600 font-semibold">Galeri Foto</span>
+                <h3 class="text-3xl font-serif-title text-purple-900 font-bold mt-1">Sweet Moments</h3>
+            </div>
+            <div class="grid grid-cols-2 gap-3">
+                <img data-field="foto_galeri_1" src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=500&q=80" onclick="openLightbox(this.src)" class="rounded-xl shadow aspect-square object-cover cursor-pointer">
+                <img data-field="foto_galeri_2" src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=500&q=80" onclick="openLightbox(this.src)" class="rounded-xl shadow aspect-square object-cover cursor-pointer">
+                <img data-field="foto_galeri_3" src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=500&q=80" onclick="openLightbox(this.src)" class="rounded-xl shadow aspect-square object-cover cursor-pointer">
+                <img data-field="foto_galeri_4" src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=500&q=80" onclick="openLightbox(this.src)" class="rounded-xl shadow aspect-square object-cover cursor-pointer">
+            </div>
+        </section>
+
+        <!-- 5. HADIAH -->
+        <section id="hadiah" class="py-12 px-6 bg-purple-50/40 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-purple-600 font-semibold">Tanda Kasih</span>
+                <h3 class="text-3xl font-serif-title text-purple-900 font-bold mt-1">Amplop Digital</h3>
+            </div>
+            <div class="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm mb-4 flex items-center justify-between">
+                <div>
+                    <span data-field="bank_1_nama" class="text-xs font-bold text-purple-700 block">BANK BCA</span>
+                    <p data-field="bank_1_norek" class="text-sm font-mono font-bold text-slate-800 my-1">502-189-9943</p>
+                    <span data-field="bank_1_an" class="text-xs text-slate-500">a.n. Kevin Sanjaya</span>
+                </div>
+                <button onclick="salinRekening(this.parentElement.querySelector('[data-field=bank_1_norek]').innerText, 'Rekening')" class="bg-purple-50 hover:bg-purple-100 text-purple-600 text-xs font-semibold py-2 px-3 rounded-lg border border-purple-200 transition">
+                    <i class="fa-regular fa-copy mr-1"></i> Salin
+                </button>
+            </div>
+        </section>
+
+        <!-- 6. RSVP -->
+        <section id="rsvp" class="py-12 px-6 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-purple-600 font-semibold">Buku Tamu</span>
+                <h3 class="text-3xl font-serif-title text-purple-900 font-bold mt-1">Kirim Ucapan & Doa</h3>
+            </div>
+            <form onsubmit="kirimUcapan(event, 'pastel-lavender')" class="bg-white p-5 rounded-2xl border border-purple-100 shadow-sm space-y-4 mb-8">
+                <input type="text" id="rsvp-nama" required placeholder="Nama Lengkap Anda" class="w-full text-sm border border-purple-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-400">
+                <select id="rsvp-status" class="w-full text-sm border border-purple-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-400">
+                    <option value="hadir">✓ Akan Hadir</option>
+                    <option value="tidak_hadir">✕ Belum Bisa Hadir</option>
+                </select>
+                <textarea id="rsvp-pesan" required rows="3" placeholder="Tulis ucapan dan doa terbaik..." class="w-full text-sm border border-purple-200 rounded-xl p-3 focus:ring-2 focus:ring-purple-400"></textarea>
+                <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white font-bold py-3 rounded-xl transition text-xs uppercase tracking-wider">Kirim Doa</button>
+            </form>
+            <div id="wishes-list" class="space-y-3 max-h-80 overflow-y-auto"></div>
+        </section>
+
+        <footer class="text-center py-8 text-slate-400 text-xs border-t border-purple-100">
+            <p class="font-script text-2xl text-purple-700 mb-1">Kevin & Natasha</p>
+            <p>Terima kasih atas segenap kasih dan doa restunya</p>
+        </footer>
+    </div>
+
+    <script src="../assets/js/invitation.js"></script>
+    <script>
+        initCountdown('2026-10-18T10:00:00');
+        initWishes('pastel-lavender');
+    </script>
+</body>
+</html>

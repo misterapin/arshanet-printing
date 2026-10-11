@@ -1,0 +1,286 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of Rama & Shinta | Rustic Botanical Theme</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts & Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/invitation.css">
+    <style>
+        .font-serif-cormorant { font-family: 'Cormorant Garamond', serif; }
+        .font-script-alex { font-family: 'Alex Brush', cursive; }
+        .bg-rustic-pattern {
+            background-color: #f7f9f6;
+            background-image: radial-gradient(#d3e2d7 1px, transparent 1px);
+            background-size: 24px 24px;
+        }
+    </style>
+</head>
+<body class="bg-[#eef3ee] text-stone-700 antialiased overflow-hidden selection:bg-emerald-200">
+
+    <!-- COVER / AMPLOP PEMBUKA -->
+    <div id="cover-invitation" class="cover-overlay bg-emerald-900/95 text-stone-100 text-center px-4 backdrop-blur-md">
+        <div class="max-w-md w-full bg-[#1b332b]/90 border border-emerald-700/60 p-8 md:p-10 rounded-3xl shadow-2xl relative">
+            <div class="text-emerald-400 mb-3 float-gentle text-3xl">
+                <i class="fa-solid fa-leaf"></i>
+            </div>
+            
+            <p class="uppercase tracking-[0.3em] text-xs text-emerald-300 font-semibold mb-2">Pernikahan Suci</p>
+            <h1 class="text-4xl md:text-5xl font-script-alex text-amber-200 my-3" data-field="judul_pasangan">Rama & Shinta</h1>
+            <p class="text-emerald-200 text-xs tracking-wider uppercase font-serif-cormorant">Sabtu, 14 November 2026</p>
+
+            <div class="my-8 py-4 px-6 bg-emerald-950/60 rounded-2xl border border-emerald-800/80">
+                <p class="text-xs text-emerald-300/80 mb-1">Kepada Sahabat & Kerabat:</p>
+                <h3 class="text-lg md:text-xl font-bold text-white guest-name-placeholder">Tamu Undangan & Rekan</h3>
+                <p class="text-[11px] text-emerald-400/60 mt-1 italic">*Tanpa mengurangi rasa hormat, kami mengundang Anda</p>
+            </div>
+
+            <button onclick="bukaUndangan()" class="w-full bg-emerald-600 hover:bg-emerald-500 text-white font-medium py-3 px-6 rounded-xl shadow-lg shadow-emerald-900/50 transition transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Buka Undangan</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- FLOATING MUSIC BUTTON -->
+    <div id="music-control-btn" onclick="toggleMusic()" class="music-btn bg-emerald-800 text-emerald-100 border border-emerald-600 hidden hover:text-white shadow-emerald-900/40">
+        <i id="music-icon" class="fa-solid fa-compact-disc text-xl"></i>
+    </div>
+
+    <!-- BOTTOM FLOATING NAV -->
+    <nav id="bottom-nav" class="bottom-nav bg-emerald-900/90 text-emerald-200 border border-emerald-700 hidden">
+        <a href="#hero" class="hover:text-amber-300"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a href="#mempelai" class="hover:text-amber-300"><i class="fa-solid fa-heart"></i><span>Mempelai</span></a>
+        <a href="#acara" class="hover:text-amber-300"><i class="fa-solid fa-calendar-check"></i><span>Acara</span></a>
+        <a href="#galeri" class="hover:text-amber-300"><i class="fa-solid fa-images"></i><span>Galeri</span></a>
+        <a href="#hadiah" class="hover:text-amber-300"><i class="fa-solid fa-gift"></i><span>Hadiah</span></a>
+        <a href="#rsvp" class="hover:text-amber-300"><i class="fa-solid fa-comment-dots"></i><span>Ucapan</span></a>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-md mx-auto bg-white shadow-2xl min-h-screen relative border-x border-emerald-100 pb-24 bg-rustic-pattern">
+
+        <!-- 1. HERO SECTION -->
+        <section id="hero" class="relative pt-12 pb-16 px-6 text-center bg-gradient-to-b from-emerald-50 to-white">
+            <span class="text-xs uppercase tracking-widest text-emerald-700 font-bold"><i class="fa-solid fa-feather mr-1"></i> The Wedding Ceremony</span>
+            <h2 class="text-5xl font-script-alex text-emerald-900 my-3" data-field="judul_pasangan">Rama & Shinta</h2>
+            <p class="text-stone-600 text-xs italic font-serif-cormorant leading-relaxed text-base px-2">
+                "Dua hati yang bersatu dalam cinta, mengikat janji suci di hadapan Sang Pencipta dan semesta alam."
+            </p>
+
+            <!-- Foto Utama Rustic -->
+            <div class="mt-8 relative w-60 h-72 mx-auto rounded-3xl overflow-hidden shadow-xl border-4 border-emerald-50 ring-2 ring-emerald-600/30">
+                <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=700&q=80" alt="Rustic Couple" class="w-full h-full object-cover" data-field="foto_galeri_1">
+            </div>
+
+            <!-- COUNTDOWN TIMER -->
+            <div class="mt-10 p-5 rounded-2xl bg-emerald-900 text-white shadow-md">
+                <p class="text-xs uppercase tracking-wider text-emerald-300 font-semibold mb-3">Menuju Hari Bahagia</p>
+                <div id="countdown-container" class="grid grid-cols-4 gap-2 text-center">
+                    <div class="bg-emerald-950/70 p-2.5 rounded-xl border border-emerald-700">
+                        <span id="count-days" class="block text-2xl font-bold text-amber-300 font-serif-cormorant">00</span>
+                        <span class="text-[10px] text-emerald-200 uppercase">Hari</span>
+                    </div>
+                    <div class="bg-emerald-950/70 p-2.5 rounded-xl border border-emerald-700">
+                        <span id="count-hours" class="block text-2xl font-bold text-amber-300 font-serif-cormorant">00</span>
+                        <span class="text-[10px] text-emerald-200 uppercase">Jam</span>
+                    </div>
+                    <div class="bg-emerald-950/70 p-2.5 rounded-xl border border-emerald-700">
+                        <span id="count-minutes" class="block text-2xl font-bold text-amber-300 font-serif-cormorant">00</span>
+                        <span class="text-[10px] text-emerald-200 uppercase">Menit</span>
+                    </div>
+                    <div class="bg-emerald-950/70 p-2.5 rounded-xl border border-emerald-700">
+                        <span id="count-seconds" class="block text-2xl font-bold text-amber-300 font-serif-cormorant">00</span>
+                        <span class="text-[10px] text-emerald-200 uppercase">Detik</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. MEMPELAI SECTION -->
+        <section id="mempelai" class="py-12 px-6 text-center reveal-on-scroll">
+            <h3 class="text-3xl font-serif-cormorant text-emerald-900 mb-2 font-bold uppercase tracking-wider">Pasangan Mempelai</h3>
+            <p class="text-xs text-stone-500 mb-8">Salam hangat penuh rasa syukur kami haturkan atas kehadiran rekan sekalian:</p>
+
+            <!-- Pengantin Pria -->
+            <div class="mb-10">
+                <div class="w-36 h-36 mx-auto rounded-2xl overflow-hidden shadow-lg border-4 border-emerald-100 ring-2 ring-emerald-500/50">
+                    <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=80" alt="Rama" class="w-full h-full object-cover" data-field="foto_pria">
+                </div>
+                <h4 class="text-2xl font-serif-cormorant font-bold text-emerald-900 mt-4" data-field="pria_nama">Rama Dananjaya, S.Ars.</h4>
+                <p class="text-xs text-stone-500 mt-1">Putra Tercinta dari</p>
+                <p class="text-sm font-medium text-stone-800">Bpk. Ir. Gunawan Wibisono & Ibu Laksmi Dewi</p>
+                <a href="https://instagram.com" target="_blank" class="inline-flex items-center space-x-1 text-xs text-emerald-700 mt-2 hover:underline">
+                    <i class="fa-brands fa-instagram"></i> <span>@ramadananjaya</span>
+                </a>
+            </div>
+
+            <div class="text-3xl font-script-alex text-emerald-600 my-4">&</div>
+
+            <!-- Pengantin Wanita -->
+            <div>
+                <div class="w-36 h-36 mx-auto rounded-2xl overflow-hidden shadow-lg border-4 border-emerald-100 ring-2 ring-emerald-500/50">
+                    <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=80" alt="Shinta" class="w-full h-full object-cover" data-field="foto_wanita">
+                </div>
+                <h4 class="text-2xl font-serif-cormorant font-bold text-emerald-900 mt-4">Shinta Maharani, M.Ds.</h4>
+                <p class="text-xs text-stone-500 mt-1">Putri Bungsu dari</p>
+                <p class="text-sm font-medium text-stone-800">Bpk. Dr. Suryanto, M.M. & Ibu Sri Lestari</p>
+                <a href="https://instagram.com" target="_blank" class="inline-flex items-center space-x-1 text-xs text-emerald-700 mt-2 hover:underline">
+                    <i class="fa-brands fa-instagram"></i> <span>@shintamaharani</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- 3. DETAIL ACARA SECTION -->
+        <section id="acara" class="py-12 px-6 bg-emerald-50/60 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-emerald-700 font-bold">Rangkaian Acara</span>
+                <h3 class="text-3xl font-serif-cormorant text-emerald-900 font-bold mt-1">Akad & Resepsi Outdoor</h3>
+            </div>
+
+            <!-- Akad Nikah -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-emerald-200/80 mb-6 text-center">
+                <div class="w-12 h-12 mx-auto rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center text-xl mb-3">
+                    <i class="fa-solid fa-book-open"></i>
+                </div>
+                <h4 class="text-xl font-bold font-serif-cormorant text-emerald-900">Akad Nikah</h4>
+                <div class="my-3 text-stone-600 text-sm space-y-1">
+                    <p class="font-semibold text-emerald-800"><i class="fa-regular fa-calendar mr-1"></i> Sabtu, 14 November 2026</p>
+                    <p><i class="fa-regular fa-clock mr-1"></i> 09.00 - 11.00 WIB</p>
+                    <p class="text-xs text-stone-500 mt-2"><i class="fa-solid fa-location-dot text-emerald-700 mr-1"></i> Pine Hill Garden Lembang, Bandung Barat</p>
+                </div>
+            </div>
+
+            <!-- Resepsi Pernikahan -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-emerald-200/80 text-center">
+                <div class="w-12 h-12 mx-auto rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center text-xl mb-3">
+                    <i class="fa-solid fa-glass-water"></i>
+                </div>
+                <h4 class="text-xl font-bold font-serif-cormorant text-emerald-900">Garden Party Reception</h4>
+                <div class="my-3 text-stone-600 text-sm space-y-1">
+                    <p class="font-semibold text-emerald-800"><i class="fa-regular fa-calendar mr-1"></i> Sabtu, 14 November 2026</p>
+                    <p><i class="fa-regular fa-clock mr-1"></i> 13.00 - 17.00 WIB</p>
+                    <p class="text-xs text-stone-500 mt-2"><i class="fa-solid fa-location-dot text-emerald-700 mr-1"></i> Pine Hill Garden Lembang, Bandung Barat</p>
+                </div>
+                <div class="mt-5 flex flex-col gap-2">
+                    <a href="https://maps.google.com" target="_blank" class="w-full bg-emerald-700 hover:bg-emerald-800 text-white text-xs font-semibold py-2.5 px-4 rounded-xl shadow transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-location-arrow"></i>
+                        <span>Petunjuk Arah Google Maps</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. GALERI FOTO -->
+        <section id="galeri" class="py-12 px-6 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-emerald-700 font-bold">Dokumentasi</span>
+                <h3 class="text-3xl font-serif-cormorant text-emerald-900 font-bold mt-1">Cerita Kasih Kami</h3>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div class="aspect-square rounded-2xl overflow-hidden shadow cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1519225429180-eaad30084fce?auto=format&fit=crop&w=800&q=80', 'Petualangan Bersama')">
+                    <img src="https://images.unsplash.com/photo-1519225429180-eaad30084fce?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" data-field="foto_galeri_4">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden shadow cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=800&q=80', 'Harmoni Alam')">
+                    <img src="https://images.unsplash.com/photo-1469371670807-013ccf25f16a?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden shadow cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=800&q=80', 'Tawa & Bahagia')">
+                    <img src="https://images.unsplash.com/photo-1532712938310-34cb3982ef74?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden shadow cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=800&q=80', 'Menatap Masa Depan')">
+                    <img src="https://images.unsplash.com/photo-1520854221256-17451cc331bf?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. TANDA KASIH / HADIAH DIGITAL -->
+        <section id="hadiah" class="py-12 px-6 bg-emerald-50/60 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-emerald-700 font-bold">Kado Pernikahan</span>
+                <h3 class="text-3xl font-serif-cormorant text-emerald-900 font-bold mt-1">Amplop Digital</h3>
+                <p class="text-xs text-stone-500 mt-2">Bagi sanak saudara yang ingin memberikan hadiah tanpa tunai:</p>
+            </div>
+
+            <!-- Rekening BCA -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-emerald-200 mb-4 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-blue-800 block">BANK CENTRAL ASIA (BCA)</span>
+                    <p class="text-sm font-mono font-bold text-stone-800 my-1">604-129-8472</p>
+                    <span class="text-xs text-stone-500">a.n. Rama Dananjaya</span>
+                </div>
+                <button onclick="salinRekening('6041298472', 'Rekening BCA')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-semibold py-2 px-3 rounded-lg border border-emerald-200 transition">
+                    <i class="fa-regular fa-copy mr-1"></i> Salin
+                </button>
+            </div>
+
+            <!-- DANA E-Wallet -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-emerald-200 mb-4 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-sky-600 block">DANA E-WALLET</span>
+                    <p class="text-sm font-mono font-bold text-stone-800 my-1">0812-9844-3211</p>
+                    <span class="text-xs text-stone-500">a.n. Shinta Maharani</span>
+                </div>
+                <button onclick="salinRekening('081298443211', 'Nomor DANA')" class="bg-emerald-50 hover:bg-emerald-100 text-emerald-800 text-xs font-semibold py-2 px-3 rounded-lg border border-emerald-200 transition">
+                    <i class="fa-regular fa-copy mr-1"></i> Salin
+                </button>
+            </div>
+        </section>
+
+        <!-- 6. RSVP & BUKU TAMU -->
+        <section id="rsvp" class="py-12 px-6 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-emerald-700 font-bold">Buku Tamu</span>
+                <h3 class="text-3xl font-serif-cormorant text-emerald-900 font-bold mt-1">Kirimkan Harapan & Doa</h3>
+            </div>
+
+            <form onsubmit="kirimUcapan(event, 'rustic-botanical')" class="bg-white p-5 rounded-2xl shadow-sm border border-emerald-200 space-y-4 mb-8">
+                <div>
+                    <label class="block text-xs font-semibold text-stone-600 mb-1">Nama Pengirim</label>
+                    <input type="text" id="rsvp-nama" required placeholder="Contoh: Keluarga Pratama" class="w-full text-sm border border-stone-200 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-stone-600 mb-1">Konfirmasi Kehadiran</label>
+                    <select id="rsvp-status" class="w-full text-sm border border-stone-200 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-emerald-600">
+                        <option value="hadir">âœ“ Hadir di Acara</option>
+                        <option value="tidak_hadir">âœ• Belum Dapat Hadir</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-stone-600 mb-1">Pesan & Doa Restu</label>
+                    <textarea id="rsvp-pesan" required rows="3" placeholder="Semoga senantiasa dilimpahi cinta dan kebahagiaan..." class="w-full text-sm border border-stone-200 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-emerald-600"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-emerald-800 hover:bg-emerald-700 text-white font-semibold py-3 rounded-xl shadow-md transition">
+                    Kirim Doa Restu
+                </button>
+            </form>
+
+            <div class="flex items-center justify-between mb-4">
+                <h4 class="text-sm font-bold text-stone-800">Ucapan Sahabat</h4>
+                <span id="wishes-count" class="text-xs text-emerald-700 font-semibold"></span>
+            </div>
+
+            <div id="wishes-list" class="space-y-3 max-h-96 overflow-y-auto pr-1"></div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center py-8 px-4 bg-emerald-950 text-emerald-300 text-xs">
+            <p class="font-script-alex text-2xl text-amber-200 mb-2">Rama & Shinta</p>
+            <p>Teriring rasa syukur dan terima kasih tak terhingga.</p>
+            <p class="mt-4 text-[10px] text-emerald-500">Dibuat dengan rasa cinta oleh <a href="../index.html" class="text-amber-200 underline">MisterApin Invite</a></p>
+        </footer>
+
+    </div>
+
+    <script src="../assets/js/invitation.js"></script>
+    <script>
+        initCountdown('2026-11-14T09:00:00');
+        initWishes('rustic-botanical');
+    </script>
+</body>
+</html>
+

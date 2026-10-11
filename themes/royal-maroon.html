@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pawiwahan Ageng Arya & Kirana | Royal Maroon & Gold Theme</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts & Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/invitation.css">
+    <style>
+        .font-royal { font-family: 'Cinzel', serif; }
+        .font-script-royal { font-family: 'Great Vibes', cursive; }
+        .bg-royal-maroon {
+            background: linear-gradient(180deg, #380710 0%, #200207 100%);
+        }
+        .border-gold {
+            border-color: #d4af37;
+        }
+        .gold-gradient-bg {
+            background: linear-gradient(135deg, #bf953f 0%, #fcf6ba 50%, #b38728 100%);
+        }
+    </style>
+</head>
+<body class="bg-[#1f0308] text-amber-100 antialiased overflow-hidden selection:bg-amber-500 selection:text-black">
+
+    <!-- COVER / AMPLOP PEMBUKA MEWAH -->
+    <div id="cover-invitation" class="cover-overlay bg-royal-maroon text-center px-4">
+        <!-- Bingkai Ornamen Emas -->
+        <div class="max-w-md w-full bg-[#2b050c]/95 border-2 border-amber-500/70 p-8 md:p-10 rounded-3xl shadow-2xl relative">
+            <div class="text-amber-400 mb-2 float-gentle text-4xl">
+                <i class="fa-solid fa-crown"></i>
+            </div>
+            
+            <p class="uppercase tracking-[0.35em] text-xs text-amber-300 font-royal font-semibold mb-2">Pawiwahan Penganten</p>
+            <h1 class="text-4xl md:text-5xl font-script-royal text-amber-200 my-3 gold-shimmer" data-field="judul_pasangan">Arya & Kirana</h1>
+            <p class="text-amber-300/80 text-xs tracking-widest font-royal uppercase">Sabtu Kliwon, 19 Desember 2026</p>
+
+            <div class="my-8 py-5 px-6 bg-black/40 rounded-2xl border border-amber-500/40">
+                <p class="text-xs text-amber-200/70 mb-1">Katur Dhumateng Panjenenganipun:</p>
+                <h3 class="text-lg md:text-xl font-bold text-amber-100 guest-name-placeholder font-royal">Tamu Undangan & Rekan</h3>
+                <p class="text-[11px] text-amber-400/50 mt-1 italic">*Maha Suci Gusti Allah ingkang sampun nitahaken mulyaning gesang</p>
+            </div>
+
+            <button onclick="bukaUndangan()" class="w-full gold-gradient-bg text-stone-900 font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-amber-900/60 transition transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center space-x-2 font-royal uppercase tracking-wider text-xs">
+                <i class="fa-solid fa-envelope-open"></i>
+                <span>Buka Undangan Ageng</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- FLOATING MUSIC BUTTON -->
+    <div id="music-control-btn" onclick="toggleMusic()" class="music-btn bg-amber-500 text-stone-950 border border-amber-300 hidden hover:bg-amber-400 shadow-amber-500/40">
+        <i id="music-icon" class="fa-solid fa-compact-disc text-xl"></i>
+    </div>
+
+    <!-- BOTTOM FLOATING NAV -->
+    <nav id="bottom-nav" class="bottom-nav bg-[#29050d]/90 text-amber-200 border border-amber-500/50 hidden">
+        <a href="#hero" class="hover:text-amber-400"><i class="fa-solid fa-crown"></i><span>Home</span></a>
+        <a href="#mempelai" class="hover:text-amber-400"><i class="fa-solid fa-heart"></i><span>Mempelai</span></a>
+        <a href="#acara" class="hover:text-amber-400"><i class="fa-solid fa-calendar-check"></i><span>Acara</span></a>
+        <a href="#galeri" class="hover:text-amber-400"><i class="fa-solid fa-images"></i><span>Galeri</span></a>
+        <a href="#hadiah" class="hover:text-amber-400"><i class="fa-solid fa-gift"></i><span>Hadiah</span></a>
+        <a href="#rsvp" class="hover:text-amber-400"><i class="fa-solid fa-comment-dots"></i><span>Ucapan</span></a>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-md mx-auto bg-[#26050b] text-amber-100 shadow-2xl min-h-screen relative border-x border-amber-500/30 pb-24">
+
+        <!-- 1. HERO SECTION -->
+        <section id="hero" class="relative pt-12 pb-16 px-6 text-center bg-gradient-to-b from-[#3a0812] to-[#26050b]">
+            <span class="text-xs uppercase tracking-[0.25em] text-amber-400 font-royal font-semibold"><i class="fa-solid fa-gem mr-1"></i> The Royal Wedding</span>
+            <h2 class="text-5xl font-script-royal text-amber-300 my-4 gold-shimmer" data-field="judul_pasangan">Arya & Kirana</h2>
+            <p class="text-amber-200/80 text-xs italic font-serif leading-relaxed px-4">
+                "Niti laku ning tresna sejati, nyawiji ing rasa tentrem lan bagya mulya."
+            </p>
+
+            <!-- Foto Utama -->
+            <div class="mt-8 relative w-60 h-76 mx-auto rounded-3xl overflow-hidden shadow-2xl border-2 border-amber-400 ring-4 ring-amber-900/60">
+                <img src="https://images.unsplash.com/photo-1544078751-58edd2d0b64b?auto=format&fit=crop&w=700&q=80" alt="Royal Couple" class="w-full h-full object-cover" data-field="foto_galeri_1">
+            </div>
+
+            <!-- COUNTDOWN TIMER MEWAH -->
+            <div class="mt-10 p-5 rounded-2xl bg-black/50 border border-amber-500/40">
+                <p class="text-xs uppercase tracking-widest text-amber-400 font-royal font-semibold mb-3">Menuju Hari Bahagia</p>
+                <div id="countdown-container" class="grid grid-cols-4 gap-2 text-center">
+                    <div class="bg-[#380710] p-2.5 rounded-xl border border-amber-500/30">
+                        <span id="count-days" class="block text-2xl font-bold text-amber-300 font-royal">00</span>
+                        <span class="text-[10px] text-amber-200/60 uppercase">Dinten</span>
+                    </div>
+                    <div class="bg-[#380710] p-2.5 rounded-xl border border-amber-500/30">
+                        <span id="count-hours" class="block text-2xl font-bold text-amber-300 font-royal">00</span>
+                        <span class="text-[10px] text-amber-200/60 uppercase">Jam</span>
+                    </div>
+                    <div class="bg-[#380710] p-2.5 rounded-xl border border-amber-500/30">
+                        <span id="count-minutes" class="block text-2xl font-bold text-amber-300 font-royal">00</span>
+                        <span class="text-[10px] text-amber-200/60 uppercase">Menit</span>
+                    </div>
+                    <div class="bg-[#380710] p-2.5 rounded-xl border border-amber-500/30">
+                        <span id="count-seconds" class="block text-2xl font-bold text-amber-300 font-royal">00</span>
+                        <span class="text-[10px] text-amber-200/60 uppercase">Detik</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. MEMPELAI SECTION -->
+        <section id="mempelai" class="py-12 px-6 text-center reveal-on-scroll">
+            <h3 class="text-3xl font-royal text-amber-300 mb-2 font-bold uppercase tracking-wider">Sang Mempelai</h3>
+            <p class="text-xs text-amber-200/70 mb-8">Kanthi linambaran berkah lan rahmat saking Gusti Ingkang Maha Agung:</p>
+
+            <!-- Pengantin Pria -->
+            <div class="mb-10">
+                <div class="w-36 h-36 mx-auto rounded-full overflow-hidden shadow-xl border-2 border-amber-400 ring-4 ring-[#400913]">
+                    <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&q=80" alt="Arya" class="w-full h-full object-cover" data-field="foto_pria">
+                </div>
+                <h4 class="text-2xl font-royal font-bold text-amber-200 mt-4" data-field="pria_nama">Raden Mas Arya Kusuma, S.H.</h4>
+                <p class="text-xs text-amber-400 mt-1">Putra Kakung saking</p>
+                <p class="text-sm font-medium text-amber-100">Bpk. K.R.T. Danang Kusumo & Ibu Raden Ajeng Sulastri</p>
+                <a href="https://instagram.com" target="_blank" class="inline-flex items-center space-x-1 text-xs text-amber-400 mt-2 hover:underline">
+                    <i class="fa-brands fa-instagram"></i> <span>@aryakusuma</span>
+                </a>
+            </div>
+
+            <div class="text-3xl font-script-royal text-amber-400 my-4">&</div>
+
+            <!-- Pengantin Wanita -->
+            <div>
+                <div class="w-36 h-36 mx-auto rounded-full overflow-hidden shadow-xl border-2 border-amber-400 ring-4 ring-[#400913]">
+                    <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&q=80" alt="Kirana" class="w-full h-full object-cover" data-field="foto_wanita">
+                </div>
+                <h4 class="text-2xl font-royal font-bold text-amber-200 mt-4">Raden Ajeng Kirana Laksita, S.E.</h4>
+                <p class="text-xs text-amber-400 mt-1">Putri Putri saking</p>
+                <p class="text-sm font-medium text-amber-100">Bpk. H. Brotojoyo, M.B.A. & Ibu Hj. Endang Rahayu</p>
+                <a href="https://instagram.com" target="_blank" class="inline-flex items-center space-x-1 text-xs text-amber-400 mt-2 hover:underline">
+                    <i class="fa-brands fa-instagram"></i> <span>@kiranalaksita</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- 3. DETAIL ACARA SECTION -->
+        <section id="acara" class="py-12 px-6 bg-black/40 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-amber-400 font-royal font-semibold">Titi Mangsa</span>
+                <h3 class="text-3xl font-royal text-amber-300 font-bold mt-1">Wanci & Papan Palenggahan</h3>
+            </div>
+
+            <!-- Ijab Qabul -->
+            <div class="bg-[#380710] p-6 rounded-2xl shadow-lg border border-amber-500/40 mb-6 text-center">
+                <div class="w-12 h-12 mx-auto rounded-full gold-gradient-bg text-stone-900 flex items-center justify-center text-xl mb-3">
+                    <i class="fa-solid fa-ring"></i>
+                </div>
+                <h4 class="text-xl font-bold font-royal text-amber-200">Akad Nikah / Ijab Qabul</h4>
+                <div class="my-3 text-amber-100/90 text-sm space-y-1">
+                    <p class="font-semibold text-amber-300"><i class="fa-regular fa-calendar mr-1"></i> Sabtu, 19 Desember 2026</p>
+                    <p><i class="fa-regular fa-clock mr-1"></i> 08.00 - 10.00 WIB</p>
+                    <p class="text-xs text-amber-200/70 mt-2"><i class="fa-solid fa-location-dot text-amber-400 mr-1"></i> Gedung Sasana Kriya, Taman Mini Indonesia Indah</p>
+                </div>
+            </div>
+
+            <!-- Resepsi Ageng -->
+            <div class="bg-[#380710] p-6 rounded-2xl shadow-lg border border-amber-500/40 text-center">
+                <div class="w-12 h-12 mx-auto rounded-full gold-gradient-bg text-stone-900 flex items-center justify-center text-xl mb-3">
+                    <i class="fa-solid fa-award"></i>
+                </div>
+                <h4 class="text-xl font-bold font-royal text-amber-200">Resepsi Ageng (Pawiwahan)</h4>
+                <div class="my-3 text-amber-100/90 text-sm space-y-1">
+                    <p class="font-semibold text-amber-300"><i class="fa-regular fa-calendar mr-1"></i> Sabtu, 19 Desember 2026</p>
+                    <p><i class="fa-regular fa-clock mr-1"></i> 11.00 - 14.30 WIB</p>
+                    <p class="text-xs text-amber-200/70 mt-2"><i class="fa-solid fa-location-dot text-amber-400 mr-1"></i> Main Ballroom Sasana Kriya TMII, Jakarta Timur</p>
+                </div>
+                <div class="mt-5 flex flex-col gap-2">
+                    <a href="https://maps.google.com" target="_blank" class="w-full gold-gradient-bg text-stone-900 text-xs font-bold py-2.5 px-4 rounded-xl shadow transition flex items-center justify-center space-x-2 font-royal">
+                        <i class="fa-solid fa-location-arrow"></i>
+                        <span>Petunjuk Margi (Google Maps)</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. GALERI FOTO -->
+        <section id="galeri" class="py-12 px-6 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-amber-400 font-royal font-semibold">Potret Bagya</span>
+                <h3 class="text-3xl font-royal text-amber-300 font-bold mt-1">Galeri Kisah</h3>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div class="aspect-square rounded-2xl overflow-hidden shadow-lg border border-amber-500/30 cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=800&q=80', 'Rasa Tresna')">
+                    <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" data-field="foto_galeri_4" data-field="foto_cover">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden shadow-lg border border-amber-500/30 cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80', 'Pawiwahan Luhur')">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden shadow-lg border border-amber-500/30 cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80', 'Kidung Katresnan')">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden shadow-lg border border-amber-500/30 cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80', 'Nyawiji Salawase')">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. TANDA TRESNA / HADIAH DIGITAL -->
+        <section id="hadiah" class="py-12 px-6 bg-black/40 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-amber-400 font-royal font-semibold">Tandha Tresna</span>
+                <h3 class="text-3xl font-royal text-amber-300 font-bold mt-1">Amplop Digital</h3>
+                <p class="text-xs text-amber-200/70 mt-2">Donga pangestu panjenengan dados bingahing manah kawula:</p>
+            </div>
+
+            <!-- Rekening BCA -->
+            <div class="bg-[#380710] p-5 rounded-2xl shadow border border-amber-500/40 mb-4 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-amber-300 block font-royal">BANK BCA</span>
+                    <p class="text-sm font-mono font-bold text-white my-1">527-1829-019</p>
+                    <span class="text-xs text-amber-200/60">a.n. Arya Kusuma</span>
+                </div>
+                <button onclick="salinRekening('5271829019', 'Rekening BCA Arya')" class="gold-gradient-bg text-stone-900 text-xs font-bold py-2 px-3 rounded-lg transition font-royal">
+                    <i class="fa-regular fa-copy mr-1"></i> Salin
+                </button>
+            </div>
+
+            <!-- Rekening BNI -->
+            <div class="bg-[#380710] p-5 rounded-2xl shadow border border-amber-500/40 mb-4 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-amber-300 block font-royal">BANK BNI</span>
+                    <p class="text-sm font-mono font-bold text-white my-1">089-218-9921</p>
+                    <span class="text-xs text-amber-200/60">a.n. Kirana Laksita</span>
+                </div>
+                <button onclick="salinRekening('0892189921', 'Rekening BNI Kirana')" class="gold-gradient-bg text-stone-900 text-xs font-bold py-2 px-3 rounded-lg transition font-royal">
+                    <i class="fa-regular fa-copy mr-1"></i> Salin
+                </button>
+            </div>
+        </section>
+
+        <!-- 6. RSVP & BUKU TAMU -->
+        <section id="rsvp" class="py-12 px-6 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-amber-400 font-royal font-semibold">Pratelan Rawuh</span>
+                <h3 class="text-3xl font-royal text-amber-300 font-bold mt-1">Donga & Pangestu</h3>
+            </div>
+
+            <form onsubmit="kirimUcapan(event, 'royal-maroon')" class="bg-[#380710] p-5 rounded-2xl shadow border border-amber-500/40 space-y-4 mb-8">
+                <div>
+                    <label class="block text-xs font-royal text-amber-300 mb-1">Asma Panjenengan (Nama)</label>
+                    <input type="text" id="rsvp-nama" required placeholder="Nama Lengkap" class="w-full text-sm bg-black/50 text-white border border-amber-500/30 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-amber-400">
+                </div>
+                <div>
+                    <label class="block text-xs font-royal text-amber-300 mb-1">Kepastian Rawuh (Kehadiran)</label>
+                    <select id="rsvp-status" class="w-full text-sm bg-black/50 text-white border border-amber-500/30 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-amber-400">
+                        <option value="hadir">Saged Rawuh (Hadir)</option>
+                        <option value="tidak_hadir">Nyuwun Pangapunten Dereng Saged Rawuh</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-royal text-amber-300 mb-1">Donga Pamuji (Ucapan & Doa)</label>
+                    <textarea id="rsvp-pesan" required rows="3" placeholder="Serat donga pamuji panjenengan..." class="w-full text-sm bg-black/50 text-white border border-amber-500/30 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-amber-400"></textarea>
+                </div>
+                <button type="submit" class="w-full gold-gradient-bg text-stone-900 font-bold py-3 rounded-xl shadow-md transition font-royal tracking-wider text-xs uppercase">
+                    Kirim Donga Pangestu
+                </button>
+            </form>
+
+            <div class="flex items-center justify-between mb-4">
+                <h4 class="text-sm font-bold font-royal text-amber-200">Donga Pangestu Para Rawuh</h4>
+                <span id="wishes-count" class="text-xs text-amber-400 font-semibold"></span>
+            </div>
+
+            <div id="wishes-list" class="space-y-3 max-h-96 overflow-y-auto pr-1"></div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center py-8 px-4 bg-black border-t border-amber-500/30 text-amber-400/60 text-xs">
+            <p class="font-script-royal text-3xl text-amber-300 mb-2">Arya & Kirana</p>
+            <p>Matur nuwun sanget katur para rawuh ingkang sampun kepareng paring donga pamuji.</p>
+            <p class="mt-4 text-[10px]">Pangripta dening <a href="../index.html" class="text-amber-300 underline font-royal">MisterApin Invite</a></p>
+        </footer>
+
+    </div>
+
+    <script src="../assets/js/invitation.js"></script>
+    <script>
+        initCountdown('2026-12-19T08:00:00');
+        initWishes('royal-maroon');
+    </script>
+</body>
+</html>
+

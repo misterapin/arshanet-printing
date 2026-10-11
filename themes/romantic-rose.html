@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of Romeo & Juliet | Romantic Rose Theme</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="../assets/css/invitation.css">
+    <style>
+        .font-serif-title { font-family: 'Playfair Display', serif; }
+        .font-script { font-family: 'Great Vibes', cursive; }
+        .bg-rose-romantic { background: radial-gradient(circle, #fff5f7 0%, #fae8eb 50%, #f7d6dc 100%); }
+    </style>
+</head>
+<body class="bg-[#fcf7f8] text-stone-700 antialiased overflow-hidden selection:bg-rose-200">
+
+    <!-- COVER / AMPLOP PEMBUKA -->
+    <div id="cover-invitation" class="cover-overlay bg-rose-romantic text-center px-4">
+        <div class="max-w-md w-full bg-white/70 backdrop-blur-md p-8 md:p-10 rounded-3xl shadow-2xl border border-rose-200/60 relative">
+            <!-- Ornamen Bunga Atas -->
+            <div class="text-rose-400 mb-3 float-gentle">
+                <i class="fa-solid fa-heart text-3xl"></i>
+            </div>
+            
+            <p class="uppercase tracking-[0.25em] text-xs text-rose-500 font-semibold mb-2">The Wedding Invitation</p>
+            <h1 class="text-4xl md:text-5xl font-script text-rose-800 my-3" data-field="judul_pasangan">Romeo & Juliet</h1>
+            <p class="text-stone-500 text-sm italic font-serif-title">Minggu, 25 Oktober 2026</p>
+
+            <div class="my-8 py-4 px-6 bg-rose-50/80 rounded-2xl border border-rose-100">
+                <p class="text-xs text-stone-500 mb-1">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+                <h3 class="text-lg md:text-xl font-bold text-rose-900 guest-name-placeholder">Tamu Undangan & Rekan</h3>
+                <p class="text-[11px] text-stone-400 mt-1 italic">*Mohon maaf bila ada kesalahan penulisan nama/gelar</p>
+            </div>
+
+            <button onclick="bukaUndangan()" class="w-full bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-medium py-3 px-6 rounded-xl shadow-lg shadow-rose-500/30 transition transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Buka Undangan</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- FLOATING MUSIC BUTTON -->
+    <div id="music-control-btn" onclick="toggleMusic()" class="music-btn bg-white/90 text-rose-600 border border-rose-200 hidden hover:text-rose-700 shadow-rose-200/50">
+        <i id="music-icon" class="fa-solid fa-compact-disc text-xl"></i>
+    </div>
+
+    <!-- BOTTOM FLOATING NAV -->
+    <nav id="bottom-nav" class="bottom-nav bg-white/90 text-stone-600 border border-rose-200 hidden shadow-rose-100/40">
+        <a href="#hero" class="hover:text-rose-600 active:text-rose-700"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a href="#mempelai" class="hover:text-rose-600"><i class="fa-solid fa-heart"></i><span>Mempelai</span></a>
+        <a href="#acara" class="hover:text-rose-600"><i class="fa-solid fa-calendar-check"></i><span>Acara</span></a>
+        <a href="#galeri" class="hover:text-rose-600"><i class="fa-solid fa-images"></i><span>Galeri</span></a>
+        <a href="#hadiah" class="hover:text-rose-600"><i class="fa-solid fa-gift"></i><span>Hadiah</span></a>
+        <a href="#rsvp" class="hover:text-rose-600"><i class="fa-solid fa-comment-dots"></i><span>Ucapan</span></a>
+    </nav>
+
+    <!-- MAIN CONTAINER (Mobile Frame Centered on Desktop) -->
+    <div class="max-w-md mx-auto bg-white shadow-2xl min-h-screen relative border-x border-rose-100 pb-24">
+
+        <!-- 1. HERO SECTION -->
+        <section id="hero" class="relative pt-12 pb-16 px-6 text-center bg-gradient-to-b from-rose-100/50 via-rose-50/30 to-white">
+            <span class="text-xs uppercase tracking-widest text-rose-500 font-semibold">Walimatul 'Ursy</span>
+            <h2 class="text-5xl font-script text-rose-800 my-4" data-field="judul_pasangan">Romeo & Juliet</h2>
+            <p class="text-stone-600 text-sm font-light leading-relaxed">
+                "Dan di antara tanda-tanda kebesaran-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya."
+            </p>
+            <p class="text-xs text-rose-500 font-semibold mt-2 font-serif-title">(QS. Ar-Rum: 21)</p>
+
+            <!-- Foto Utama -->
+            <div class="mt-8 relative w-56 h-72 mx-auto rounded-t-full rounded-b-2xl overflow-hidden shadow-xl border-4 border-white ring-2 ring-rose-200">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=80" alt="Couple" class="w-full h-full object-cover" data-field="foto_galeri_1" data-field="foto_cover">
+            </div>
+
+            <!-- COUNTDOWN TIMER -->
+            <div class="mt-10 p-5 rounded-2xl bg-rose-50/70 border border-rose-200">
+                <p class="text-xs uppercase tracking-wider text-stone-500 font-medium mb-3">Hitung Mundur Acara Bahagia</p>
+                <div id="countdown-container" class="grid grid-cols-4 gap-2 text-center">
+                    <div class="bg-white p-2.5 rounded-xl shadow-sm border border-rose-100">
+                        <span id="count-days" class="block text-2xl font-bold text-rose-600 font-serif-title">00</span>
+                        <span class="text-[10px] text-stone-400 uppercase font-semibold">Hari</span>
+                    </div>
+                    <div class="bg-white p-2.5 rounded-xl shadow-sm border border-rose-100">
+                        <span id="count-hours" class="block text-2xl font-bold text-rose-600 font-serif-title">00</span>
+                        <span class="text-[10px] text-stone-400 uppercase font-semibold">Jam</span>
+                    </div>
+                    <div class="bg-white p-2.5 rounded-xl shadow-sm border border-rose-100">
+                        <span id="count-minutes" class="block text-2xl font-bold text-rose-600 font-serif-title">00</span>
+                        <span class="text-[10px] text-stone-400 uppercase font-semibold">Menit</span>
+                    </div>
+                    <div class="bg-white p-2.5 rounded-xl shadow-sm border border-rose-100">
+                        <span id="count-seconds" class="block text-2xl font-bold text-rose-600 font-serif-title">00</span>
+                        <span class="text-[10px] text-stone-400 uppercase font-semibold">Detik</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. MEMPELAI SECTION -->
+        <section id="mempelai" class="py-12 px-6 text-center reveal-on-scroll">
+            <h3 class="text-3xl font-serif-title text-rose-900 mb-2 font-bold">Kedua Mempelai</h3>
+            <p class="text-xs text-stone-500 mb-8">Dengan memohon ridho dan rahmat Allah SWT, kami bermaksud melangsungkan pernikahan:</p>
+
+            <!-- Pengantin Pria -->
+            <div class="mb-10">
+                <div class="w-36 h-36 mx-auto rounded-full overflow-hidden shadow-lg border-4 border-rose-100 ring-2 ring-rose-300">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Romeo" class="w-full h-full object-cover" data-field="foto_pria">
+                </div>
+                <h4 class="text-2xl font-serif-title font-bold text-rose-900 mt-4" data-field="pria_nama">Romeo Pratama, S.T.</h4>
+                <p class="text-xs text-stone-500 mt-1">Putra Pertama dari</p>
+                <p class="text-sm font-medium text-stone-700">Bpk. H. Bambang Irawan & Ibu Hj. Siti Rahma</p>
+                <a href="https://instagram.com" target="_blank" class="inline-flex items-center space-x-1 text-xs text-rose-500 mt-2 hover:underline">
+                    <i class="fa-brands fa-instagram"></i> <span>@romeopratama</span>
+                </a>
+            </div>
+
+            <div class="text-2xl font-script text-rose-400 my-4">&</div>
+
+            <!-- Pengantin Wanita -->
+            <div>
+                <div class="w-36 h-36 mx-auto rounded-full overflow-hidden shadow-lg border-4 border-rose-100 ring-2 ring-rose-300">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Juliet" class="w-full h-full object-cover" data-field="foto_wanita">
+                </div>
+                <h4 class="text-2xl font-serif-title font-bold text-rose-900 mt-4">Juliet Anggraini, S.Kom.</h4>
+                <p class="text-xs text-stone-500 mt-1">Putri Kedua dari</p>
+                <p class="text-sm font-medium text-stone-700">Bpk. Ir. Hendro Santoso & Ibu Dra. Nurul Aini</p>
+                <a href="https://instagram.com" target="_blank" class="inline-flex items-center space-x-1 text-xs text-rose-500 mt-2 hover:underline">
+                    <i class="fa-brands fa-instagram"></i> <span>@julietanggraini</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- 3. DETAIL ACARA SECTION -->
+        <section id="acara" class="py-12 px-6 bg-rose-50/50 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-rose-500 font-semibold">Agenda Istimewa</span>
+                <h3 class="text-3xl font-serif-title text-rose-900 font-bold mt-1">Waktu & Tempat</h3>
+            </div>
+
+            <!-- Akad Nikah -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-rose-100 mb-6 text-center">
+                <div class="w-12 h-12 mx-auto rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-xl mb-3">
+                    <i class="fa-solid fa-ring"></i>
+                </div>
+                <h4 class="text-xl font-bold font-serif-title text-rose-900">Akad Nikah</h4>
+                <div class="my-3 text-stone-600 text-sm space-y-1">
+                    <p class="font-semibold text-rose-600"><i class="fa-regular fa-calendar mr-1"></i> Minggu, 25 Oktober 2026</p>
+                    <p><i class="fa-regular fa-clock mr-1"></i> 08.00 - 10.00 WIB</p>
+                    <p class="text-xs text-stone-500 mt-2"><i class="fa-solid fa-location-dot text-rose-500 mr-1"></i> Masjid Agung Al-Azhar, Kebayoran Baru, Jakarta Selatan</p>
+                </div>
+            </div>
+
+            <!-- Resepsi Pernikahan -->
+            <div class="bg-white p-6 rounded-2xl shadow-sm border border-rose-100 text-center">
+                <div class="w-12 h-12 mx-auto rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-xl mb-3">
+                    <i class="fa-solid fa-champagne-glasses"></i>
+                </div>
+                <h4 class="text-xl font-bold font-serif-title text-rose-900">Resepsi Pernikahan</h4>
+                <div class="my-3 text-stone-600 text-sm space-y-1">
+                    <p class="font-semibold text-rose-600"><i class="fa-regular fa-calendar mr-1"></i> Minggu, 25 Oktober 2026</p>
+                    <p><i class="fa-regular fa-clock mr-1"></i> 11.00 - 14.00 WIB</p>
+                    <p class="text-xs text-stone-500 mt-2"><i class="fa-solid fa-location-dot text-rose-500 mr-1"></i> Grand Ballroom Hotel Mulia, Senayan, Jakarta</p>
+                </div>
+                <div class="mt-5 flex flex-col gap-2">
+                    <a href="https://maps.google.com" target="_blank" class="w-full bg-rose-600 hover:bg-rose-700 text-white text-xs font-semibold py-2.5 px-4 rounded-xl shadow transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-location-arrow"></i>
+                        <span>Buka Penunjuk Lokasi (Google Maps)</span>
+                    </a>
+                    <a href="https://calendar.google.com" target="_blank" class="w-full bg-stone-100 hover:bg-stone-200 text-stone-700 text-xs font-semibold py-2.5 px-4 rounded-xl transition flex items-center justify-center space-x-2">
+                        <i class="fa-regular fa-calendar-plus"></i>
+                        <span>Simpan ke Google Calendar</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. GALERI FOTO -->
+        <section id="galeri" class="py-12 px-6 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-rose-500 font-semibold">Kenangan Indah</span>
+                <h3 class="text-3xl font-serif-title text-rose-900 font-bold mt-1">Galeri Moment</h3>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div class="aspect-square rounded-xl overflow-hidden shadow cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80', 'Momen Manis Pertama')">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" data-field="foto_galeri_4">
+                </div>
+                <div class="aspect-square rounded-xl overflow-hidden shadow cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80', 'Hari Bahagia')">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div class="aspect-square rounded-xl overflow-hidden shadow cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80', 'Bersama Selamanya')">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+                <div class="aspect-square rounded-xl overflow-hidden shadow cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80', 'Janji Setia')">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                </div>
+            </div>
+            <p class="text-center text-[11px] text-stone-400 mt-3">*Klik foto untuk memperbesar tampilan</p>
+        </section>
+
+        <!-- 5. TANDA KASIH / HADIAH DIGITAL -->
+        <section id="hadiah" class="py-12 px-6 bg-rose-50/40 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-rose-500 font-semibold">Tanda Kasih</span>
+                <h3 class="text-3xl font-serif-title text-rose-900 font-bold mt-1">Amplop Digital</h3>
+                <p class="text-xs text-stone-500 mt-2 leading-relaxed">Doa restu Anda merupakan karunia terindah bagi kami. Bagi yang berkenan memberikan tanda kasih, dapat mengirimkan melalui:</p>
+            </div>
+
+            <!-- Rekening BCA -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-rose-100 mb-4 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-blue-700 block">BANK BCA</span>
+                    <p class="text-sm font-mono font-bold text-stone-800 my-1">8720-1928-33</p>
+                    <span class="text-xs text-stone-500">a.n. Romeo Pratama</span>
+                </div>
+                <button onclick="salinRekening('8720192833', 'Nomor Rekening BCA')" class="bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-semibold py-2 px-3 rounded-lg border border-rose-200 transition">
+                    <i class="fa-regular fa-copy mr-1"></i> Salin
+                </button>
+            </div>
+
+            <!-- Rekening MANDIRI -->
+            <div class="bg-white p-5 rounded-2xl shadow-sm border border-rose-100 mb-4 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-amber-700 block">BANK MANDIRI</span>
+                    <p class="text-sm font-mono font-bold text-stone-800 my-1">137-00-189283-1</p>
+                    <span class="text-xs text-stone-500">a.n. Juliet Anggraini</span>
+                </div>
+                <button onclick="salinRekening('137001892831', 'Nomor Rekening Mandiri')" class="bg-rose-50 hover:bg-rose-100 text-rose-600 text-xs font-semibold py-2 px-3 rounded-lg border border-rose-200 transition">
+                    <i class="fa-regular fa-copy mr-1"></i> Salin
+                </button>
+            </div>
+        </section>
+
+        <!-- 6. RSVP & BUKU TAMU -->
+        <section id="rsvp" class="py-12 px-6 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-rose-500 font-semibold">Konfirmasi & Harapan</span>
+                <h3 class="text-3xl font-serif-title text-rose-900 font-bold mt-1">RSVP & Ucapan Doa</h3>
+            </div>
+
+            <form onsubmit="kirimUcapan(event, 'romantic-rose')" class="bg-white p-5 rounded-2xl shadow-sm border border-rose-100 space-y-4 mb-8">
+                <div>
+                    <label class="block text-xs font-semibold text-stone-600 mb-1">Nama Lengkap</label>
+                    <input type="text" id="rsvp-nama" required placeholder="Contoh: Budi Santoso" class="w-full text-sm border border-stone-200 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-rose-400">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-stone-600 mb-1">Konfirmasi Kehadiran</label>
+                    <select id="rsvp-status" class="w-full text-sm border border-stone-200 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-rose-400">
+                        <option value="hadir">âœ“ Ya, Saya Akan Hadir</option>
+                        <option value="tidak_hadir">âœ• Maaf, Belum Bisa Hadir</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-stone-600 mb-1">Ucapan & Doa Restu</label>
+                    <textarea id="rsvp-pesan" required rows="3" placeholder="Tuliskan ucapan dan doa terbaik Anda..." class="w-full text-sm border border-stone-200 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-rose-400"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-rose-600 hover:bg-rose-700 text-white font-semibold py-3 rounded-xl shadow-md transition">
+                    Kirim Doa & Konfirmasi
+                </button>
+            </form>
+
+            <div class="flex items-center justify-between mb-4">
+                <h4 class="text-sm font-bold text-stone-800">Doa & Ucapan Terkini</h4>
+                <span id="wishes-count" class="text-xs text-rose-500 font-semibold"></span>
+            </div>
+
+            <div id="wishes-list" class="space-y-3 max-h-96 overflow-y-auto pr-1">
+                <!-- Loaded dynamically by invitation.js -->
+            </div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center py-8 px-4 bg-stone-50 border-t border-rose-100 text-stone-400 text-xs">
+            <p class="font-script text-2xl text-rose-700 mb-2">Romeo & Juliet</p>
+            <p>Terima kasih atas doa & restu yang Anda berikan</p>
+            <p class="mt-4 text-[10px]">Created with love by <a href="../index.html" class="text-rose-500 font-semibold underline">MisterApin Invite</a></p>
+        </footer>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="../assets/js/invitation.js"></script>
+    <script>
+        // Init target date for countdown (25 Oktober 2026 08:00 WIB)
+        initCountdown('2026-10-25T08:00:00');
+        initWishes('romantic-rose');
+    </script>
+</body>
+</html>
+

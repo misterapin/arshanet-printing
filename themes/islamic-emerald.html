@@ -1,0 +1,293 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Walimatul 'Ursy Farhan & Aisyah | Islamic Emerald Theme</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts & Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/invitation.css">
+    <style>
+        .font-arabic { font-family: 'Amiri', serif, Tahoma, sans-serif; }
+        .font-script-islamic { font-family: 'Great Vibes', cursive; }
+        .font-cinzel { font-family: 'Cinzel', serif; }
+        .bg-islamic-pattern {
+            background-color: #062b21;
+            background-image: radial-gradient(#0e4e3c 1px, transparent 1px);
+            background-size: 20px 20px;
+        }
+    </style>
+</head>
+<body class="bg-[#042018] text-emerald-100 antialiased overflow-hidden selection:bg-amber-400 selection:text-black">
+
+    <!-- COVER / AMPLOP PEMBUKA ISLAMI -->
+    <div id="cover-invitation" class="cover-overlay bg-[#031d16] text-center px-4">
+        <div class="max-w-md w-full bg-[#062c21]/95 border border-amber-500/50 p-8 md:p-10 rounded-3xl shadow-2xl relative">
+            <!-- Kaligrafi Bismillah -->
+            <div class="text-amber-400 text-3xl font-arabic mb-3">
+                Ø¨ÙØ³Ù’Ù…Ù Ø§Ù„Ù„ÙŽÙ‘Ù‡Ù Ø§Ù„Ø±ÙŽÙ‘Ø­Ù’Ù…ÙŽÙ°Ù†Ù Ø§Ù„Ø±ÙŽÙ‘Ø­ÙÙŠÙ…Ù
+            </div>
+            
+            <p class="uppercase tracking-[0.3em] text-xs text-amber-300 font-semibold mb-1">Walimatul 'Ursy</p>
+            <h1 class="text-4xl md:text-5xl font-script-islamic text-amber-300 my-3 gold-shimmer" data-field="judul_pasangan">Farhan & Aisyah</h1>
+            <p class="text-emerald-200/80 text-xs font-cinzel">Ahad, 20 Desember 2026</p>
+
+            <div class="my-7 py-4 px-6 bg-black/30 rounded-2xl border border-emerald-700/60">
+                <p class="text-xs text-emerald-300/80 mb-1">Kepada Yth. Bapak/Ibu/Saudara/i:</p>
+                <h3 class="text-lg md:text-xl font-bold text-amber-200 guest-name-placeholder">Tamu Undangan & Rekan</h3>
+                <p class="text-[11px] text-emerald-400/60 mt-1 italic">Assalamuâ€™alaikum Warahmatullahi Wabarakatuh</p>
+            </div>
+
+            <button onclick="bukaUndangan()" class="w-full bg-gradient-to-r from-amber-500 to-amber-600 hover:from-amber-600 hover:to-amber-700 text-stone-900 font-bold py-3.5 px-6 rounded-xl shadow-lg shadow-amber-900/50 transition transform hover:-translate-y-0.5 active:translate-y-0 flex items-center justify-center space-x-2 text-xs uppercase tracking-wider font-cinzel">
+                <i class="fa-solid fa-envelope-open-text"></i>
+                <span>Buka Undangan</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- FLOATING MUSIC BUTTON -->
+    <div id="music-control-btn" onclick="toggleMusic()" class="music-btn bg-amber-500 text-stone-950 border border-amber-300 hidden hover:bg-amber-400 shadow-amber-500/40">
+        <i id="music-icon" class="fa-solid fa-compact-disc text-xl"></i>
+    </div>
+
+    <!-- BOTTOM FLOATING NAV -->
+    <nav id="bottom-nav" class="bottom-nav bg-[#062b21]/90 text-emerald-200 border border-emerald-700 hidden">
+        <a href="#hero" class="hover:text-amber-400"><i class="fa-solid fa-mosque"></i><span>Home</span></a>
+        <a href="#mempelai" class="hover:text-amber-400"><i class="fa-solid fa-heart"></i><span>Mempelai</span></a>
+        <a href="#acara" class="hover:text-amber-400"><i class="fa-solid fa-calendar-check"></i><span>Acara</span></a>
+        <a href="#galeri" class="hover:text-amber-400"><i class="fa-solid fa-images"></i><span>Galeri</span></a>
+        <a href="#hadiah" class="hover:text-amber-400"><i class="fa-solid fa-gift"></i><span>Hadiah</span></a>
+        <a href="#rsvp" class="hover:text-amber-400"><i class="fa-solid fa-comment-dots"></i><span>Ucapan</span></a>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-md mx-auto bg-[#072f24] text-emerald-100 shadow-2xl min-h-screen relative border-x border-emerald-800/60 pb-24">
+
+        <!-- 1. HERO SECTION -->
+        <section id="hero" class="relative pt-12 pb-16 px-6 text-center bg-gradient-to-b from-[#0b3c2f] to-[#072f24]">
+            <div class="text-amber-400 text-2xl font-arabic mb-2">
+                Ø¨ÙØ³Ù’Ù…Ù Ø§Ù„Ù„ÙŽÙ‘Ù‡Ù Ø§Ù„Ø±ÙŽÙ‘Ø­Ù’Ù…ÙŽÙ°Ù†Ù Ø§Ù„Ø±ÙŽÙ‘Ø­ÙÙŠÙ…Ù
+            </div>
+            <p class="text-xs uppercase tracking-widest text-emerald-300 font-bold mb-2">Undangan Pernikahan</p>
+            <h2 class="text-5xl font-script-islamic text-amber-300 my-3 gold-shimmer" data-field="judul_pasangan">Farhan & Aisyah</h2>
+
+            <div class="my-4 px-4 py-3 bg-black/20 rounded-2xl border border-emerald-700/40 text-xs italic text-emerald-200/90 leading-relaxed">
+                "Dan di antara tanda-tanda (kebesaran)-Nya ialah Dia menciptakan pasangan-pasangan untukmu dari jenismu sendiri, agar kamu cenderung dan merasa tenteram kepadanya, dan Dia menjadikan di antaramu rasa kasih dan sayang."
+                <div class="font-bold text-amber-400 not-italic mt-1">(QS. Ar-Rum: 21)</div>
+            </div>
+
+            <!-- Foto Utama -->
+            <div class="mt-6 relative w-60 h-76 mx-auto rounded-3xl overflow-hidden shadow-2xl border-2 border-amber-400/80 ring-4 ring-emerald-950">
+                <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=700&q=80" alt="Islamic Couple" class="w-full h-full object-cover" data-field="foto_galeri_1">
+            </div>
+
+            <!-- COUNTDOWN TIMER -->
+            <div class="mt-10 p-5 rounded-2xl bg-black/40 border border-amber-500/30">
+                <p class="text-xs uppercase tracking-widest text-amber-400 font-cinzel font-semibold mb-3">Menghitung Waktu Berkah</p>
+                <div id="countdown-container" class="grid grid-cols-4 gap-2 text-center">
+                    <div class="bg-[#052119] p-2.5 rounded-xl border border-emerald-700/60">
+                        <span id="count-days" class="block text-2xl font-bold text-amber-300 font-cinzel">00</span>
+                        <span class="text-[10px] text-emerald-300/80 uppercase">Hari</span>
+                    </div>
+                    <div class="bg-[#052119] p-2.5 rounded-xl border border-emerald-700/60">
+                        <span id="count-hours" class="block text-2xl font-bold text-amber-300 font-cinzel">00</span>
+                        <span class="text-[10px] text-emerald-300/80 uppercase">Jam</span>
+                    </div>
+                    <div class="bg-[#052119] p-2.5 rounded-xl border border-emerald-700/60">
+                        <span id="count-minutes" class="block text-2xl font-bold text-amber-300 font-cinzel">00</span>
+                        <span class="text-[10px] text-emerald-300/80 uppercase">Menit</span>
+                    </div>
+                    <div class="bg-[#052119] p-2.5 rounded-xl border border-emerald-700/60">
+                        <span id="count-seconds" class="block text-2xl font-bold text-amber-300 font-cinzel">00</span>
+                        <span class="text-[10px] text-emerald-300/80 uppercase">Detik</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. MEMPELAI SECTION -->
+        <section id="mempelai" class="py-12 px-6 text-center reveal-on-scroll">
+            <h3 class="text-3xl font-cinzel text-amber-300 mb-2 font-bold uppercase tracking-wider">Mempelai Mulia</h3>
+            <p class="text-xs text-emerald-200/70 mb-8">Dengan memohon taufiq serta hidayah Allah Azza wa Jalla, kami bermaksud membina rumah tangga sakinah mawaddah warahmah:</p>
+
+            <!-- Pengantin Pria -->
+            <div class="mb-10">
+                <div class="w-36 h-36 mx-auto rounded-full overflow-hidden shadow-xl border-2 border-amber-400 ring-4 ring-emerald-900">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Farhan" class="w-full h-full object-cover" data-field="foto_pria">
+                </div>
+                <h4 class="text-2xl font-cinzel font-bold text-amber-200 mt-4" data-field="pria_nama">Muhammad Farhan, Lc.</h4>
+                <p class="text-xs text-emerald-300 mt-1">Putra Pertama dari</p>
+                <p class="text-sm font-medium text-emerald-100">Ustadz H. Abdul Rozak & Ibu Hj. Siti Khadijah</p>
+                <a href="https://instagram.com" target="_blank" class="inline-flex items-center space-x-1 text-xs text-amber-400 mt-2 hover:underline">
+                    <i class="fa-brands fa-instagram"></i> <span>@farhan.abdul</span>
+                </a>
+            </div>
+
+            <div class="text-3xl font-script-islamic text-amber-400 my-4">&</div>
+
+            <!-- Pengantin Wanita -->
+            <div>
+                <div class="w-36 h-36 mx-auto rounded-full overflow-hidden shadow-xl border-2 border-amber-400 ring-4 ring-emerald-900">
+                    <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80" alt="Aisyah" class="w-full h-full object-cover" data-field="foto_wanita">
+                </div>
+                <h4 class="text-2xl font-cinzel font-bold text-amber-200 mt-4">Aisyah Nur Salsabila, S.Pd.</h4>
+                <p class="text-xs text-emerald-300 mt-1">Putri Kedua dari</p>
+                <p class="text-sm font-medium text-emerald-100">Bpk. H. Ahmad Marzuki & Ibu Hj. Rohana</p>
+                <a href="https://instagram.com" target="_blank" class="inline-flex items-center space-x-1 text-xs text-amber-400 mt-2 hover:underline">
+                    <i class="fa-brands fa-instagram"></i> <span>@aisyah.salsabila</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- 3. DETAIL ACARA SECTION -->
+        <section id="acara" class="py-12 px-6 bg-black/30 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-amber-400 font-cinzel font-semibold">Jadwal Acara</span>
+                <h3 class="text-3xl font-cinzel text-amber-300 font-bold mt-1">Akad & Resepsi Syar'i</h3>
+            </div>
+
+            <!-- Akad Nikah -->
+            <div class="bg-[#09392c] p-6 rounded-2xl shadow-lg border border-amber-500/30 mb-6 text-center">
+                <div class="w-12 h-12 mx-auto rounded-full bg-amber-400 text-stone-950 flex items-center justify-center text-xl mb-3">
+                    <i class="fa-solid fa-quran"></i>
+                </div>
+                <h4 class="text-xl font-bold font-cinzel text-amber-200">Akad Nikah</h4>
+                <div class="my-3 text-emerald-100 text-sm space-y-1">
+                    <p class="font-semibold text-amber-300"><i class="fa-regular fa-calendar mr-1"></i> Ahad, 20 Desember 2026</p>
+                    <p><i class="fa-regular fa-clock mr-1"></i> 08.00 - 10.00 WIB</p>
+                    <p class="text-xs text-emerald-300/80 mt-2"><i class="fa-solid fa-location-dot text-amber-400 mr-1"></i> Masjid Raya Baiturrahman, Jakarta</p>
+                </div>
+            </div>
+
+            <!-- Resepsi Pernikahan -->
+            <div class="bg-[#09392c] p-6 rounded-2xl shadow-lg border border-amber-500/30 text-center">
+                <div class="w-12 h-12 mx-auto rounded-full bg-amber-400 text-stone-950 flex items-center justify-center text-xl mb-3">
+                    <i class="fa-solid fa-hands-praying"></i>
+                </div>
+                <h4 class="text-xl font-bold font-cinzel text-amber-200">Walimatul 'Ursy (Resepsi)</h4>
+                <div class="my-3 text-emerald-100 text-sm space-y-1">
+                    <p class="font-semibold text-amber-300"><i class="fa-regular fa-calendar mr-1"></i> Ahad, 20 Desember 2026</p>
+                    <p><i class="fa-regular fa-clock mr-1"></i> 11.00 - 14.00 WIB</p>
+                    <p class="text-xs text-emerald-300/80 mt-2"><i class="fa-solid fa-location-dot text-amber-400 mr-1"></i> Aula Utama Islamic Center Jakarta</p>
+                </div>
+                <div class="mt-5 flex flex-col gap-2">
+                    <a href="https://maps.google.com" target="_blank" class="w-full bg-amber-500 hover:bg-amber-400 text-stone-950 text-xs font-bold py-2.5 px-4 rounded-xl shadow transition flex items-center justify-center space-x-2 font-cinzel">
+                        <i class="fa-solid fa-location-arrow"></i>
+                        <span>Petunjuk Lokasi Google Maps</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. GALERI FOTO -->
+        <section id="galeri" class="py-12 px-6 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-amber-400 font-cinzel font-semibold">Dokumentasi</span>
+                <h3 class="text-3xl font-cinzel text-amber-300 font-bold mt-1">Potret Bahagia</h3>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div class="aspect-square rounded-2xl overflow-hidden shadow-lg border border-amber-500/30 cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80', 'Menuju Halal')">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500" data-field="foto_galeri_4">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden shadow-lg border border-amber-500/30 cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80', 'Doa Bersama')">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden shadow-lg border border-amber-500/30 cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80', 'Keluarga Berkah')">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+                <div class="aspect-square rounded-2xl overflow-hidden shadow-lg border border-amber-500/30 cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80', 'Ikhtiar Cinta')">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover group-hover:scale-105 transition duration-500">
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. TANDA KASIH / HADIAH DIGITAL -->
+        <section id="hadiah" class="py-12 px-6 bg-black/30 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-amber-400 font-cinzel font-semibold">Tanda Kasih</span>
+                <h3 class="text-3xl font-cinzel text-amber-300 font-bold mt-1">Kado Cashless</h3>
+                <p class="text-xs text-emerald-200/70 mt-2">Bagi kaum muslimin yang ingin mengirimkan hadiah tanpa tunai:</p>
+            </div>
+
+            <!-- Rekening BSI -->
+            <div class="bg-[#09392c] p-5 rounded-2xl shadow border border-amber-500/30 mb-4 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-amber-300 block font-cinzel">BANK SYARIAH INDONESIA (BSI)</span>
+                    <p class="text-sm font-mono font-bold text-white my-1">719-281-0021</p>
+                    <span class="text-xs text-emerald-300/80">a.n. Muhammad Farhan</span>
+                </div>
+                <button onclick="salinRekening('7192810021', 'Rekening BSI Farhan')" class="bg-amber-500 hover:bg-amber-400 text-stone-950 text-xs font-bold py-2 px-3 rounded-lg transition font-cinzel">
+                    <i class="fa-regular fa-copy mr-1"></i> Salin
+                </button>
+            </div>
+
+            <!-- Rekening BCA -->
+            <div class="bg-[#09392c] p-5 rounded-2xl shadow border border-amber-500/30 mb-4 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-amber-300 block font-cinzel">BANK BCA</span>
+                    <p class="text-sm font-mono font-bold text-white my-1">829-012-3841</p>
+                    <span class="text-xs text-emerald-300/80">a.n. Aisyah Nur Salsabila</span>
+                </div>
+                <button onclick="salinRekening('8290123841', 'Rekening BCA Aisyah')" class="bg-amber-500 hover:bg-amber-400 text-stone-950 text-xs font-bold py-2 px-3 rounded-lg transition font-cinzel">
+                    <i class="fa-regular fa-copy mr-1"></i> Salin
+                </button>
+            </div>
+        </section>
+
+        <!-- 6. RSVP & BUKU TAMU -->
+        <section id="rsvp" class="py-12 px-6 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-xs uppercase tracking-widest text-amber-400 font-cinzel font-semibold">Konfirmasi Kehadiran</span>
+                <h3 class="text-3xl font-cinzel text-amber-300 font-bold mt-1">Doa Kebaikan</h3>
+            </div>
+
+            <form onsubmit="kirimUcapan(event, 'islamic-emerald')" class="bg-[#09392c] p-5 rounded-2xl shadow border border-amber-500/30 space-y-4 mb-8">
+                <div>
+                    <label class="block text-xs font-cinzel text-amber-300 mb-1">Nama Saudara/i</label>
+                    <input type="text" id="rsvp-nama" required placeholder="Nama Lengkap" class="w-full text-sm bg-black/40 text-white border border-emerald-700 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-amber-400">
+                </div>
+                <div>
+                    <label class="block text-xs font-cinzel text-amber-300 mb-1">Kehadiran</label>
+                    <select id="rsvp-status" class="w-full text-sm bg-black/40 text-white border border-emerald-700 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-amber-400">
+                        <option value="hadir">Insya Allah Hadir</option>
+                        <option value="tidak_hadir">Mohon Maaf Berhalangan Hadir</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-cinzel text-amber-300 mb-1">Doa Restu</label>
+                    <textarea id="rsvp-pesan" required rows="3" placeholder="Semoga barakah fiikuma wa arzaqakuma..." class="w-full text-sm bg-black/40 text-white border border-emerald-700 rounded-xl p-3 focus:outline-none focus:ring-2 focus:ring-amber-400"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold py-3 rounded-xl shadow-md transition font-cinzel tracking-wider text-xs uppercase">
+                    Kirim Doa Restu
+                </button>
+            </form>
+
+            <div class="flex items-center justify-between mb-4">
+                <h4 class="text-sm font-bold font-cinzel text-amber-200">Untaian Doa Saudara</h4>
+                <span id="wishes-count" class="text-xs text-amber-400 font-semibold"></span>
+            </div>
+
+            <div id="wishes-list" class="space-y-3 max-h-96 overflow-y-auto pr-1"></div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center py-8 px-4 bg-[#031d16] border-t border-emerald-800 text-emerald-400/60 text-xs">
+            <p class="font-script-islamic text-3xl text-amber-300 mb-2">Farhan & Aisyah</p>
+            <p>Jazakumullah Khairan Katsiran atas segenap doa dan perhatiannya.</p>
+            <p class="mt-4 text-[10px]">Website oleh <a href="../index.html" class="text-amber-400 underline font-cinzel">MisterApin Invite</a></p>
+        </footer>
+
+    </div>
+
+    <script src="../assets/js/invitation.js"></script>
+    <script>
+        initCountdown('2026-12-20T08:00:00');
+        initWishes('islamic-emerald');
+    </script>
+</body>
+</html>
+

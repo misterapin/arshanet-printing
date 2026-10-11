@@ -1,0 +1,259 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Wedding of Leo & Maya | Clean Minimalist Theme</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts & Custom CSS -->
+    <link rel="stylesheet" href="../assets/css/invitation.css">
+    <style>
+        .font-editorial { font-family: 'Playfair Display', serif; }
+        .font-sans-modern { font-family: 'Plus Jakarta Sans', sans-serif; }
+    </style>
+</head>
+<body class="bg-[#f8f9fa] text-slate-800 antialiased overflow-hidden font-sans-modern selection:bg-slate-900 selection:text-white">
+
+    <!-- COVER / AMPLOP PEMBUKA MINIMALIS -->
+    <div id="cover-invitation" class="cover-overlay bg-[#0f172a] text-slate-100 text-center px-4">
+        <div class="max-w-md w-full bg-slate-900/90 border border-slate-800 p-8 md:p-10 rounded-2xl shadow-2xl relative">
+            <span class="text-[10px] tracking-[0.4em] uppercase text-slate-400 font-semibold block mb-4">WEDDING CELEBRATION</span>
+            <h1 class="text-4xl md:text-5xl font-editorial tracking-tight text-white my-3" data-field="judul_pasangan">LEO & MAYA</h1>
+            <p class="text-xs text-slate-400 tracking-widest font-mono">28 . 11 . 2026</p>
+
+            <div class="my-8 py-4 px-6 bg-slate-800/60 rounded-xl border border-slate-700/60">
+                <p class="text-[11px] text-slate-400 uppercase tracking-wider mb-1">DEAR SPECIAL GUEST</p>
+                <h3 class="text-lg font-bold text-white guest-name-placeholder">Tamu Undangan & Rekan</h3>
+                <p class="text-[10px] text-slate-500 mt-1 uppercase tracking-wider">YOU ARE CORDIALLY INVITED</p>
+            </div>
+
+            <button onclick="bukaUndangan()" class="w-full bg-white text-slate-900 font-semibold py-3 px-6 rounded-xl hover:bg-slate-200 transition shadow flex items-center justify-center space-x-2 text-xs uppercase tracking-widest">
+                <i class="fa-solid fa-arrow-down"></i>
+                <span>Open Invitation</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- FLOATING MUSIC BUTTON -->
+    <div id="music-control-btn" onclick="toggleMusic()" class="music-btn bg-slate-900 text-white border border-slate-700 hidden hover:bg-slate-800">
+        <i id="music-icon" class="fa-solid fa-compact-disc text-xl"></i>
+    </div>
+
+    <!-- BOTTOM FLOATING NAV -->
+    <nav id="bottom-nav" class="bottom-nav bg-slate-900/95 text-slate-300 border border-slate-800 hidden">
+        <a href="#hero" class="hover:text-white"><i class="fa-solid fa-house"></i><span>Home</span></a>
+        <a href="#mempelai" class="hover:text-white"><i class="fa-solid fa-user-group"></i><span>Couple</span></a>
+        <a href="#acara" class="hover:text-white"><i class="fa-solid fa-calendar-check"></i><span>Event</span></a>
+        <a href="#galeri" class="hover:text-white"><i class="fa-solid fa-images"></i><span>Gallery</span></a>
+        <a href="#hadiah" class="hover:text-white"><i class="fa-solid fa-gift"></i><span>Gift</span></a>
+        <a href="#rsvp" class="hover:text-white"><i class="fa-solid fa-pen-nib"></i><span>Wishes</span></a>
+    </nav>
+
+    <!-- MAIN CONTAINER -->
+    <div class="max-w-md mx-auto bg-white shadow-2xl min-h-screen relative border-x border-slate-200 pb-24">
+
+        <!-- 1. HERO SECTION -->
+        <section id="hero" class="pt-16 pb-14 px-6 text-center">
+            <span class="text-[10px] uppercase tracking-[0.4em] text-slate-400 font-semibold">TOGETHER WITH OUR FAMILIES</span>
+            <h2 class="text-5xl font-editorial tracking-tight text-slate-900 my-4" data-field="judul_pasangan">Leo & Maya</h2>
+            <p class="text-xs text-slate-500 max-w-xs mx-auto leading-relaxed uppercase tracking-wider">
+                Request the pleasure of your company at the celebration of their marriage
+            </p>
+
+            <!-- Foto Utama Minimalis -->
+            <div class="mt-8 relative w-64 h-80 mx-auto rounded-xl overflow-hidden shadow-md">
+                <img src="https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&w=700&q=80" alt="Minimalist Couple" class="w-full h-full object-cover grayscale contrast-125 hover:grayscale-0 transition duration-700" data-field="foto_galeri_1" data-field="foto_cover">
+            </div>
+
+            <!-- COUNTDOWN TIMER MINIMALIS -->
+            <div class="mt-10 p-5 rounded-xl bg-slate-50 border border-slate-200">
+                <p class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-semibold mb-3">SAVE THE DATE</p>
+                <div id="countdown-container" class="grid grid-cols-4 gap-2 text-center">
+                    <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm">
+                        <span id="count-days" class="block text-2xl font-bold text-slate-900 font-editorial">00</span>
+                        <span class="text-[9px] text-slate-400 uppercase font-semibold">Days</span>
+                    </div>
+                    <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm">
+                        <span id="count-hours" class="block text-2xl font-bold text-slate-900 font-editorial">00</span>
+                        <span class="text-[9px] text-slate-400 uppercase font-semibold">Hours</span>
+                    </div>
+                    <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm">
+                        <span id="count-minutes" class="block text-2xl font-bold text-slate-900 font-editorial">00</span>
+                        <span class="text-[9px] text-slate-400 uppercase font-semibold">Mins</span>
+                    </div>
+                    <div class="bg-white p-2.5 rounded-lg border border-slate-200 shadow-sm">
+                        <span id="count-seconds" class="block text-2xl font-bold text-slate-900 font-editorial">00</span>
+                        <span class="text-[9px] text-slate-400 uppercase font-semibold">Secs</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. MEMPELAI SECTION -->
+        <section id="mempelai" class="py-12 px-6 text-center border-t border-slate-100 reveal-on-scroll">
+            <span class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-semibold block mb-2">THE COUPLE</span>
+            <h3 class="text-3xl font-editorial text-slate-900 mb-8">Bride & Groom</h3>
+
+            <!-- Groom -->
+            <div class="mb-10">
+                <div class="w-32 h-32 mx-auto rounded-full overflow-hidden shadow-sm border border-slate-200">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=80" alt="Leo" class="w-full h-full object-cover" data-field="foto_pria">
+                </div>
+                <h4 class="text-xl font-editorial font-bold text-slate-900 mt-4" data-field="pria_nama">Leonardo Tan</h4>
+                <p class="text-xs text-slate-500 mt-1">Son of Mr. Robert Tan & Mrs. Evelyn Tan</p>
+                <a href="https://instagram.com" target="_blank" class="inline-flex items-center space-x-1 text-xs text-slate-600 mt-2 hover:text-black">
+                    <i class="fa-brands fa-instagram"></i> <span>@leonardo.tan</span>
+                </a>
+            </div>
+
+            <div class="text-xl font-light text-slate-300 my-4">&</div>
+
+            <!-- Bride -->
+            <div>
+                <div class="w-32 h-32 mx-auto rounded-full overflow-hidden shadow-sm border border-slate-200">
+                    <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80" alt="Maya" class="w-full h-full object-cover" data-field="foto_wanita">
+                </div>
+                <h4 class="text-xl font-editorial font-bold text-slate-900 mt-4">Mayang Sari</h4>
+                <p class="text-xs text-slate-500 mt-1">Daughter of Mr. David Sari & Mrs. Christine Lin</p>
+                <a href="https://instagram.com" target="_blank" class="inline-flex items-center space-x-1 text-xs text-slate-600 mt-2 hover:text-black">
+                    <i class="fa-brands fa-instagram"></i> <span>@mayang.sari</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- 3. DETAIL ACARA SECTION -->
+        <section id="acara" class="py-12 px-6 bg-slate-50 border-t border-slate-100 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-semibold">ITINERARY</span>
+                <h3 class="text-3xl font-editorial text-slate-900 mt-1">Wedding Events</h3>
+            </div>
+
+            <!-- Holy Matrimony -->
+            <div class="bg-white p-6 rounded-xl border border-slate-200 mb-4 text-center">
+                <span class="text-[10px] tracking-widest uppercase font-semibold text-slate-400 block mb-1">CEREMONY</span>
+                <h4 class="text-lg font-editorial font-bold text-slate-900">Holy Matrimony</h4>
+                <div class="my-3 text-slate-600 text-xs space-y-1">
+                    <p class="font-bold text-slate-900">Saturday, November 28, 2026</p>
+                    <p>10:00 AM - 12:00 PM</p>
+                    <p class="text-slate-500 mt-2">St. Mary Cathedral, Jakarta Pusat</p>
+                </div>
+            </div>
+
+            <!-- Reception -->
+            <div class="bg-white p-6 rounded-xl border border-slate-200 text-center">
+                <span class="text-[10px] tracking-widest uppercase font-semibold text-slate-400 block mb-1">CELEBRATION</span>
+                <h4 class="text-lg font-editorial font-bold text-slate-900">Dinner Reception</h4>
+                <div class="my-3 text-slate-600 text-xs space-y-1">
+                    <p class="font-bold text-slate-900">Saturday, November 28, 2026</p>
+                    <p>06:30 PM - 09:30 PM</p>
+                    <p class="text-slate-500 mt-2">The Langham Ballroom, SCBD Jakarta</p>
+                </div>
+                <div class="mt-4">
+                    <a href="https://maps.google.com" target="_blank" class="w-full bg-slate-900 hover:bg-slate-800 text-white text-xs font-medium py-2.5 px-4 rounded-lg shadow-sm transition flex items-center justify-center space-x-2">
+                        <i class="fa-solid fa-location-arrow"></i>
+                        <span>View on Google Maps</span>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- 4. GALERI FOTO -->
+        <section id="galeri" class="py-12 px-6 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-semibold">MEMORIES</span>
+                <h3 class="text-3xl font-editorial text-slate-900 mt-1">Photo Gallery</h3>
+            </div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=800&q=80', 'Chapter 01')">
+                    <img src="https://images.unsplash.com/photo-1511285560929-80b456fea0bc?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500" data-field="foto_galeri_4">
+                </div>
+                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=800&q=80', 'Chapter 02')">
+                    <img src="https://images.unsplash.com/photo-1465495976277-4387d4b0b4c6?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                </div>
+                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=800&q=80', 'Chapter 03')">
+                    <img src="https://images.unsplash.com/photo-1583939003579-730e3918a45a?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                </div>
+                <div class="aspect-square rounded-lg overflow-hidden cursor-pointer group" onclick="openLightbox('https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=800&q=80', 'Chapter 04')">
+                    <img src="https://images.unsplash.com/photo-1522673607200-164d1b6ce486?auto=format&fit=crop&w=500&q=80" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. TANDA KASIH / HADIAH DIGITAL -->
+        <section id="hadiah" class="py-12 px-6 bg-slate-50 border-t border-slate-100 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-semibold">WEDDING GIFT</span>
+                <h3 class="text-3xl font-editorial text-slate-900 mt-1">Cashless Gift</h3>
+                <p class="text-xs text-slate-500 mt-2">Your presence and prayers are our greatest gift.</p>
+            </div>
+
+            <!-- Rekening BCA -->
+            <div class="bg-white p-5 rounded-xl border border-slate-200 mb-4 flex items-center justify-between">
+                <div>
+                    <span class="text-xs font-bold text-slate-900 block">BANK BCA</span>
+                    <p class="text-sm font-mono font-bold text-slate-700 my-1">731-098-4421</p>
+                    <span class="text-xs text-slate-400">a.n. Leonardo Tan</span>
+                </div>
+                <button onclick="salinRekening('7310984421', 'BCA Leonardo')" class="bg-slate-100 hover:bg-slate-200 text-slate-800 text-xs font-semibold py-2 px-3 rounded-lg border border-slate-300 transition">
+                    <i class="fa-regular fa-copy mr-1"></i> Copy
+                </button>
+            </div>
+        </section>
+
+        <!-- 6. RSVP & BUKU TAMU -->
+        <section id="rsvp" class="py-12 px-6 reveal-on-scroll">
+            <div class="text-center mb-8">
+                <span class="text-[10px] uppercase tracking-[0.3em] text-slate-400 font-semibold">GUESTBOOK</span>
+                <h3 class="text-3xl font-editorial text-slate-900 mt-1">RSVP & Wishes</h3>
+            </div>
+
+            <form onsubmit="kirimUcapan(event, 'clean-minimalist')" class="bg-slate-50 p-5 rounded-xl border border-slate-200 space-y-4 mb-8">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Your Name</label>
+                    <input type="text" id="rsvp-nama" required placeholder="Full Name" class="w-full text-sm border border-slate-300 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-slate-900">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Attendance</label>
+                    <select id="rsvp-status" class="w-full text-sm border border-slate-300 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-slate-900">
+                        <option value="hadir">Will Attend</option>
+                        <option value="tidak_hadir">Regretfully Cannot Attend</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-600 mb-1">Warm Wishes</label>
+                    <textarea id="rsvp-pesan" required rows="3" placeholder="Leave your heartfelt wishes..." class="w-full text-sm border border-slate-300 rounded-lg p-2.5 focus:outline-none focus:ring-2 focus:ring-slate-900"></textarea>
+                </div>
+                <button type="submit" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-medium py-3 rounded-lg transition text-xs uppercase tracking-wider">
+                    Submit RSVP
+                </button>
+            </form>
+
+            <div class="flex items-center justify-between mb-4">
+                <h4 class="text-sm font-bold text-slate-900">Recent Wishes</h4>
+                <span id="wishes-count" class="text-xs text-slate-500 font-semibold"></span>
+            </div>
+
+            <div id="wishes-list" class="space-y-3 max-h-96 overflow-y-auto pr-1"></div>
+        </section>
+
+        <!-- FOOTER -->
+        <footer class="text-center py-8 px-4 bg-slate-900 text-slate-400 text-xs">
+            <p class="font-editorial text-xl text-white mb-2 tracking-wide">Leo & Maya</p>
+            <p>Thank you for celebrating with us.</p>
+            <p class="mt-4 text-[10px] text-slate-500">Invitation by <a href="../index.html" class="text-slate-300 underline">MisterApin Invite</a></p>
+        </footer>
+
+    </div>
+
+    <script src="../assets/js/invitation.js"></script>
+    <script>
+        initCountdown('2026-11-28T10:00:00');
+        initWishes('clean-minimalist');
+    </script>
+</body>
+</html>
+
